@@ -15,17 +15,17 @@ function LoginForm({onSubmit, buttonText}){
     })
   }
   return(
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form onSubmit={handleSubmit} className={styles.loginForm}>
+      <div className={styles.loginFormDiv}>
         <label htmlFor="username">Username</label>
-        <input id="username" type="text" />
+        <input id="username" type="text" className={styles.dialogInputField}/>
       </div>
-      <div>
+      <div className={styles.loginFormDiv}>
         <label htmlFor="password">Password</label>
-        <input id="password" type="text" />
+        <input id="password" type="text" className={styles.dialogInputField}/>
       </div>
-      <div>
-        <button type="submit">{buttonText}</button>
+      <div className={styles.loginFormButtonDiv}>
+        <button className={buttonText == "Login" ? styles.loginFormButtonLogin : styles.loginFormButtonRegister} type="submit">{buttonText}</button>
       </div>
     </form>
   )
@@ -50,18 +50,28 @@ const Home: NextPage = () => {
         <button className={styles.buttonLogin} onClick={()=>{ setOpenModal('login')}}>Login</button>
         <button className={styles.buttonRegister} onClick={()=>{ setOpenModal('register')}}>Register</button>
       </div>
-      <Dialog aria-label="Login form" isOpen={openModal === 'login'}>
-        <div>
-          <button onClick={()=>{ setOpenModal('none')}}>Close</button>
+      <Dialog aria-label="Login form" isOpen={openModal === 'login'} className={styles.formContainer}>
+        <div className={styles.closeFormDiv}>
+          <button onClick={()=>{ setOpenModal('none')}} className={styles.closeFormButton}> 
+            <span className={styles.closeFormSpan} >
+              Close
+            </span>
+            <span aria-hidden="true">x</span>
+          </button>
         </div>
-        <h3>Login</h3>
+        <h3 className={styles.dialogH3}>Login</h3>
         <LoginForm onSubmit={login} buttonText="Login"/>
       </Dialog>
-      <Dialog aria-label="Login form" isOpen={openModal === 'register'}>
-        <div>
-          <button onClick={()=>{ setOpenModal('none')}}>Close</button>
+      <Dialog aria-label="Login form" isOpen={openModal === 'register'} className={styles.formContainer}>
+        <div className={styles.closeFormDiv}>
+          <button onClick={()=>{ setOpenModal('none')}} className={styles.closeFormButton}> 
+            <span className={styles.closeFormSpan} >
+              Close
+            </span>
+            <span aria-hidden="true">x</span>
+          </button>
         </div>
-        <h3>Register</h3>
+        <h3 className={styles.dialogH3}>Register</h3>
         <LoginForm onSubmit={register} buttonText="Register"/>
       </Dialog>
       
@@ -70,3 +80,5 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+ 
