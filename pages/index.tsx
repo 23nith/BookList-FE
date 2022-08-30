@@ -83,8 +83,7 @@ const Home: NextPage = () => {
             onClick={() => {
               setOpenModal("none");
             }}
-            // className={styles.closeFormButton}
-            className={"closeFormButton"}
+            className="closeFormButton"
           >
             <span className={styles.closeFormSpan}>Close</span>
             <span aria-hidden="true">x</span>
@@ -103,8 +102,7 @@ const Home: NextPage = () => {
             onClick={() => {
               setOpenModal("none");
             }}
-            // className={styles.closeFormButton}
-            className={"closeFormButton"}
+            className="closeFormButton"
           >
             <span className={styles.closeFormSpan}>Close</span>
             <span aria-hidden="true">x</span>
