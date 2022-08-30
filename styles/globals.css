@@ -35,6 +35,10 @@ a {
   @apply text-center text-2em font-medium leading-1.2 mb-2 mt-0;
 }
 
+.dialogInputField {
+  @apply rounded-3 border-custom_light_gray bg-custom_light_gray2 py-8px px-12px;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

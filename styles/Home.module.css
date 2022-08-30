@@ -6,13 +6,6 @@
   @apply w-full max-w-450 rounded-3 pb-3.5em shadow-custom m-20vh mx-auto;
 }
 
-.dialogInputField {
-  border-radius: 3px;
-  border: 1px solid rgb(241, 241, 244);
-  background: rgb(241, 242, 247);
-  padding: 8px 12px;
-}
-
 .loginFormDiv {
   margin: 10px auto;
   width: 100%;

@@ -9,6 +9,7 @@ module.exports = {
       colors: {
         custom_gray: "#434449",
         custom_light_gray: "#f1f1f4",
+        custom_light_gray2: "#f1f2f7",
       },
       borderRadius: {
         thirty: "30px",
@@ -26,6 +27,8 @@ module.exports = {
       },
       padding: {
         "3.5em": "3.5em",
+        "8px": "8px",
+        "12px": "12px",
       },
       maxWidth: {
         450: "450px",
