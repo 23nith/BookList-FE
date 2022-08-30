@@ -3,14 +3,7 @@
 }
 
 .formContainer {
-  width: 100%;
-  margin: 10vh auto;
-
-  max-width: 450px;
-  border-radius: 3px;
-  padding-bottom: 3.5em;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 30px -5px;
-  margin: 20vh auto;
+  @apply w-full max-w-450 rounded-3 pb-3.5em shadow-custom m-20vh mx-auto;
 }
 
 .closeFormDiv {
