@@ -33,6 +33,12 @@ module.exports = {
       boxShadow: {
         custom: "rgba(0, 0, 0, 0.2) 0px 10px 30px -5px",
       },
+      fontSize: {
+        "2em": "2em",
+      },
+      lineHeight: {
+        1.2: 1.2,
+      },
     },
   },
   plugins: [],

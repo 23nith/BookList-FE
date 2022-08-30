@@ -31,6 +31,10 @@ a {
   @apply flex justify-end;
 }
 
+.dialogH3 {
+  @apply text-center text-2em font-medium leading-1.2 mb-2 mt-0;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

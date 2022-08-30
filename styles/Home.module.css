@@ -6,16 +6,6 @@
   @apply w-full max-w-450 rounded-3 pb-3.5em shadow-custom m-20vh mx-auto;
 }
 
-.dialogH3 {
-  text-align: center;
-  font-size: 2em;
-
-  font-weight: 500;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-  margin-top: 0;
-}
-
 .dialogInputField {
   border-radius: 3px;
   border: 1px solid rgb(241, 241, 244);

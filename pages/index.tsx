@@ -89,7 +89,7 @@ const Home: NextPage = () => {
             <span aria-hidden="true">x</span>
           </button>
         </div>
-        <h3 className={styles.dialogH3}>Login</h3>
+        <h3 className="dialogH3">Login</h3>
         <LoginForm onSubmit={login} buttonText="Login" />
       </Dialog>
       <Dialog
@@ -108,7 +108,7 @@ const Home: NextPage = () => {
             <span aria-hidden="true">x</span>
           </button>
         </div>
-        <h3 className={styles.dialogH3}>Register</h3>
+        <h3 className="dialogH3">Register</h3>
         <LoginForm onSubmit={register} buttonText="Register" />
       </Dialog>
     </div>
