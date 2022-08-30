@@ -13,8 +13,8 @@
   margin: 20vh auto;
 }
 
-.closeFormButton {
-  border-radius: 30px;
+/* .closeFormButton { */
+/* border-radius: 30px;
   padding: 0px;
   width: 40px;
   height: 40px;
@@ -27,8 +27,8 @@
   background: white;
   color: rgb(67, 68, 73);
   border: 1px solid rgb(241, 241, 244);
-  cursor: pointer;
-}
+  cursor: pointer; */
+/* } */
 
 .closeFormSpan {
   border: 0px;
@@ -54,9 +54,9 @@
   font-size: 2em;
 
   font-weight: 500;
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
-    margin-top: 0;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
 }
 
 .dialogInputField {
@@ -119,7 +119,7 @@
 .bookshelfH1 {
   font-weight: 500;
   line-height: 1.2;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   margin-top: 0;
 }
 

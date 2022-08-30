@@ -19,6 +19,10 @@ a {
   box-sizing: border-box;
 }
 
+.closeFormButton {
+  @apply rounded-thirty p-0 w-forty h-forty leading-none flex items-center justify-center bg-white text-custom_gray border border-custom_light_gray cursor-pointer;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
