@@ -39,6 +39,10 @@ a {
   @apply rounded-3 border-custom_light_gray bg-custom_light_gray2 py-8px px-12px;
 }
 
+.loginFormDiv {
+  @apply m-10px mx-auto w-full max-w-300 flex flex-col;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

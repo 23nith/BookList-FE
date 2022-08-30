@@ -16,11 +16,11 @@ function LoginForm({ onSubmit, buttonText }) {
   }
   return (
     <form onSubmit={handleSubmit} className={styles.loginForm}>
-      <div className={styles.loginFormDiv}>
+      <div className="loginFormDiv">
         <label htmlFor="username">Username</label>
         <input id="username" type="text" className="dialogInputField" />
       </div>
-      <div className={styles.loginFormDiv}>
+      <div className="loginFormDiv">
         <label htmlFor="password">Password</label>
         <input id="password" type="text" className="dialogInputField" />
       </div>

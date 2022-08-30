@@ -24,6 +24,7 @@ module.exports = {
       margin: {
         negative_1: "-1px",
         "20vh": "20vh",
+        "10px": "10px",
       },
       padding: {
         "3.5em": "3.5em",
@@ -32,6 +33,7 @@ module.exports = {
       },
       maxWidth: {
         450: "450px",
+        300: "300px",
       },
       boxShadow: {
         custom: "rgba(0, 0, 0, 0.2) 0px 10px 30px -5px",
