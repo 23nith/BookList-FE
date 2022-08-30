@@ -43,6 +43,18 @@ a {
   @apply m-10px mx-auto w-full max-w-300 flex flex-col;
 }
 
+.loginForm {
+  @apply flex flex-col items-stretch;
+}
+
+.loginFormButtonLogin {
+  @apply py-10px px-15px border-0 leading-none rounded-3 text-white bg-custom_blue;
+}
+
+.loginFormButtonRegister {
+  @apply py-10px px-15px border-0 leading-none rounded-3 text-custom_gray bg-custom_light_gray2;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

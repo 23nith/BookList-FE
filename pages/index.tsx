@@ -15,7 +15,7 @@ function LoginForm({ onSubmit, buttonText }) {
     });
   }
   return (
-    <form onSubmit={handleSubmit} className={styles.loginForm}>
+    <form onSubmit={handleSubmit} className="loginForm">
       <div className="loginFormDiv">
         <label htmlFor="username">Username</label>
         <input id="username" type="text" className="dialogInputField" />
@@ -28,8 +28,8 @@ function LoginForm({ onSubmit, buttonText }) {
         <button
           className={
             buttonText == "Login"
-              ? styles.loginFormButtonLogin
-              : styles.loginFormButtonRegister
+              ? "loginFormButtonLogin"
+              : "loginFormButtonRegister"
           }
           type="submit"
         >
