@@ -13,36 +13,6 @@
   margin: 20vh auto;
 }
 
-/* .closeFormButton { */
-/* border-radius: 30px;
-  padding: 0px;
-  width: 40px;
-  height: 40px;
-  line-height: 1;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center;
-  background: white;
-  color: rgb(67, 68, 73);
-  border: 1px solid rgb(241, 241, 244);
-  cursor: pointer; */
-/* } */
-
-.closeFormSpan {
-  border: 0px;
-  clip: rect(0px, 0px, 0px, 0px);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0px;
-  position: absolute;
-  width: 1px;
-  white-space: nowrap;
-  overflow-wrap: normal;
-}
-
 .closeFormDiv {
   display: flex;
   -webkit-box-pack: end;

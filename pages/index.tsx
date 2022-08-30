@@ -85,7 +85,7 @@ const Home: NextPage = () => {
             }}
             className="closeFormButton"
           >
-            <span className={styles.closeFormSpan}>Close</span>
+            <span className="closeFormSpan">Close</span>
             <span aria-hidden="true">x</span>
           </button>
         </div>
@@ -93,7 +93,7 @@ const Home: NextPage = () => {
         <LoginForm onSubmit={login} buttonText="Login" />
       </Dialog>
       <Dialog
-        aria-label="Login form"
+        aria-label="Registration form"
         isOpen={openModal === "register"}
         className={styles.formContainer}
       >
@@ -104,7 +104,7 @@ const Home: NextPage = () => {
             }}
             className="closeFormButton"
           >
-            <span className={styles.closeFormSpan}>Close</span>
+            <span className="closeFormSpan">Close</span>
             <span aria-hidden="true">x</span>
           </button>
         </div>

@@ -19,6 +19,9 @@ module.exports = {
       height: {
         forty: "40px",
       },
+      margin: {
+        negative_1: "-1px",
+      },
     },
   },
   plugins: [],

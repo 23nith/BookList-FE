@@ -23,6 +23,10 @@ a {
   @apply rounded-thirty p-0 w-forty h-forty leading-none flex items-center justify-center bg-white text-custom_gray border border-custom_light_gray cursor-pointer;
 }
 
+.closeFormSpan {
+  @apply border-0 h-1 m-negative_1 overflow-hidden p-0 w-1 whitespace-nowrap absolute;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
