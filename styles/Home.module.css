@@ -6,12 +6,6 @@
   @apply w-full max-w-450 rounded-3 pb-3.5em shadow-custom m-20vh mx-auto;
 }
 
-.closeFormDiv {
-  display: flex;
-  -webkit-box-pack: end;
-  justify-content: flex-end;
-}
-
 .dialogH3 {
   text-align: center;
   font-size: 2em;

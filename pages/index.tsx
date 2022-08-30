@@ -78,7 +78,7 @@ const Home: NextPage = () => {
         isOpen={openModal === "login"}
         className={styles.formContainer}
       >
-        <div className={styles.closeFormDiv}>
+        <div className="closeFormDiv">
           <button
             onClick={() => {
               setOpenModal("none");
@@ -97,7 +97,7 @@ const Home: NextPage = () => {
         isOpen={openModal === "register"}
         className={styles.formContainer}
       >
-        <div className={styles.closeFormDiv}>
+        <div className="closeFormDiv">
           <button
             onClick={() => {
               setOpenModal("none");
