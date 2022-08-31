@@ -36,8 +36,10 @@ module.exports = {
         "15px": "15px",
       },
       maxWidth: {
+        200: "200px",
         450: "450px",
         300: "300px",
+        840: "840px",
       },
       boxShadow: {
         custom: "rgba(0, 0, 0, 0.2) 0px 10px 30px -5px",
@@ -47,6 +49,12 @@ module.exports = {
       },
       lineHeight: {
         1.2: 1.2,
+      },
+      gap: {
+        "1em": "1em",
+      },
+      flexGrow: {
+        5: "5",
       },
     },
   },
