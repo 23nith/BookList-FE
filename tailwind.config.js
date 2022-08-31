@@ -21,6 +21,7 @@ module.exports = {
       },
       height: {
         forty: "40px",
+        "100vh": "100vh",
       },
       margin: {
         negative_1: "-1px",

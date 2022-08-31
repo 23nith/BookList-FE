@@ -24,7 +24,7 @@ function LoginForm({ onSubmit, buttonText }) {
         <label htmlFor="password">Password</label>
         <input id="password" type="text" className="dialogInputField" />
       </div>
-      <div className={styles.loginFormButtonDiv}>
+      <div className="loginFormButtonDiv">
         <button
           className={
             buttonText == "Login"
@@ -52,12 +52,12 @@ const Home: NextPage = () => {
   }
 
   return (
-    <div className={`${styles.container} ${styles.homeContainer}`}>
+    <div className={"homeContainer"}>
       <img src="/logo.png" width={80} height={80} />
       <h1 className={styles.bookshelfH1}>Bookshelf</h1>
       <div className={styles.buttonContainer}>
         <button
-          className={styles.buttonLogin}
+          className="loginFormButtonLogin"
           onClick={() => {
             setOpenModal("login");
           }}
@@ -65,7 +65,7 @@ const Home: NextPage = () => {
           Login
         </button>
         <button
-          className={styles.buttonRegister}
+          className="loginFormButtonRegister"
           onClick={() => {
             setOpenModal("register");
           }}

@@ -55,6 +55,18 @@ a {
   @apply py-10px px-15px border-0 leading-none rounded-3 text-custom_gray bg-custom_light_gray2;
 }
 
+.loginFormButtonDiv {
+  @apply m-10px mx-auto w-full max-w-300;
+}
+
+.homeContainer {
+  @apply flex flex-col items-center justify-center w-full h-100vh;
+}
+
+/* .bookShelfH1 {
+  @apply text-2em font-medium leading-1.2 mb-0.5 mt-0;
+} */
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
