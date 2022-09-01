@@ -64,7 +64,7 @@ const Home: NextPage = () => {
       if (res.ok) {
         console.log("res: ", res);
         localStorage.setItem("token", res.headers.get("Authorization"));
-        router.push("/authenticated");
+        router.push("/list");
       } else {
         throw new Error(res);
       }
