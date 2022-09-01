@@ -5,6 +5,7 @@ import { Dialog } from "@reach/dialog";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import Head from "next/head";
 
 const LoginForm = ({ onSubmit, buttonText }) => {
   const handleSubmit = (event: React.FormEvent<HTMLInputElement>) => {
@@ -96,66 +97,71 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div className={"homeContainer"}>
-      <Image src="/logo.png" width={80} height={80} />
-      <h1 className={styles.bookshelfH1}>Bookshelf</h1>
-      <div className={styles.buttonContainer}>
-        <button
-          className="loginFormButtonLogin"
-          onClick={() => {
-            setOpenModal("login");
-          }}
+    <>
+      <Head>
+        <title>Bookshelf</title>
+      </Head>
+      <div className={"homeContainer"}>
+        <Image src="/logo.png" width={80} height={80} />
+        <h1 className={styles.bookshelfH1}>Bookshelf</h1>
+        <div className={styles.buttonContainer}>
+          <button
+            className="loginFormButtonLogin"
+            onClick={() => {
+              setOpenModal("login");
+            }}
+          >
+            Login
+          </button>
+          <button
+            className="loginFormButtonRegister"
+            onClick={() => {
+              setOpenModal("register");
+            }}
+          >
+            Register
+          </button>
+        </div>
+        <Dialog
+          aria-label="Login form"
+          isOpen={openModal === "login"}
+          className={styles.formContainer}
         >
-          Login
-        </button>
-        <button
-          className="loginFormButtonRegister"
-          onClick={() => {
-            setOpenModal("register");
-          }}
+          <div className="closeFormDiv">
+            <button
+              onClick={() => {
+                setOpenModal("none");
+              }}
+              className="closeFormButton"
+            >
+              <span className="closeFormSpan">Close</span>
+              <span aria-hidden="true">x</span>
+            </button>
+          </div>
+          <h3 className="dialogH3">Login</h3>
+          <LoginForm onSubmit={login} buttonText="Login" />
+        </Dialog>
+        <Dialog
+          aria-label="Registration form"
+          isOpen={openModal === "register"}
+          className={styles.formContainer}
         >
-          Register
-        </button>
+          <div className="closeFormDiv">
+            <button
+              onClick={() => {
+                setOpenModal("none");
+              }}
+              className="closeFormButton"
+            >
+              <span className="closeFormSpan">Close</span>
+              <span aria-hidden="true">x</span>
+            </button>
+          </div>
+          <h3 className="dialogH3">Register</h3>
+          <LoginForm onSubmit={register} buttonText="Register" />
+        </Dialog>
       </div>
-      <Dialog
-        aria-label="Login form"
-        isOpen={openModal === "login"}
-        className={styles.formContainer}
-      >
-        <div className="closeFormDiv">
-          <button
-            onClick={() => {
-              setOpenModal("none");
-            }}
-            className="closeFormButton"
-          >
-            <span className="closeFormSpan">Close</span>
-            <span aria-hidden="true">x</span>
-          </button>
-        </div>
-        <h3 className="dialogH3">Login</h3>
-        <LoginForm onSubmit={login} buttonText="Login" />
-      </Dialog>
-      <Dialog
-        aria-label="Registration form"
-        isOpen={openModal === "register"}
-        className={styles.formContainer}
-      >
-        <div className="closeFormDiv">
-          <button
-            onClick={() => {
-              setOpenModal("none");
-            }}
-            className="closeFormButton"
-          >
-            <span className="closeFormSpan">Close</span>
-            <span aria-hidden="true">x</span>
-          </button>
-        </div>
-        <h3 className="dialogH3">Register</h3>
-        <LoginForm onSubmit={register} buttonText="Register" />
-      </Dialog>
-    </div>
+    </>
   );
 };
 
