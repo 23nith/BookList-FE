@@ -47,6 +47,26 @@ const Home: NextPage = () => {
 
   const login = (formData: React.FormEvent<HTMLInputElement>) => {
     console.log("login", formData);
+    fetch("http://localhost:3000/login", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          username: formData.username,
+          password: formData.password,
+        },
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        console.log("res: ", res);
+        localStorage.setItem("token", res.headers.get("Authorization"));
+        router.push("/authenticated");
+      } else {
+        throw new Error(res);
+      }
+    });
   };
 
   const register = (formData: React.FormEvent<HTMLInputElement>) => {
