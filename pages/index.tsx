@@ -3,9 +3,10 @@ import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 import { Dialog } from "@reach/dialog";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
-function LoginForm({ onSubmit, buttonText }) {
-  function handleSubmit(event: React.FormEvent<HTMLInputElement>) {
+const LoginForm = ({ onSubmit, buttonText }) => {
+  const handleSubmit = (event: React.FormEvent<HTMLInputElement>) => {
     event.preventDefault();
     const { username, password } = event.target.elements;
 
@@ -13,7 +14,7 @@ function LoginForm({ onSubmit, buttonText }) {
       username: username.value,
       password: password.value,
     });
-  }
+  };
   return (
     <form onSubmit={handleSubmit} className="loginForm">
       <div className="loginFormDiv">
@@ -22,7 +23,7 @@ function LoginForm({ onSubmit, buttonText }) {
       </div>
       <div className="loginFormDiv">
         <label htmlFor="password">Password</label>
-        <input id="password" type="text" className="dialogInputField" />
+        <input id="password" type="password" className="dialogInputField" />
       </div>
       <div className="loginFormButtonDiv">
         <button
@@ -38,18 +39,39 @@ function LoginForm({ onSubmit, buttonText }) {
       </div>
     </form>
   );
-}
+};
 
 const Home: NextPage = () => {
   const [openModal, setOpenModal] = useState<String>("none");
+  const router = useRouter();
 
-  function login(formData: React.FormEvent<HTMLInputElement>) {
+  const login = (formData: React.FormEvent<HTMLInputElement>) => {
     console.log("login", formData);
-  }
+    fetch("http://localhost:3000/login", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          username: formData.username,
+          password: formData.password,
+        },
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        console.log("res: ", res);
+        localStorage.setItem("token", res.headers.get("Authorization"));
+        router.push("/authenticated");
+      } else {
+        throw new Error(res);
+      }
+    });
+  };
 
-  function register(formData: React.FormEvent<HTMLInputElement>) {
+  const register = (formData: React.FormEvent<HTMLInputElement>) => {
     console.log("register", formData);
-  }
+  };
 
   return (
     <div className={"homeContainer"}>
