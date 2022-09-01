@@ -47,10 +47,15 @@ const Home: NextPage = () => {
 
   const login = (formData: React.FormEvent<HTMLInputElement>) => {
     console.log("login", formData);
-    fetch("http://localhost:3000/login", {
+  };
+
+  const register = (formData: React.FormEvent<HTMLInputElement>) => {
+    console.log("register", formData);
+    fetch("http://localhost:3000/signup", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
       },
       body: JSON.stringify({
         user: {
@@ -58,19 +63,15 @@ const Home: NextPage = () => {
           password: formData.password,
         },
       }),
-    }).then((res) => {
-      if (res.ok) {
-        console.log("res: ", res);
-        localStorage.setItem("token", res.headers.get("Authorization"));
-        router.push("/authenticated");
-      } else {
-        throw new Error(res);
-      }
-    });
-  };
-
-  const register = (formData: React.FormEvent<HTMLInputElement>) => {
-    console.log("register", formData);
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        return data;
+      });
   };
 
   return (
