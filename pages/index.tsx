@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 import { Dialog } from "@reach/dialog";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const LoginForm = ({ onSubmit, buttonText }) => {
   const handleSubmit = (event: React.FormEvent<HTMLInputElement>) => {
@@ -96,7 +97,7 @@ const Home: NextPage = () => {
 
   return (
     <div className={"homeContainer"}>
-      <img src="/logo.png" width={80} height={80} />
+      <Image src="/logo.png" width={80} height={80} />
       <h1 className={styles.bookshelfH1}>Bookshelf</h1>
       <div className={styles.buttonContainer}>
         <button
