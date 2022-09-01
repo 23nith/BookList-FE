@@ -1,6 +1,28 @@
 import type { NextPage } from "next";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import BookList from "../components/BookList";
 
 const discover: NextPage = () => {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/api/v1/books", {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log("books", data);
+        setBooks(data);
+      });
+  }, []);
+
   return (
     <>
       <input
@@ -15,6 +37,7 @@ const discover: NextPage = () => {
           Here you go! Find more books with the search bar above.
         </p>
       </div>
+      <div>{books && books.map((book) => <BookList book={book} />)}</div>
     </>
   );
 };

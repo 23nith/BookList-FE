@@ -42,6 +42,9 @@ module.exports = {
         610: "610px",
         840: "840px",
       },
+      minWidth: {
+        140: "140px",
+      },
       boxShadow: {
         custom: "rgba(0, 0, 0, 0.2) 0px 10px 30px -5px",
       },
@@ -55,6 +58,7 @@ module.exports = {
         "1em": "1em",
       },
       flexGrow: {
+        3: "3",
         5: "5",
       },
     },
