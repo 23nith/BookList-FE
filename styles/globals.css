@@ -20,7 +20,7 @@ a {
 }
 
 .closeFormButton {
-  @apply rounded-thirty p-0 w-forty h-forty leading-none flex items-center justify-center bg-white text-custom_gray border border-custom_light_gray cursor-pointer;
+  @apply rounded-30 p-0 w-40 h-40 leading-none flex items-center justify-center bg-white text-custom_gray border border-custom_light_gray cursor-pointer;
 }
 
 .closeFormSpan {

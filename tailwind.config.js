@@ -13,14 +13,14 @@ module.exports = {
         custom_blue: "#3f51b5",
       },
       borderRadius: {
-        thirty: "30px",
+        30: "30px",
         3: "3px",
       },
       width: {
-        forty: "40px",
+        40: "40px",
       },
       height: {
-        forty: "40px",
+        40: "40px",
         "100vh": "100vh",
       },
       margin: {
