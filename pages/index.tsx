@@ -41,7 +41,7 @@ function LoginForm({ onSubmit, buttonText }) {
 }
 
 const Home: NextPage = () => {
-  const [openModal, setOpenModal] = useState("none");
+  const [openModal, setOpenModal] = useState<String>("none");
 
   function login(formData: React.FormEvent<HTMLInputElement>) {
     console.log("login", formData);
