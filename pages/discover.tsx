@@ -3,8 +3,17 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import BookList from "../components/BookList";
 
+export interface IBook {
+  title: string;
+  author: string;
+  cover_image_url: string;
+  page_count: number;
+  publisher: string;
+  synopsis: string;
+}
+
 const discover: NextPage = () => {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState<IBook[]>([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/api/v1/books", {
