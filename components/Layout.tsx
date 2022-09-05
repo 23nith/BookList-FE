@@ -3,7 +3,11 @@ import styles from "../../styles/Home.module.css";
 import Menubar from "./Menubar";
 import Navbar from "./Navbar";
 
-const Layout: NextPage = ({ children }) => {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="flex flex-col h-100vh">
       <Menubar />
