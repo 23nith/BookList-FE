@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 
 export const FinishedBooks = createContext();
 
-function FinishedBooksProvider(props) {
+const FinishedBooksProvider = (props) => {
   const [finishedBooks, setFinishedBooks] = useState([]);
   const fetchFinishedBooks = () => {
     fetch("http://localhost:3000/api/v1/finished_books", {
@@ -28,6 +28,6 @@ function FinishedBooksProvider(props) {
       {props.children}
     </FinishedBooks.Provider>
   );
-}
+};
 
 export default FinishedBooksProvider;
