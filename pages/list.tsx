@@ -37,4 +37,4 @@ const list: NextPage = () => {
   );
 };
 
-export default list;
+export { list };
