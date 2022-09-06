@@ -30,4 +30,4 @@ const FinishedBooksProvider = (props) => {
   );
 };
 
-export default FinishedBooksProvider;
+export { FinishedBooksProvider };
