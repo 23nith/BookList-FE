@@ -1,8 +1,7 @@
 import "@reach/dialog/styles.css";
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
-import { Dialog } from "@reach/dialog";
-import { cloneElement, useState } from "react";
+import { cloneElement } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
@@ -64,7 +63,6 @@ const circleDismissButton = (
 );
 
 const Home: NextPage = () => {
-  const [openModal, setOpenModal] = useState<String>("none");
   const router = useRouter();
 
   const login = (formData: React.FormEvent<HTMLInputElement>) => {
