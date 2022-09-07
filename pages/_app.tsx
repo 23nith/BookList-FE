@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import Layout from "../components/Layout";
 import FinishedBooksProvider from "../contexts/FinishedBooksContext";
-import ReadingListProvider from "../contexts/ReadingLIstConext";
+import ReadingListProvider from "../contexts/ReadingListContext";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();

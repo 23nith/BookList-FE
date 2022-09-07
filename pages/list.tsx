@@ -2,11 +2,11 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import BookList from "../components/BookList";
-import { ReadingList } from "../contexts/ReadingLIstConext";
+import { ReadingListContext } from "../contexts/ReadingListContext";
 
-const list: NextPage = () => {
+const List = () => {
   const { readingList, setReadingList, fetchReadingList } =
-    useContext(ReadingList);
+    useContext(ReadingListContext);
 
   const [reading, setReading] = useState(() => {
     if (readingList.length == 0) {
@@ -37,4 +37,4 @@ const list: NextPage = () => {
   );
 };
 
-export { list };
+export default List;

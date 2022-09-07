@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 
-export const ReadingList = createContext();
+export const ReadingListContext = createContext();
 
 function ReadingListProvider(props) {
   const [readingList, setReadingList] = useState([]);
@@ -22,11 +22,11 @@ function ReadingListProvider(props) {
   };
 
   return (
-    <ReadingList.Provider
+    <ReadingListContext.Provider
       value={{ readingList, setReadingList, fetchReadingList }}
     >
       {props.children}
-    </ReadingList.Provider>
+    </ReadingListContext.Provider>
   );
 }
 
