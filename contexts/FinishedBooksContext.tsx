@@ -4,7 +4,8 @@ export const FinishedBooks = createContext();
 
 const FinishedBooksProvider = (props) => {
   const [finishedBooks, setFinishedBooks] = useState([]);
-  const fetchFinishedBooks = () => {
+  const fetchFinishedBooks = (setIsLoading) => {
+    setIsLoading(true);
     fetch("http://localhost:3000/api/v1/finished_books", {
       method: "get",
       headers: {
@@ -13,6 +14,7 @@ const FinishedBooksProvider = (props) => {
       },
     })
       .then((res) => {
+        setIsLoading(false);
         return res.json();
       })
       .then((data) => {
