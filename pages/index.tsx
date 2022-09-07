@@ -5,7 +5,11 @@ import { cloneElement } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
-import { CircleDismissButton, LoginButton, RegisterButton } from "./styled";
+import {
+  CircleDismissButton,
+  LoginButton,
+  RegisterButton,
+} from "../components/styled";
 import { Modal, ModalContents, ModalOpenButton } from "../components/Modal";
 import { useFormik } from "formik";
 

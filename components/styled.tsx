@@ -1,5 +1,5 @@
 import tw from "tailwind-styled-components";
-import { ModalDismissButton } from "../components/Modal";
+import { ModalDismissButton } from "./Modal";
 import React from "react";
 
 const Button = tw.button`py-10px px-15px border-0 leading-none rounded-3`;
