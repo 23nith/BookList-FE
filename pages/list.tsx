@@ -10,14 +10,11 @@ const List = () => {
 
   const [reading, setReading] = useState(() => {
     if (readingList.length == 0) {
-      console.log("blank");
       fetchReadingList();
     }
   });
 
-  useEffect(() => {
-    console.log("Reading books: ", readingList);
-  }, [readingList]);
+  useEffect(() => {}, [readingList]);
   return (
     <>
       {!readingList && (
