@@ -31,12 +31,13 @@ const ModalOpenButton = ({ children: child }) => {
 
 const ModalContents = (props) => {
   const { isOpen, setIsOpen } = useContext(ModalContext);
+  const handleClickDismiss = () => {
+    setIsOpen(false);
+  };
   return (
     <Dialog
       isOpen={isOpen}
-      onDismiss={() => {
-        setIsOpen(false);
-      }}
+      onDismiss={handleClickDismiss}
       className={styles.formContainer}
       {...props}
     />
