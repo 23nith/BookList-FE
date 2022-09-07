@@ -1,7 +1,7 @@
 import "@reach/dialog/styles.css";
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
-import { cloneElement } from "react";
+import { cloneElement, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
@@ -9,6 +9,7 @@ import {
   CircleDismissButton,
   LoginButton,
   RegisterButton,
+  Spinner,
 } from "../components/styled";
 import { Modal, ModalContents, ModalOpenButton } from "../components/Modal";
 import { useFormik } from "formik";
@@ -16,6 +17,7 @@ import { useFormik } from "formik";
 interface LoginFormProps {
   onSubmit: (formData: FormValues) => void;
   submitButton: React.Component<HTMLButtonElement>;
+  isLoading: boolean;
 }
 
 interface FormValues {
@@ -23,7 +25,7 @@ interface FormValues {
   password: string;
 }
 
-const LoginForm = ({ onSubmit, submitButton }: LoginFormProps) => {
+const LoginForm = ({ onSubmit, submitButton, isLoading }: LoginFormProps) => {
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -64,12 +66,16 @@ const LoginForm = ({ onSubmit, submitButton }: LoginFormProps) => {
         />
       </div>
       <div className="loginFormButtonDiv">
-        {cloneElement(
-          submitButton,
-          { type: "submit" },
-          ...(Array.isArray(submitButton.props.children)
-            ? submitButton.props.children
-            : [submitButton.props.children])
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          cloneElement(
+            submitButton,
+            { type: "submit" },
+            ...(Array.isArray(submitButton.props.children)
+              ? submitButton.props.children
+              : [submitButton.props.children])
+          )
         )}
       </div>
     </form>
@@ -78,8 +84,10 @@ const LoginForm = ({ onSubmit, submitButton }: LoginFormProps) => {
 
 const Home: NextPage = () => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const login = (formData: FormValues) => {
+    setIsLoading(true);
     fetch("http://localhost:3000/login", {
       method: "post",
       headers: {
@@ -98,10 +106,12 @@ const Home: NextPage = () => {
       } else {
         throw new Error(res);
       }
+      setIsLoading(false);
     });
   };
 
   const register = (formData: FormValues) => {
+    setIsLoading(true);
     fetch("http://localhost:3000/signup", {
       method: "post",
       headers: {
@@ -119,6 +129,7 @@ const Home: NextPage = () => {
         if (res.ok) {
           return res.json();
         }
+        setIsLoading(false);
       })
       .then((data) => {
         return data;
@@ -143,6 +154,7 @@ const Home: NextPage = () => {
               <h3 className="dialogH3">Login</h3>
               <LoginForm
                 onSubmit={login}
+                isLoading={isLoading}
                 submitButton={<LoginButton>Login</LoginButton>}
               />
             </ModalContents>
@@ -157,6 +169,7 @@ const Home: NextPage = () => {
               <h3 className="dialogH3">Register</h3>
               <LoginForm
                 onSubmit={register}
+                isLoading={isLoading}
                 submitButton={<RegisterButton>Register</RegisterButton>}
               />
             </ModalContents>
