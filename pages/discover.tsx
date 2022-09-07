@@ -19,7 +19,6 @@ const discover: NextPage = () => {
         return res.json();
       })
       .then((data) => {
-        console.log("books", data);
         setBooks(data);
       });
   }, []);

@@ -10,14 +10,11 @@ const finished: NextPage = () => {
 
   const [Finished, setFinished] = useState(() => {
     if (finishedBooks.length == 0) {
-      console.log("blank");
       fetchFinishedBooks();
     }
   });
 
-  useEffect(() => {
-    console.log("Finished books: ", finishedBooks);
-  }, [finishedBooks]);
+  useEffect(() => {}, [finishedBooks]);
 
   return (
     <>

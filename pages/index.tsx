@@ -48,7 +48,6 @@ const Home: NextPage = () => {
   const router = useRouter();
 
   const login = (formData: React.FormEvent<HTMLInputElement>) => {
-    console.log("login", formData);
     fetch("http://localhost:3000/login", {
       method: "post",
       headers: {
@@ -62,7 +61,6 @@ const Home: NextPage = () => {
       }),
     }).then((res) => {
       if (res.ok) {
-        console.log("res: ", res);
         localStorage.setItem("token", res.headers.get("Authorization"));
         router.push("/list");
       } else {
@@ -72,7 +70,6 @@ const Home: NextPage = () => {
   };
 
   const register = (formData: React.FormEvent<HTMLInputElement>) => {
-    console.log("register", formData);
     fetch("http://localhost:3000/signup", {
       method: "post",
       headers: {
