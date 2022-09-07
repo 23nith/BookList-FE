@@ -5,13 +5,8 @@ import { cloneElement } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
-import { LoginButton, RegisterButton } from "./styled";
-import {
-  Modal,
-  ModalDismissButton,
-  ModalContents,
-  ModalOpenButton,
-} from "../components/Modal";
+import { CircleDismissButton, LoginButton, RegisterButton } from "./styled";
+import { Modal, ModalContents, ModalOpenButton } from "../components/Modal";
 
 const LoginForm = ({ onSubmit, submitButton }) => {
   const handleSubmit = (event: React.FormEvent<HTMLInputElement>) => {
@@ -45,17 +40,6 @@ const LoginForm = ({ onSubmit, submitButton }) => {
     </form>
   );
 };
-
-const circleDismissButton = (
-  <div className="closeFormDiv">
-    <ModalDismissButton>
-      <button className="closeFormButton">
-        <span className="closeFormSpan">Close</span>
-        <span aria-hidden="true">x</span>
-      </button>
-    </ModalDismissButton>
-  </div>
-);
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -123,7 +107,7 @@ const Home: NextPage = () => {
               <LoginButton>Login</LoginButton>
             </ModalOpenButton>
             <ModalContents aria-label="">
-              {circleDismissButton}
+              <CircleDismissButton />
               <h3 className="dialogH3">Login</h3>
               <LoginForm
                 onSubmit={login}
@@ -137,7 +121,7 @@ const Home: NextPage = () => {
               <RegisterButton>Register</RegisterButton>
             </ModalOpenButton>
             <ModalContents aria-label="">
-              {circleDismissButton}
+              <CircleDismissButton />
               <h3 className="dialogH3">Register</h3>
               <LoginForm
                 onSubmit={register}
