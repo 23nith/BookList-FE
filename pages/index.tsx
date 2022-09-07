@@ -13,6 +13,7 @@ import {
 } from "../components/styled";
 import { Modal, ModalContents, ModalOpenButton } from "../components/Modal";
 import { useFormik } from "formik";
+import { useModal } from "../components/Modal2";
 
 interface LoginFormProps {
   onSubmit: (formData: FormValues) => void;
@@ -85,6 +86,7 @@ const LoginForm = ({ onSubmit, submitButton, isLoading }: LoginFormProps) => {
 const Home: NextPage = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const { setModal } = useModal();
 
   const login = (formData: FormValues) => {
     setIsLoading(true);
@@ -174,6 +176,14 @@ const Home: NextPage = () => {
               />
             </ModalContents>
           </Modal>
+
+          <label
+            onClick={() => {
+              setModal(<h1>Hola senora!</h1>);
+            }}
+          >
+            Start a dialogue
+          </label>
         </div>
       </div>
     </>
