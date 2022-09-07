@@ -9,27 +9,31 @@ import styles from "../styles/Home.module.css";
 
 const ModalContext = createContext();
 
-const Modal = (props) => {
+interface ComponentChildren {
+  children: React.ReactNode;
+}
+
+const Modal = (props: ComponentChildren) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return <ModalContext.Provider value={{ isOpen, setIsOpen }} {...props} />;
 };
 
-const ModalDismissButton = ({ children: child }) => {
+const ModalDismissButton = ({ children: child }: ComponentChildren) => {
   const { setIsOpen } = useContext(ModalContext);
   return cloneElement(child, {
     onClick: () => setIsOpen(false),
   });
 };
 
-const ModalOpenButton = ({ children: child }) => {
+const ModalOpenButton = ({ children: child }: ComponentChildren) => {
   const { setIsOpen } = useContext(ModalContext);
   return cloneElement(child, {
     onClick: () => setIsOpen(true),
   });
 };
 
-const ModalContents = (props) => {
+const ModalContents = (props: ComponentChildren) => {
   const { isOpen, setIsOpen } = useContext(ModalContext);
   const handleClickDismiss = () => {
     setIsOpen(false);
