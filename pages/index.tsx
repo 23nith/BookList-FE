@@ -9,7 +9,17 @@ import { CircleDismissButton, LoginButton, RegisterButton } from "./styled";
 import { Modal, ModalContents, ModalOpenButton } from "../components/Modal";
 import { useFormik } from "formik";
 
-const LoginForm = ({ onSubmit, submitButton }) => {
+interface LoginFormProps {
+  onSubmit: (formData: FormValues) => void;
+  submitButton: React.Component<HTMLButtonElement>;
+}
+
+interface FormValues {
+  username: string;
+  password: string;
+}
+
+const LoginForm = ({ onSubmit, submitButton }: LoginFormProps) => {
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -19,11 +29,11 @@ const LoginForm = ({ onSubmit, submitButton }) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLInputElement>) => {
     event.preventDefault();
-    const { username, password } = event.target.elements;
+    const { username, password }: FormValues = formik.values;
 
     onSubmit({
-      username: username.value,
-      password: password.value,
+      username: username,
+      password: password,
     });
   };
 
@@ -65,7 +75,7 @@ const LoginForm = ({ onSubmit, submitButton }) => {
 const Home: NextPage = () => {
   const router = useRouter();
 
-  const login = (formData: React.FormEvent<HTMLInputElement>) => {
+  const login = (formData: FormValues) => {
     fetch("http://localhost:3000/login", {
       method: "post",
       headers: {
@@ -87,7 +97,7 @@ const Home: NextPage = () => {
     });
   };
 
-  const register = (formData: React.FormEvent<HTMLInputElement>) => {
+  const register = (formData: FormValues) => {
     fetch("http://localhost:3000/signup", {
       method: "post",
       headers: {
