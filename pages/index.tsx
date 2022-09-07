@@ -5,18 +5,13 @@ import { cloneElement } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
-import tw from "tailwind-styled-components";
+import { LoginButton, RegisterButton } from "./styled";
 import {
   Modal,
   ModalDismissButton,
   ModalContents,
   ModalOpenButton,
 } from "../components/Modal";
-
-const Button = tw.button`py-10px px-15px border-0 leading-none rounded-3`;
-
-const LoginButton = tw(Button)`text-white bg-custom_blue`;
-const RegisterButton = tw(Button)`text-custom_gray bg-custom_light_gray2`;
 
 const LoginForm = ({ onSubmit, submitButton }) => {
   const handleSubmit = (event: React.FormEvent<HTMLInputElement>) => {
