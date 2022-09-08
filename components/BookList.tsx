@@ -1,9 +1,11 @@
 import type { NextPage } from "next";
+import styles from "../styles/Home.module.css";
 
 const BookList: NextPage = ({ book }) => {
   return (
-    <div key={book.id} className="flex flex-row">
-      <div className="grow border-2 border-solid border-black p-5">
+    // <div key={book.id} className="flex flex-row">
+    <div key={book.id} className={styles.booklist_box}>
+      <div className="grow p-5">
         <img
           src={book.cover_image_url}
           width={140}
@@ -11,12 +13,12 @@ const BookList: NextPage = ({ book }) => {
           className="min-w-140"
         />
       </div>
-      <div className="grow-3 border-2 border-solid border-black p-5">
-        <div className="flex flex-row justify-between">
-          <div className="border-black border-2 border-solid ">
+      <div className="grow-3 p-5">
+        <div className="flex flex-row justify-between mb-5">
+          <div className={styles.booklist_title}>
             <h3>{book.title}</h3>
           </div>
-          <div className="border-black border-2 border-solid">
+          <div className="">
             <p>{book.author}</p>
             <p>{book.publisher}</p>
           </div>
