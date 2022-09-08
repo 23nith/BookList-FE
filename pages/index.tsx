@@ -86,7 +86,7 @@ const LoginForm = ({ onSubmit, submitButton, isLoading }: LoginFormProps) => {
 const Home: NextPage = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const { setModal } = useModal();
+  const { setModal, unSetModal } = useModal();
 
   const login = (formData: FormValues) => {
     setIsLoading(true);
@@ -109,6 +109,7 @@ const Home: NextPage = () => {
         throw new Error(res);
       }
       setIsLoading(false);
+      unSetModal();
     });
   };
 
@@ -179,10 +180,19 @@ const Home: NextPage = () => {
 
           <label
             onClick={() => {
-              setModal(<h1>Hola senora!</h1>);
+              setModal(
+                <>
+                  <h3 className="dialogH3">Login</h3>
+                  <LoginForm
+                    onSubmit={login}
+                    isLoading={isLoading}
+                    submitButton={<LoginButton>Login</LoginButton>}
+                  />
+                </>
+              );
             }}
           >
-            Start a dialogue
+            <LoginButton>Login</LoginButton>
           </label>
         </div>
       </div>
