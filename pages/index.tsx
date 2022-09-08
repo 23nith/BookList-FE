@@ -13,11 +13,28 @@ import {
 import { Modal, ModalContents, ModalOpenButton } from "../components/Modal";
 import { useModal } from "../components/Modal2";
 import { LoginForm } from "../components/LoginForm";
+import { Modal3 } from "../components/Modal3";
+import { BookList } from "../components/BookList";
+
+export interface ModalStates {
+  states: 'login' | 'register'
+}
 
 const Home: NextPage = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const { setModal, unSetModal } = useModal();
+  const [isShowModal, setIsShowModal] = useState(false);
+  const [modalState, setModalState] = useState<ModalStates['states'] | undefined>()
+
+  const handleModalClick = (modalKind: ModalStates['states']) => {
+    setIsShowModal(true)
+    setModalState(modalKind)
+  }
+
+  const handleModalClose = () => {
+    setIsShowModal(false)
+  }
 
   const login = (formData: FormValues) => {
     setIsLoading(true);
@@ -109,7 +126,7 @@ const Home: NextPage = () => {
             </ModalContents>
           </Modal>
 
-          <label
+          {/* <label
             onClick={() => {
               setModal(
                 <>
@@ -125,7 +142,11 @@ const Home: NextPage = () => {
             }}
           >
             <LoginButton>Login</LoginButton>
-          </label>
+          </label> */}
+          <Modal3 handleModalClose={handleModalClose} modalState={modalState} isShowModal={isShowModal} handleLogin={login} handleRegister={register} isLoading={isLoading}/>
+          <button onClick={() => handleModalClick('login')}>Login</button>
+          <button onClick={() => handleModalClick('register')}>Register</button>
+          <BookList />
         </div>
       </div>
     </>
