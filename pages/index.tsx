@@ -9,7 +9,6 @@ import {
   CircleDismissButton,
   LoginButton,
   RegisterButton,
-  Spinner,
 } from "../components/styled";
 import { Modal, ModalContents, ModalOpenButton } from "../components/Modal";
 import { useModal } from "../components/Modal2";
@@ -118,7 +117,8 @@ const Home: NextPage = () => {
                   <LoginForm
                     onSubmit={login}
                     isLoading={isLoading}
-                    submitButton={<LoginButton>Login</LoginButton>}
+                    // submitButton={<LoginButton>Login</LoginButton>}
+                    submitButton="Login"
                   />
                 </>
               );

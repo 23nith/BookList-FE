@@ -1,10 +1,11 @@
 import { useFormik } from "formik";
-import { Spinner } from "./styled";
+import { Button, LoginButton, RegisterButton, Spinner } from "./styled";
 import React, { cloneElement } from "react";
 
 interface LoginFormProps {
   onSubmit: (formData: FormValues) => void;
-  submitButton: React.Component<HTMLButtonElement>;
+  // submitButton: React.Component<HTMLButtonElement>;
+  submitButton: string;
   isLoading: boolean;
 }
 
@@ -60,14 +61,17 @@ export const LoginForm = ({
       <div className="loginFormButtonDiv">
         {isLoading ? (
           <Spinner />
+        ) : // cloneElement(
+        //   submitButton,
+        //   { type: "submit" },
+        //   ...(Array.isArray(submitButton.props.children)
+        //     ? submitButton.props.children
+        //     : [submitButton.props.children])
+        // )
+        submitButton == "Login" ? (
+          <LoginButton type="submit">Login</LoginButton>
         ) : (
-          cloneElement(
-            submitButton,
-            { type: "submit" },
-            ...(Array.isArray(submitButton.props.children)
-              ? submitButton.props.children
-              : [submitButton.props.children])
-          )
+          <RegisterButton type="submit">Register</RegisterButton>
         )}
       </div>
     </form>
