@@ -2,7 +2,6 @@ import "@reach/dialog/styles.css";
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 import { useState } from "react";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
 import {
@@ -14,58 +13,7 @@ import { Modal, ModalContents, ModalOpenButton } from "../components/Modal";
 import { LoginForm } from "../components/LoginForm";
 
 const Home: NextPage = () => {
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-
-  const login = (formData: FormValues) => {
-    setIsLoading(true);
-    fetch("http://localhost:3000/login", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user: {
-          username: formData.username,
-          password: formData.password,
-        },
-      }),
-    }).then((res) => {
-      if (res.ok) {
-        localStorage.setItem("token", res.headers.get("Authorization"));
-        router.push("/list");
-      } else {
-        throw new Error(res);
-      }
-      setIsLoading(false);
-    });
-  };
-
-  const register = (formData: FormValues) => {
-    setIsLoading(true);
-    fetch("http://localhost:3000/signup", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-      body: JSON.stringify({
-        user: {
-          username: formData.username,
-          password: formData.password,
-        },
-      }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        setIsLoading(false);
-      })
-      .then((data) => {
-        return data;
-      });
-  };
 
   return (
     <>
