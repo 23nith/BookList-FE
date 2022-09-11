@@ -1,30 +1,22 @@
 import { useFormik } from "formik";
-import { Spinner } from "./styled";
-import React, { cloneElement } from "react";
-
-interface LoginFormProps {
-  onSubmit: (formData: FormValues) => void;
-  submitButton: React.Component<HTMLButtonElement>;
-  isLoading: boolean;
-}
+// import { Spinner } from "./styled";
 
 interface FormValues {
   username: string;
   password: string;
 }
+interface LoginFormProps {
+  onSubmit: (formData: FormValues) => void;
+  buttonText: string;
+}
 
-export const LoginForm = ({
-  onSubmit,
-  submitButton,
-  isLoading,
-}: LoginFormProps) => {
+export const LoginForm = ({ onSubmit, buttonText }: LoginFormProps) => {
   const formik = useFormik({
     initialValues: {
       username: "",
       password: "",
     },
   });
-
   const handleSubmit = (event: React.FormEvent<HTMLInputElement>) => {
     event.preventDefault();
     const { username, password }: FormValues = formik.values;
@@ -34,7 +26,6 @@ export const LoginForm = ({
       password: password,
     });
   };
-
   return (
     <form onSubmit={handleSubmit} className="loginForm">
       <div className="loginFormDiv">
@@ -58,17 +49,16 @@ export const LoginForm = ({
         />
       </div>
       <div className="loginFormButtonDiv">
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          cloneElement(
-            submitButton,
-            { type: "submit" },
-            ...(Array.isArray(submitButton.props.children)
-              ? submitButton.props.children
-              : [submitButton.props.children])
-          )
-        )}
+        <button
+          className={
+            buttonText == "login"
+              ? "loginFormButtonLogin"
+              : "loginFormButtonRegister"
+          }
+          type="submit"
+        >
+          {buttonText}
+        </button>
       </div>
     </form>
   );

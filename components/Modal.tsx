@@ -1,51 +1,34 @@
-import React, {
-  cloneElement,
-  createContext,
-  useContext,
-  useState,
-} from "react";
-import { Dialog } from "@reach/dialog";
+import Dialog from "@reach/dialog";
 import styles from "../styles/Home.module.css";
+import { login } from "../api/login";
+import { register } from "../api/register";
+import { LoginForm } from "./LoginForm";
 
-const ModalContext = createContext();
-
-interface ComponentChildren {
-  children: React.ReactNode;
-}
-
-const Modal = (props: ComponentChildren) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return <ModalContext.Provider value={{ isOpen, setIsOpen }} {...props} />;
-};
-
-const ModalDismissButton = ({ children: child }: ComponentChildren) => {
-  const { setIsOpen } = useContext(ModalContext);
-  return cloneElement(child, {
-    onClick: () => setIsOpen(false),
-  });
-};
-
-const ModalOpenButton = ({ children: child }: ComponentChildren) => {
-  const { setIsOpen } = useContext(ModalContext);
-  return cloneElement(child, {
-    onClick: () => setIsOpen(true),
-  });
-};
-
-const ModalContents = (props: ComponentChildren) => {
-  const { isOpen, setIsOpen } = useContext(ModalContext);
+export const Modal = ({ openModal, setOpenModal }) => {
   const handleClickDismiss = () => {
-    setIsOpen(false);
+    setOpenModal(false);
   };
   return (
     <Dialog
-      isOpen={isOpen}
+      isOpen={openModal !== false}
       onDismiss={handleClickDismiss}
       className={styles.formContainer}
-      {...props}
-    />
+    >
+      <div className="closeFormDiv">
+        <button onClick={handleClickDismiss} className="closeFormButton">
+          <span className="closeFormSpan">Close</span>
+          <span aria-hidden="true">x</span>
+        </button>
+      </div>
+      <h3 className="dialogH3">
+        {openModal == "login" ? "Login" : "Register"}
+      </h3>
+      {openModal === "login" && (
+        <LoginForm onSubmit={login} buttonText={openModal} />
+      )}
+      {openModal === "register" && (
+        <LoginForm onSubmit={register} buttonText={openModal} />
+      )}
+    </Dialog>
   );
 };
-
-export { Modal, ModalDismissButton, ModalOpenButton, ModalContents };

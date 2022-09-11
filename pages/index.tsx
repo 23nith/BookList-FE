@@ -4,16 +4,11 @@ import styles from "../styles/Home.module.css";
 import { useState } from "react";
 import Image from "next/image";
 import Head from "next/head";
-import {
-  CircleDismissButton,
-  LoginButton,
-  RegisterButton,
-} from "../components/styled";
-import { Modal, ModalContents, ModalOpenButton } from "../components/Modal";
-import { LoginForm } from "../components/LoginForm";
+import { LoginButton, RegisterButton } from "../components/styled";
+import { Modal } from "../components/Modal";
 
 const Home: NextPage = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [openModal, setOpenModal] = useState<String | Boolean>(false);
 
   return (
     <>
@@ -24,36 +19,22 @@ const Home: NextPage = () => {
         <Image src="/logo.png" width={80} height={80} />
         <h1 className={styles.bookshelfH1}>Bookshelf</h1>
         <div className={styles.buttonContainer}>
-          <Modal>
-            <ModalOpenButton>
-              <LoginButton>Login</LoginButton>
-            </ModalOpenButton>
-            <ModalContents aria-label="">
-              <CircleDismissButton />
-              <h3 className="dialogH3">Login</h3>
-              <LoginForm
-                onSubmit={login}
-                isLoading={isLoading}
-                submitButton={<LoginButton>Login</LoginButton>}
-              />
-            </ModalContents>
-          </Modal>
-
-          <Modal>
-            <ModalOpenButton>
-              <RegisterButton>Register</RegisterButton>
-            </ModalOpenButton>
-            <ModalContents aria-label="">
-              <CircleDismissButton />
-              <h3 className="dialogH3">Register</h3>
-              <LoginForm
-                onSubmit={register}
-                isLoading={isLoading}
-                submitButton={<RegisterButton>Register</RegisterButton>}
-              />
-            </ModalContents>
-          </Modal>
+          <LoginButton
+            onClick={() => {
+              setOpenModal("login");
+            }}
+          >
+            Login
+          </LoginButton>
+          <RegisterButton
+            onClick={() => {
+              setOpenModal("register");
+            }}
+          >
+            Register
+          </RegisterButton>
         </div>
+        <Modal openModal={openModal} setOpenModal={setOpenModal} />
       </div>
     </>
   );
