@@ -2,19 +2,21 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import BookList from "../components/BookList";
+import { Spinner } from "../components/styled";
 import { ReadingListContext } from "../contexts/ReadingListContext";
 
 const List = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const { readingList, setReadingList, fetchReadingList } =
     useContext(ReadingListContext);
 
   const [reading, setReading] = useState(() => {
     if (readingList.length == 0) {
-      fetchReadingList();
+      fetchReadingList(setIsLoading);
     }
   });
 
-  useEffect(() => {}, [readingList]);
+  if (isLoading) return <Spinner />;
   return (
     <>
       {!readingList && (

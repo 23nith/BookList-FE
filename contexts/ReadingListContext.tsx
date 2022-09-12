@@ -4,7 +4,8 @@ export const ReadingListContext = createContext();
 
 function ReadingListProvider(props) {
   const [readingList, setReadingList] = useState([]);
-  const fetchReadingList = () => {
+  const fetchReadingList = (setIsLoading) => {
+    setIsLoading(true);
     fetch("http://localhost:3000/api/v1/reading_list", {
       method: "get",
       headers: {
@@ -13,6 +14,7 @@ function ReadingListProvider(props) {
       },
     })
       .then((res) => {
+        setIsLoading(false);
         return res.json();
       })
       .then((data) => {
