@@ -12,7 +12,7 @@ const List = () => {
 
   const [reading, setReading] = useState(() => {
     if (readingList.length == 0) {
-      fetchReadingList(setIsLoading);
+      fetchReadingList(setIsLoading, setReadingList);
     }
   });
 
