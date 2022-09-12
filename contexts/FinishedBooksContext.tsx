@@ -1,27 +1,11 @@
 import React, { createContext, useState } from "react";
+import { fetchFinishedBooks } from "../api/finished_books";
 
 export const FinishedBooks = createContext();
 
 const FinishedBooksProvider = (props) => {
   const [finishedBooks, setFinishedBooks] = useState([]);
-  const fetchFinishedBooks = (setIsLoading) => {
-    setIsLoading(true);
-    fetch("http://localhost:3000/api/v1/finished_books", {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-      .then((res) => {
-        setIsLoading(false);
-        return res.json();
-      })
-      .then((data) => {
-        setFinishedBooks(data);
-        return data;
-      });
-  };
+  fetchFinishedBooks(setIsLoading, setFinishedBooks);
 
   return (
     <FinishedBooks.Provider
