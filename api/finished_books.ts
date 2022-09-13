@@ -8,7 +8,7 @@ export interface IFinishedBooksProps {
 export const fetchFinishedBooks = ({
   setIsLoading,
   setFinishedBooks,
-}: IFinishedBooksProps) => {
+}: IFinishedBooksProps): Promise<IListItem[]> => {
   setIsLoading(true);
   fetch("http://localhost:3000/api/v1/finished_books", {
     method: "get",
