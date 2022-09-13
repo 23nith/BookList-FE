@@ -1,10 +1,10 @@
-import { IListItem } from "../Interfaces/interfaces";
+import { ListItem } from "./types";
 import { Dispatch, SetStateAction } from "react";
 import { authHeaders, baseUrl } from "./base";
 
 export interface IReadingListProps {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
-  setReadingList: IListItem[];
+  setReadingList: ListItem[];
 }
 export const fetchReadingList = ({
   setIsLoading,
