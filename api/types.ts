@@ -7,7 +7,7 @@ export interface IBook {
   synopsis: string;
 }
 
-export interface IListItem {
+export type ListItem {
   id: number;
   book_id: number;
   user_id: number;
