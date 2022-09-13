@@ -5,12 +5,9 @@ export const ReadingListContext = createContext();
 
 function ReadingListProvider(props) {
   const [readingList, setReadingList] = useState([]);
-  fetchReadingList(setIsLoading, setReadingList);
 
   return (
-    <ReadingListContext.Provider
-      value={{ readingList, setReadingList, fetchReadingList }}
-    >
+    <ReadingListContext.Provider value={{ readingList, setReadingList }}>
       {props.children}
     </ReadingListContext.Provider>
   );
