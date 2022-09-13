@@ -1,4 +1,7 @@
-export const register = (formData: React.FormEvent<HTMLInputElement>) => {
+export const register = (
+  formData: React.FormEvent<HTMLInputElement>,
+  onComplete: () => void
+) => {
   fetch("http://localhost:3000/signup", {
     method: "post",
     headers: {
@@ -14,6 +17,7 @@ export const register = (formData: React.FormEvent<HTMLInputElement>) => {
   })
     .then((res) => {
       if (res.ok) {
+        onComplete && onComplete(res);
         return res.json();
       }
     })

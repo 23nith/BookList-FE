@@ -6,3 +6,8 @@ export interface IBook {
   publisher: string;
   synopsis: string;
 }
+
+export interface FormValues {
+  username: string;
+  password: string;
+}
