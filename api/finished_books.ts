@@ -1,7 +1,7 @@
 import { IListItem } from "../Interfaces/interfaces";
 
 export interface IFinishedBooksProps {
-  setIsLoading: (isLoading: boolean) => void;
+  setIsLoading: React.Dispatch<React.SetStateAction<Boolean>>;
   setFinishedBooks: Array<IListItem>;
 }
 

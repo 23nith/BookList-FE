@@ -5,12 +5,9 @@ export const FinishedBooks = createContext();
 
 const FinishedBooksProvider = (props) => {
   const [finishedBooks, setFinishedBooks] = useState([]);
-  fetchFinishedBooks(setIsLoading, setFinishedBooks);
 
   return (
-    <FinishedBooks.Provider
-      value={{ finishedBooks, setFinishedBooks, fetchFinishedBooks }}
-    >
+    <FinishedBooks.Provider value={{ finishedBooks, setFinishedBooks }}>
       {props.children}
     </FinishedBooks.Provider>
   );

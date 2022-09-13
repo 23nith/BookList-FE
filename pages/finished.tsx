@@ -4,15 +4,15 @@ import { useContext, useEffect, useState } from "react";
 import { FinishedBooks } from "../contexts/FinishedBooksContext";
 import BookList from "../components/BookList";
 import { Spinner } from "../components/styled";
+import { fetchFinishedBooks } from "../api/finished_books";
 
 const finished: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { finishedBooks, setFinishedBooks, fetchFinishedBooks } =
-    useContext(FinishedBooks);
+  const { finishedBooks, setFinishedBooks } = useContext(FinishedBooks);
 
   const [Finished, setFinished] = useState(() => {
     if (finishedBooks.length == 0) {
-      fetchFinishedBooks(setIsLoading);
+      fetchFinishedBooks({ setIsLoading, setFinishedBooks });
     }
   });
 
