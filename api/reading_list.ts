@@ -3,7 +3,7 @@ import React, { Dispatch, SetStateAction } from "react";
 
 export interface IReadingListProps {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
-  setReadingList: Array<IListItem>;
+  setReadingList: IListItem[];
 }
 export const fetchReadingList = ({
   setIsLoading,
