@@ -1,4 +1,5 @@
 import { IListItem } from "../Interfaces/interfaces";
+import { authHeaders, baseUrl } from "./base";
 
 export interface IFinishedBooksProps {
   setIsLoading: React.Dispatch<React.SetStateAction<Boolean>>;
@@ -10,12 +11,10 @@ export const fetchFinishedBooks = ({
   setFinishedBooks,
 }: IFinishedBooksProps): Promise<IListItem[]> => {
   setIsLoading(true);
-  fetch("http://localhost:3000/api/v1/finished_books", {
+  console.log("path: ", process.env.NEXT_PUBLIC_API_PATH);
+  fetch(`${baseUrl()}/api/v1/finished_books`, {
     method: "get",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("token"),
-    },
+    headers: { ...authHeaders() },
   })
     .then((res) => {
       setIsLoading(false);

@@ -1,5 +1,4 @@
 import React, { createContext, useState } from "react";
-import { fetchFinishedBooks } from "../api/finished_books";
 
 export const FinishedBooks = createContext();
 
