@@ -10,16 +10,12 @@ export const login = (formData: FormValues, onComplete: () => void) => {
         password: formData.password,
       },
     }),
-  })
-    .then((res) => {
-      if (res.ok) {
-        onComplete && onComplete(res);
-        localStorage.setItem("token", res.headers.get("Authorization"));
-      } else {
-        return res;
-      }
-    })
-    .catch((err) => {
-      console.log("caught it!", err);
-    });
+  }).then((res) => {
+    if (res.ok) {
+      onComplete && onComplete(res);
+      localStorage.setItem("token", res.headers.get("Authorization"));
+    } else {
+      return res;
+    }
+  });
 };

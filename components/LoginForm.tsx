@@ -22,10 +22,8 @@ export const LoginForm = ({ onSubmit, buttonText }: LoginFormProps) => {
     }),
     onSubmit: (values) => {
       onSubmit(values);
-      console.log(values);
     },
   });
-  console.log(formik.errors);
   return (
     <form onSubmit={formik.handleSubmit} className="loginForm">
       <div className="loginFormDiv">
