@@ -1,5 +1,4 @@
 export const register = (formData: React.FormEvent<HTMLInputElement>) => {
-  console.log("register", formData);
   fetch("http://localhost:3000/signup", {
     method: "post",
     headers: {
