@@ -17,19 +17,6 @@ const CloseFormButton = tw.button`rounded-30 p-0 w-40 h-40 leading-none flex ite
 
 const CloseFormSpan = tw.span`border-0 h-1 m-negative_1 overflow-hidden p-0 w-1 whitespace-nowrap absolute`;
 
-const CircleDismissButton = () => {
-  return (
-    <CloseFormDiv>
-      <ModalDismissButton>
-        <CloseFormButton>
-          <CloseFormSpan>Close</CloseFormSpan>
-          <span aria-hidden="true">x</span>
-        </CloseFormButton>
-      </ModalDismissButton>
-    </CloseFormDiv>
-  );
-};
-
 export {
   Button,
   LoginButton,
@@ -37,6 +24,5 @@ export {
   CloseFormDiv,
   CloseFormButton,
   CloseFormSpan,
-  CircleDismissButton,
   Spinner,
 };
