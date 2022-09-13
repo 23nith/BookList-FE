@@ -2,7 +2,7 @@ import { IListItem } from "../Interfaces/interfaces";
 
 export interface IFinishedBooksProps {
   setIsLoading: React.Dispatch<React.SetStateAction<Boolean>>;
-  setFinishedBooks: Array<IListItem>;
+  setFinishedBooks: IListItem[];
 }
 
 export const fetchFinishedBooks = ({
