@@ -1,5 +1,6 @@
 import { IListItem } from "../Interfaces/interfaces";
-import React, { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
+import { authHeaders, baseUrl } from "./base";
 
 export interface IReadingListProps {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
@@ -10,12 +11,9 @@ export const fetchReadingList = ({
   setReadingList,
 }: IReadingListProps) => {
   setIsLoading(true);
-  fetch("http://localhost:3000/api/v1/reading_list", {
+  fetch(`${baseUrl()}/api/v1/reading_list`, {
     method: "get",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("token"),
-    },
+    headers: { ...authHeaders() },
   })
     .then((res) => {
       setIsLoading(false);
