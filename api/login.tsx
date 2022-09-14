@@ -1,7 +1,12 @@
 import { baseUrl } from "./base";
 import { FormValues } from "./types";
 
-export const login = (formData: FormValues, onComplete: () => void) => {
+export const login = (
+  formData: FormValues,
+  onComplete: () => void,
+  setIsLoading: React.Dispatch<React.SetStateAction<Boolean>>
+) => {
+  setIsLoading(true);
   fetch(`${baseUrl()}/login`, {
     method: "post",
     headers: {
@@ -14,6 +19,7 @@ export const login = (formData: FormValues, onComplete: () => void) => {
       },
     }),
   }).then((res) => {
+    setIsLoading(false);
     if (res.ok) {
       onComplete && onComplete(res);
       localStorage.setItem("token", res.headers.get("Authorization"));

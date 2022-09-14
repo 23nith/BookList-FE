@@ -4,8 +4,10 @@ import { login } from "../api/login";
 import { register } from "../api/register";
 import { LoginForm } from "./LoginForm";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export const Modal = ({ openModal, setOpenModal }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const handleClickDismiss = () => {
     setOpenModal(false);
@@ -14,7 +16,7 @@ export const Modal = ({ openModal, setOpenModal }) => {
     const onCompleted = () => {
       router.push("/list");
     };
-    await login(values, onCompleted);
+    await login(values, onCompleted, setIsLoading);
   };
   const handleRegister = async (values) => {
     const onCompleted = () => {
@@ -38,10 +40,18 @@ export const Modal = ({ openModal, setOpenModal }) => {
         {openModal == "login" ? "Login" : "Register"}
       </h3>
       {openModal === "login" && (
-        <LoginForm onSubmit={handleLogin} buttonText={openModal} />
+        <LoginForm
+          onSubmit={handleLogin}
+          buttonText={openModal}
+          isLoading={isLoading}
+        />
       )}
       {openModal === "register" && (
-        <LoginForm onSubmit={handleRegister} buttonText={openModal} />
+        <LoginForm
+          onSubmit={handleRegister}
+          buttonText={openModal}
+          isLoading={isLoading}
+        />
       )}
     </Dialog>
   );

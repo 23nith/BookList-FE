@@ -1,14 +1,19 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FormValues } from "../Interfaces/interfaces";
-// import { Spinner } from "./styled";
+import { Spinner } from "./styled";
 
 interface LoginFormProps {
   onSubmit: (formData: FormValues) => void;
   buttonText: string;
+  isLoading: boolean;
 }
 
-export const LoginForm = ({ onSubmit, buttonText }: LoginFormProps) => {
+export const LoginForm = ({
+  onSubmit,
+  buttonText,
+  isLoading,
+}: LoginFormProps) => {
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -55,16 +60,20 @@ export const LoginForm = ({ onSubmit, buttonText }: LoginFormProps) => {
         ) : null}
       </div>
       <div className="loginFormButtonDiv">
-        <button
-          className={
-            buttonText == "login"
-              ? "loginFormButtonLogin"
-              : "loginFormButtonRegister"
-          }
-          type="submit"
-        >
-          {buttonText}
-        </button>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <button
+            className={
+              buttonText == "login"
+                ? "loginFormButtonLogin"
+                : "loginFormButtonRegister"
+            }
+            type="submit"
+          >
+            {buttonText}
+          </button>
+        )}
       </div>
     </form>
   );
