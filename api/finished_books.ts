@@ -11,7 +11,6 @@ export const fetchFinishedBooks = ({
   setFinishedBooks,
 }: IFinishedBooksProps): Promise<ListItem[]> => {
   setIsLoading(true);
-  console.log("path: ", process.env.NEXT_PUBLIC_API_PATH);
   fetch(`${baseUrl()}/api/v1/finished_books`, {
     method: "get",
     headers: { ...authHeaders() },
