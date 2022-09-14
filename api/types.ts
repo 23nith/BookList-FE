@@ -21,4 +21,5 @@ export type ListItem = {
   start_date: Date;
   finish_date: Date | null;
   book: IBook;
-};
+}
+

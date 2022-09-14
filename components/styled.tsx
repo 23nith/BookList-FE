@@ -1,6 +1,4 @@
 import tw from "tailwind-styled-components";
-import { ModalDismissButton } from "./Modal";
-import React from "react";
 import { FaSpinner } from "react-icons/fa";
 
 const Spinner = tw(FaSpinner)`animate-spin-slow wiggle`;
@@ -26,3 +24,4 @@ export {
   CloseFormSpan,
   Spinner,
 };
+
