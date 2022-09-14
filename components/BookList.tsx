@@ -31,7 +31,7 @@ const BookList: NextPage = ({ book, state }) => {
       {state == "discover" && (
         <div className="relative flex justify-center flex-col">
           <div className="absolute p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
-            <MdAddCircle />
+            <MdAddCircle className="hover:text-indigo-600" />
           </div>
         </div>
       )}
@@ -39,10 +39,14 @@ const BookList: NextPage = ({ book, state }) => {
         <div className="relative flex justify-center flex-col">
           <div className="absolute h-[250px] flex flex-col justify-around">
             <div className=" p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
-              {state == "reading" ? <BsCheckCircleFill /> : <FaBook />}
+              {state == "reading" ? (
+                <BsCheckCircleFill className="hover:text-green-600" />
+              ) : (
+                <FaBook className="hover:text-yellow-400" />
+              )}
             </div>
             <div className=" p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
-              <FaMinusCircle />
+              <FaMinusCircle className="hover:text-rose-600" />
             </div>
           </div>
         </div>
