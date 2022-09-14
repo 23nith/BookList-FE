@@ -23,7 +23,7 @@
   margin-bottom: 10px;
 }
 
-.nav_li_active {
+/* .nav_li_active {
   display: block;
   padding: 8px 15px 8px 10px;
   margin: 5px 0px;
@@ -33,7 +33,7 @@
   border-radius: 2px;
   border-left: 5px solid rgb(63, 81, 181);
   background: rgb(241, 241, 244);
-}
+} */
 
 .nav_li {
   display: block;

@@ -19,6 +19,13 @@ a {
   box-sizing: border-box;
 }
 
+.nav_li_active {
+  @apply rounded-sm border-solid border-l-4 block h-full mx-0 my-1 py-2 pl-2 pr-4 w-full;
+  color: rgba(67, 68, 73, 1);
+  border-color: rgba(63, 81, 181, 1);
+  background-color: rgba(241, 241, 244, 1);
+}
+
 .closeFormButton {
   @apply rounded-30 p-0 w-40 h-40 leading-none flex items-center justify-center bg-white text-custom_gray border border-custom_light_gray cursor-pointer;
 }
