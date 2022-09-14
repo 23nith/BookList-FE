@@ -8,18 +8,18 @@ import React, {
 import { ListItem } from "../api/types";
 
 interface ContextType {
-  finishedBooks: ListItem[];
-  setFinishedBooks: Dispatch<SetStateAction<ListItem[] | any>>;
+  finishedBooks?: ListItem[];
+  setFinishedBooks?: Dispatch<SetStateAction<ListItem[]>>;
 }
 
-export const FinishedBooks = createContext<ContextType | undefined>(undefined);
+export const FinishedBooks = createContext<ContextType>({});
 
 interface FinishedBooksProviderProps {
   children: ReactNode;
 }
 
 const FinishedBooksProvider = ({ children }: FinishedBooksProviderProps) => {
-  const [finishedBooks, setFinishedBooks] = useState([]);
+  const [finishedBooks, setFinishedBooks] = useState<FinishedBooks[]>([]);
 
   const value: ContextType = {
     finishedBooks,
