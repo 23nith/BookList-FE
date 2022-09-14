@@ -1,5 +1,8 @@
+import { baseUrl } from "./base";
+import { FormValues } from "./types";
+
 export const login = (formData: FormValues, onComplete: () => void) => {
-  fetch("http://localhost:3000/login", {
+  fetch(`${baseUrl()}/login`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
