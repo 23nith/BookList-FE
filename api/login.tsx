@@ -4,7 +4,7 @@ import { FormValues } from "./types";
 export const login = (
   formData: FormValues,
   onComplete: () => void,
-  setIsLoading: React.Dispatch<React.SetStateAction<Boolean>>
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   setIsLoading(true);
   fetch(`${baseUrl()}/login`, {

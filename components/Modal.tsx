@@ -5,20 +5,26 @@ import { register } from "../api/register";
 import { LoginForm } from "./LoginForm";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { FormValues } from "../api/types";
 
-export const Modal = ({ openModal, setOpenModal }) => {
+interface ModalProps {
+  openModal: string | boolean;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const Modal = ({ openModal, setOpenModal }: ModalProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const handleClickDismiss = () => {
     setOpenModal(false);
   };
-  const handleLogin = async (values) => {
+  const handleLogin = async (values: FormValues) => {
     const onCompleted = () => {
       router.push("/list");
     };
     await login(values, onCompleted, setIsLoading);
   };
-  const handleRegister = async (values) => {
+  const handleRegister = async (values: FormValues) => {
     const onCompleted = () => {
       router.push("/list");
     };
