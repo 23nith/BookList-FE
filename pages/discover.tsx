@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import BookList from "../components/BookList";
-import { IBook } from "../Interfaces/interfaces";
+import { IBook } from "../api/types";
 
 const discover: NextPage = () => {
   const [books, setBooks] = useState<IBook[]>([]);
