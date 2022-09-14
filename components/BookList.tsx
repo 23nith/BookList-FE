@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
+import { MdAddCircle } from "react-icons/md";
 
 const BookList: NextPage = ({ book }) => {
   return (
@@ -23,6 +24,11 @@ const BookList: NextPage = ({ book }) => {
           </div>
         </div>
         <div>{book.synopsis}</div>
+      </div>
+      <div className="relative flex justify-center flex-col">
+        <div className="absolute p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
+          <MdAddCircle />
+        </div>
       </div>
     </div>
   );
