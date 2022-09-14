@@ -3,7 +3,6 @@ import styles from "../styles/Home.module.css";
 
 const BookList: NextPage = ({ book }) => {
   return (
-    // <div key={book.id} className="flex flex-row">
     <div key={book.id} className={styles.booklist_box}>
       <div className="grow p-5">
         <img
