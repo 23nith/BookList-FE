@@ -1,14 +1,33 @@
-import React, { createContext, useState } from "react";
+import React, {
+  createContext,
+  SetStateAction,
+  useState,
+  Dispatch,
+  ReactNode,
+} from "react";
+import { ListItem } from "../api/types";
 
-export const FinishedBooks = createContext();
+interface ContextType {
+  finishedBooks: ListItem[];
+  setFinishedBooks: Dispatch<SetStateAction<ListItem[] | any>>;
+}
 
-const FinishedBooksProvider = (props) => {
+export const FinishedBooks = createContext<ContextType | undefined>(undefined);
+
+interface FinishedBooksProviderProps {
+  children: ReactNode;
+}
+
+const FinishedBooksProvider = ({ children }: FinishedBooksProviderProps) => {
   const [finishedBooks, setFinishedBooks] = useState([]);
 
+  const value: ContextType = {
+    finishedBooks,
+    setFinishedBooks,
+  };
+
   return (
-    <FinishedBooks.Provider value={{ finishedBooks, setFinishedBooks }}>
-      {props.children}
-    </FinishedBooks.Provider>
+    <FinishedBooks.Provider value={value}>{children}</FinishedBooks.Provider>
   );
 };
 
