@@ -4,8 +4,14 @@ import { MdAddCircle } from "react-icons/md";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { FaMinusCircle } from "react-icons/fa";
 import { FaBook } from "react-icons/fa";
+import { IBook } from "../api/types";
 
-const BookList: NextPage = ({ book, state }) => {
+interface BooklistProps {
+  book: IBook;
+  state: string;
+}
+
+const BookList = ({ book, state }: BooklistProps) => {
   const handleBookClick = () => {
     console.log("clicked");
   };
