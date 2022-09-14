@@ -14,7 +14,9 @@ const Layout = ({ children }: LayoutProps) => {
       <div className="flex justify-center grow">
         <div className="max-w-840 flex flex-row h-full w-full">
           <Navbar />
-          <div className="grow-5 h-full  p-5 max-w-610">{children}</div>
+          <div className="grow-5 h-full p-5 max-w-610 max-h-[250px]">
+            {children}
+          </div>
         </div>
       </div>
     </div>

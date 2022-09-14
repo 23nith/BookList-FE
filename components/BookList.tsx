@@ -13,7 +13,7 @@ const BookList: NextPage = ({ book }) => {
           className="min-w-140"
         />
       </div>
-      <div className="grow-3 p-5">
+      <div className="grow-3 p-5 max-h-[255px] text-ellipsis overflow-hidden">
         <div className="flex flex-row justify-between mb-5">
           <div className={styles.booklist_title}>
             <h3>{book.title}</h3>
