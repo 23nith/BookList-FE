@@ -6,8 +6,15 @@ import { FaMinusCircle } from "react-icons/fa";
 import { FaBook } from "react-icons/fa";
 
 const BookList: NextPage = ({ book, state }) => {
+  const handleBookClick = () => {
+    console.log("clicked");
+  };
   return (
-    <div key={book.id} className={styles.booklist_box}>
+    <div
+      key={book.id}
+      className="booklist_box cursor-pointer"
+      onClick={handleBookClick}
+    >
       <div className="grow p-5">
         <img
           src={book.cover_image_url}

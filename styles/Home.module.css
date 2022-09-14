@@ -9,7 +9,7 @@
   line-height: 1.2;
 }
 
-.booklist_box {
+/* .booklist_box {
   min-height: 270px;
   -webkit-box-flex: 2;
   flex-grow: 2;
@@ -21,7 +21,7 @@
   padding: 1.25em;
   border-radius: 3px;
   margin-bottom: 10px;
-}
+} */
 
 /* .nav_li_active {
   display: block;
