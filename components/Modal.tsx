@@ -28,7 +28,7 @@ export const Modal = ({ openModal, setOpenModal }: ModalProps) => {
     const onCompleted = () => {
       router.push("/list");
     };
-    await register(values, onCompleted);
+    await register(values, onCompleted, setIsLoading);
   };
   return (
     <Dialog

@@ -1,13 +1,14 @@
+import { baseUrl, authHeaders } from "./base";
+
 export const register = (
   formData: React.FormEvent<HTMLInputElement>,
-  onComplete: () => void
+  onComplete: () => void,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-  fetch("http://localhost:3000/signup", {
+  setIsLoading(true);
+  fetch(`${baseUrl()}/signup`, {
     method: "post",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("token"),
-    },
+    headers: { ...authHeaders() },
     body: JSON.stringify({
       user: {
         username: formData.username,
@@ -16,6 +17,7 @@ export const register = (
     }),
   })
     .then((res) => {
+      setIsLoading(false);
       if (res.ok) {
         onComplete && onComplete(res);
         return res.json();
