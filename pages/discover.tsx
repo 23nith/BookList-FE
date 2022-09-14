@@ -37,7 +37,10 @@ const discover: NextPage = () => {
           Here you go! Find more books with the search bar above.
         </p>
       </div>
-      <div>{books && books.map((book) => <BookList book={book} />)}</div>
+      <div>
+        {books &&
+          books.map((book) => <BookList book={book} state={"discover"} />)}
+      </div>
     </>
   );
 };

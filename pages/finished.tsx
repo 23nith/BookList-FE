@@ -34,7 +34,9 @@ const finished: NextPage = () => {
         </div>
       )}
       {finishedBooks &&
-        finishedBooks.map((listItem) => <BookList book={listItem.book} />)}
+        finishedBooks.map((listItem) => (
+          <BookList book={listItem.book} state={"finished"} />
+        ))}
     </>
   );
 };

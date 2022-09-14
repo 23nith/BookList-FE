@@ -1,8 +1,11 @@
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 import { MdAddCircle } from "react-icons/md";
+import { BsCheckCircleFill } from "react-icons/bs";
+import { FaMinusCircle } from "react-icons/fa";
+import { FaBook } from "react-icons/fa";
 
-const BookList: NextPage = ({ book }) => {
+const BookList: NextPage = ({ book, state }) => {
   return (
     <div key={book.id} className={styles.booklist_box}>
       <div className="grow p-5">
@@ -25,11 +28,25 @@ const BookList: NextPage = ({ book }) => {
         </div>
         <div>{book.synopsis}</div>
       </div>
-      <div className="relative flex justify-center flex-col">
-        <div className="absolute p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
-          <MdAddCircle />
+      {state == "discover" && (
+        <div className="relative flex justify-center flex-col">
+          <div className="absolute p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
+            <MdAddCircle />
+          </div>
         </div>
-      </div>
+      )}
+      {state != "discover" && (
+        <div className="relative flex justify-center flex-col">
+          <div className="absolute h-[250px] flex flex-col justify-around">
+            <div className=" p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
+              {state == "reading" ? <BsCheckCircleFill /> : <FaBook />}
+            </div>
+            <div className=" p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
+              <FaMinusCircle />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

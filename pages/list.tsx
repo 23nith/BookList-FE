@@ -31,7 +31,10 @@ const List = () => {
           </p>
         </div>
       )}
-      {readingList && readingList.map((list) => <BookList book={list.book} />)}
+      {readingList &&
+        readingList.map((list) => (
+          <BookList book={list.book} state={"reading"} />
+        ))}
     </>
   );
 };
