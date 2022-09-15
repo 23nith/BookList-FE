@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import BookList from "../components/BookList";
 import { IBook } from "../api/types";
+import Search from "../components/Search";
 
 const discover: NextPage = () => {
   const [books, setBooks] = useState<IBook[]>([]);
@@ -25,11 +26,7 @@ const discover: NextPage = () => {
 
   return (
     <>
-      <input
-        type="text"
-        className="bg-custom_light_gray rounded-3 px-4 py-3 w-full text-custom_gray"
-        placeholder="Search books ..."
-      />
+      <Search />
       <div className="text-center text-xl">
         <p className="my-6">Welcome to the discover page. </p>
         <p className="mb-6">Here, let me load a few books for you... </p>
