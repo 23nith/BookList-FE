@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import BookList from "../components/BookList";
 import Search from "../components/Search";
-import { fetchbooks } from "../api/books";
+import { fetchbooks } from "../api/fetchbooks";
 import { BooksContext } from "../contexts/BooksContext";
 
 const discover = () => {
