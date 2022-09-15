@@ -2,7 +2,7 @@ import { authHeaders, baseUrl } from "./base";
 import { IBook } from "./types";
 
 interface SearchProps {
-  query: string;
+  values: { query: string };
   setBooks: React.Dispatch<React.SetStateAction<IBook[]>>;
 }
 

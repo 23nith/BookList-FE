@@ -4,7 +4,7 @@ import { search } from "../api/search";
 import { BooksContext } from "../contexts/BooksContext";
 
 function Search() {
-  const { books, setBooks } = useContext(BooksContext);
+  const { setBooks } = useContext(BooksContext);
   const formik = useFormik({
     initialValues: {
       query: "",
