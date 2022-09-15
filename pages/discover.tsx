@@ -39,7 +39,9 @@ const discover: NextPage = () => {
       </div>
       <div>
         {books &&
-          books.map((book) => <BookList book={book} state={"discover"} />)}
+          books.map((book) => (
+            <BookList book={book} key={book.id} state={"discover"} />
+          ))}
       </div>
     </>
   );

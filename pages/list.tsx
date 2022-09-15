@@ -33,7 +33,7 @@ const List = () => {
       )}
       {readingList &&
         readingList.map((list) => (
-          <BookList book={list.book} state={"reading"} />
+          <BookList book={list.book} key={list.book.id} state={"reading"} />
         ))}
     </>
   );

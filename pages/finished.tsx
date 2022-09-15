@@ -35,7 +35,11 @@ const finished: NextPage = () => {
       )}
       {finishedBooks &&
         finishedBooks.map((listItem) => (
-          <BookList book={listItem.book} state={"finished"} />
+          <BookList
+            book={listItem.book}
+            key={listItem.book.id}
+            state={"finished"}
+          />
         ))}
     </>
   );
