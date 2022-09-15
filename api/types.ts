@@ -8,7 +8,12 @@ export interface IBook {
   synopsis: string;
 }
 
-export type ListItem {
+export interface FormValues {
+  username: string;
+  password: string;
+}
+
+export type ListItem = {
   id: number;
   book_id: number;
   user_id: number;
@@ -18,3 +23,4 @@ export type ListItem {
   finish_date: Date | null;
   book: IBook;
 }
+
