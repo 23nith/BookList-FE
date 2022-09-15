@@ -4,24 +4,13 @@ import { useEffect, useState } from "react";
 import BookList from "../components/BookList";
 import { IBook } from "../api/types";
 import Search from "../components/Search";
+import { fetchbooks } from "../api/books";
 
 const discover: NextPage = () => {
   const [books, setBooks] = useState<IBook[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/v1/books", {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setBooks(data);
-      });
+    fetchbooks({ setBooks });
   }, []);
 
   return (
