@@ -19,6 +19,14 @@ a {
   box-sizing: border-box;
 }
 
+.nav_li_active {
+  @apply rounded-sm border-solid border-l-4 block h-full mx-0 my-1 py-2 pl-2 pr-4 w-full text-custom_gray border-custom_blue bg-custom_light_gray;
+}
+
+.booklist_box {
+  @apply rounded-sm border-solid border flex mb-2 p-5 gap-5 border-custom_light_gray3 min-h-[270px] grow-[2] grid-cols-[140px_1fr] border-custom_light_gray3 text-custom_gray;
+}
+
 .closeFormButton {
   @apply rounded-30 p-0 w-40 h-40 leading-none flex items-center justify-center bg-white text-custom_gray border border-custom_light_gray cursor-pointer;
 }

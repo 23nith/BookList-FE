@@ -1,9 +1,21 @@
 import type { NextPage } from "next";
+import styles from "../styles/Home.module.css";
+import { MdAddCircle } from "react-icons/md";
+import { BsCheckCircleFill } from "react-icons/bs";
+import { FaMinusCircle } from "react-icons/fa";
+import { FaBook } from "react-icons/fa";
+import { IBook } from "../api/types";
 
-const BookList: NextPage = ({ book }) => {
+interface BooklistProps {
+  book: IBook;
+  state: string;
+}
+
+const BookList = ({ book, state }: BooklistProps) => {
+  const handleBookClick = () => {};
   return (
-    <div key={book.id} className="flex flex-row">
-      <div className="grow border-2 border-solid border-black p-5">
+    <div className="booklist_box cursor-pointer" onClick={handleBookClick}>
+      <div className="grow p-5">
         <img
           src={book.cover_image_url}
           width={140}
@@ -11,18 +23,41 @@ const BookList: NextPage = ({ book }) => {
           className="min-w-140"
         />
       </div>
-      <div className="grow-3 border-2 border-solid border-black p-5">
-        <div className="flex flex-row justify-between">
-          <div className="border-black border-2 border-solid ">
+      <div className="grow-3 p-5 max-h-[255px] text-ellipsis overflow-hidden">
+        <div className="flex flex-row justify-between mb-5">
+          <div className={styles.booklist_title}>
             <h3>{book.title}</h3>
           </div>
-          <div className="border-black border-2 border-solid">
+          <div>
             <p>{book.author}</p>
             <p>{book.publisher}</p>
           </div>
         </div>
         <div>{book.synopsis}</div>
       </div>
+      {state == "discover" && (
+        <div className="relative flex justify-center flex-col">
+          <div className="absolute p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
+            <MdAddCircle className="hover:text-indigo-600" />
+          </div>
+        </div>
+      )}
+      {state != "discover" && (
+        <div className="relative flex justify-center flex-col">
+          <div className="absolute h-[250px] flex flex-col justify-around">
+            <div className=" p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
+              {state == "reading" ? (
+                <BsCheckCircleFill className="hover:text-green-600" />
+              ) : (
+                <FaBook className="hover:text-yellow-400" />
+              )}
+            </div>
+            <div className=" p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
+              <FaMinusCircle className="hover:text-rose-600" />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
