@@ -1,22 +1,15 @@
-import type { NextPage } from "next";
-import Image from "next/image";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import BookList from "../components/BookList";
-import { IBook } from "../api/types";
 import Search from "../components/Search";
 import { fetchbooks } from "../api/books";
 import { BooksContext } from "../contexts/BooksContext";
 
-const discover: NextPage = () => {
+const discover = () => {
   const { books, setBooks } = useContext(BooksContext);
 
   const [bookList, setBookList] = useState(() => {
     fetchbooks({ setBooks });
   });
-
-  useEffect(() => {
-    fetchbooks({ setBooks });
-  }, [books]);
 
   return (
     <>

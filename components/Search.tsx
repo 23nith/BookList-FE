@@ -1,13 +1,16 @@
 import { useFormik } from "formik";
-import React from "react";
+import React, { useContext } from "react";
+import { search } from "../api/search";
+import { BooksContext } from "../contexts/BooksContext";
 
 function Search() {
+  const { books, setBooks } = useContext(BooksContext);
   const formik = useFormik({
     initialValues: {
       query: "",
     },
     onSubmit: (values) => {
-      console.log(values.query);
+      search({ values, setBooks });
     },
   });
   return (
