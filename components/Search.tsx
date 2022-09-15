@@ -10,7 +10,7 @@ function Search() {
       query: "",
     },
     onSubmit: (values) => {
-      search({ values, setBooks });
+      search(values, setBooks);
     },
   });
   return (

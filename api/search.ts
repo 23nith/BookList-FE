@@ -1,12 +1,10 @@
 import { authHeaders, baseUrl } from "./base";
 import { IBook } from "./types";
 
-interface SearchProps {
-  values: { query: string };
-  setBooks: React.Dispatch<React.SetStateAction<IBook[]>>;
-}
-
-export const search = ({ values, setBooks }: SearchProps) => {
+export const search = (
+  values: { query: string },
+  onComplete: (books: IBook[]) => void
+) => {
   fetch(`${baseUrl()}/api/v1/search`, {
     method: "post",
     headers: { ...authHeaders() },
@@ -20,6 +18,6 @@ export const search = ({ values, setBooks }: SearchProps) => {
       return res.json();
     })
     .then((data) => {
-      setBooks(data);
+      onComplete(data);
     });
 };

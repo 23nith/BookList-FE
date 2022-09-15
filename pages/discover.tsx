@@ -8,7 +8,7 @@ const discover = () => {
   const { books, setBooks } = useContext(BooksContext);
 
   const [bookList, setBookList] = useState(() => {
-    fetchbooks({ setBooks });
+    fetchbooks(setBooks);
   });
 
   return (

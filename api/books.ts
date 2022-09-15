@@ -2,11 +2,7 @@ import React from "react";
 import { authHeaders, baseUrl } from "./base";
 import { IBook } from "./types";
 
-interface booksProps {
-  setBooks: React.Dispatch<React.SetStateAction<IBook[]>>;
-}
-
-export const fetchbooks = ({ setBooks }: booksProps) => {
+export const fetchbooks = (onComplete: (books: IBook[]) => void) => {
   fetch(`${baseUrl()}/api/v1/books`, {
     method: "get",
     headers: { ...authHeaders() },
@@ -15,6 +11,6 @@ export const fetchbooks = ({ setBooks }: booksProps) => {
       return res.json();
     })
     .then((data) => {
-      setBooks(data);
+      onComplete(data);
     });
 };
