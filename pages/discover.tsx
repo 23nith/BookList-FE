@@ -5,11 +5,7 @@ import { fetchBooks } from "../api/fetchBooks";
 import { BooksContext } from "../contexts/BooksContext";
 
 const discover = () => {
-  const { books, setBooks } = useContext(BooksContext);
-
-  const [bookList, setBookList] = useState(() => {
-    fetchBooks(setBooks);
-  });
+  const { books } = useContext(BooksContext);
 
   return (
     <>

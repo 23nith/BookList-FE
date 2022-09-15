@@ -4,7 +4,9 @@ import React, {
   useState,
   Dispatch,
   ReactNode,
+  useEffect,
 } from "react";
+import { fetchBooks } from "../api/fetchBooks";
 import { IBook } from "../api/types";
 
 interface ContextType {
@@ -20,6 +22,14 @@ interface BooksProviderProps {
 
 const BooksProvider = ({ children }: BooksProviderProps) => {
   const [books, setBooks] = useState<IBook[]>([]);
+
+  const onComplete = (books: Books[]) => {
+    setBooks(books);
+  };
+
+  useEffect(() => {
+    fetchBooks(onComplete);
+  }, []);
 
   const value: ContextType = {
     books,
