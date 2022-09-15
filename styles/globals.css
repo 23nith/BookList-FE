@@ -20,19 +20,11 @@ a {
 }
 
 .nav_li_active {
-  @apply rounded-sm border-solid border-l-4 block h-full mx-0 my-1 py-2 pl-2 pr-4 w-full;
-  color: rgba(67, 68, 73, 1);
-  border-color: rgba(63, 81, 181, 1);
-  background-color: rgba(241, 241, 244, 1);
+  @apply rounded-sm border-solid border-l-4 block h-full mx-0 my-1 py-2 pl-2 pr-4 w-full text-custom_gray border-custom_blue bg-custom_light_gray;
 }
 
 .booklist_box {
-  @apply rounded-sm border-solid border flex mb-2 p-5 gap-5;
-  min-height: 270px;
-  flex-grow: 2;
-  grid-template-columns: 140px 1fr;
-  border-color: rgba(228, 229, 233, 1);
-  color: rgba(67, 68, 73, 1);
+  @apply rounded-sm border-solid border flex mb-2 p-5 gap-5 border-custom_light_gray3 min-h-[270px] grow-[2] grid-cols-[140px_1fr] border-custom_light_gray3 text-custom_gray;
 }
 
 .closeFormButton {
