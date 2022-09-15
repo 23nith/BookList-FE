@@ -1,14 +1,14 @@
 import { useContext, useState } from "react";
 import BookList from "../components/BookList";
 import Search from "../components/Search";
-import { fetchbooks } from "../api/fetchbooks";
+import { fetchBooks } from "../api/fetchBooks";
 import { BooksContext } from "../contexts/BooksContext";
 
 const discover = () => {
   const { books, setBooks } = useContext(BooksContext);
 
   const [bookList, setBookList] = useState(() => {
-    fetchbooks(setBooks);
+    fetchBooks(setBooks);
   });
 
   return (

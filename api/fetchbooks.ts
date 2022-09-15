@@ -2,7 +2,7 @@ import React from "react";
 import { authHeaders, baseUrl } from "./base";
 import { IBook } from "./types";
 
-export const fetchbooks = (onComplete: (books: IBook[]) => void) => {
+export const fetchBooks = (onComplete: (books: IBook[]) => void) => {
   fetch(`${baseUrl()}/api/v1/books`, {
     method: "get",
     headers: { ...authHeaders() },
