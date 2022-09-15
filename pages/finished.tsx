@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { FinishedBooks } from "../contexts/FinishedBooksContext";
-import BookList from "../components/BookList";
+import { BookList } from "../components/BookList";
 import { Spinner } from "../components/styled";
 import { fetchFinishedBooks } from "../api/finished_books";
 

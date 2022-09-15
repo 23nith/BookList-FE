@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import BookList from "../components/BookList";
-import Search from "../components/Search";
+import { BookList } from "../components/BookList";
+import { Search } from "../components/Search";
 import { BooksContext } from "../contexts/BooksContext";
 
 const discover = () => {

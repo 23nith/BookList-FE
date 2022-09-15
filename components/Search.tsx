@@ -27,4 +27,4 @@ function Search() {
   );
 }
 
-export default Search;
+export { Search };

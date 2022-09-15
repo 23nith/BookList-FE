@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import styles from "../../styles/Home.module.css";
-import Menubar from "./Menubar";
-import Navbar from "./Navbar";
+import { Menubar } from "./Menubar";
+import { Navbar } from "./Navbar";
 
 interface LayoutProps {
   children: React.ReactNode;
