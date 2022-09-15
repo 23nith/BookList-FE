@@ -23,7 +23,7 @@ interface BooksProviderProps {
 const BooksProvider = ({ children }: BooksProviderProps) => {
   const [books, setBooks] = useState<IBook[]>([]);
 
-  const onComplete = (books: Books[]) => {
+  const onComplete = (books: IBook[]) => {
     setBooks(books);
   };
 
