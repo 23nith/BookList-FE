@@ -19,7 +19,7 @@ interface FinishedBooksProviderProps {
 }
 
 const FinishedBooksProvider = ({ children }: FinishedBooksProviderProps) => {
-  const [finishedBooks, setFinishedBooks] = useState<FinishedBooks[]>([]);
+  const [finishedBooks, setFinishedBooks] = useState<ListItem[]>([]);
 
   const value: ContextType = {
     finishedBooks,
