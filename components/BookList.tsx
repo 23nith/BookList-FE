@@ -12,9 +12,7 @@ interface BooklistProps {
 }
 
 const BookList = ({ book, state }: BooklistProps) => {
-  const handleBookClick = () => {
-    console.log("clicked");
-  };
+  const handleBookClick = () => {};
   return (
     <div className="booklist_box cursor-pointer" onClick={handleBookClick}>
       <div className="grow p-5">
@@ -30,7 +28,7 @@ const BookList = ({ book, state }: BooklistProps) => {
           <div className={styles.booklist_title}>
             <h3>{book.title}</h3>
           </div>
-          <div className="">
+          <div>
             <p>{book.author}</p>
             <p>{book.publisher}</p>
           </div>
