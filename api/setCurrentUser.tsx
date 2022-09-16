@@ -1,7 +1,8 @@
 import { authHeaders, baseUrl } from "./base";
+import { Dispatch, SetStateAction } from "react";
 import { User } from "./types";
 
-export const setCurrentUser = (onComplete: (user: User) => void) => {
+export const setCurrentUser = (setUser: Dispatch<SetStateAction<User>>) => {
   fetch(`${baseUrl()}/api/v1/current_user`, {
     method: "get",
     headers: { ...authHeaders() },
@@ -10,6 +11,6 @@ export const setCurrentUser = (onComplete: (user: User) => void) => {
       return res.json();
     })
     .then((data) => {
-      onComplete(data);
+      setUser(data);
     });
 };
