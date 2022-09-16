@@ -1,12 +1,35 @@
-import React, { createContext, useState } from "react";
+import React, {
+  createContext,
+  useState,
+  ReactNode,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { IBook } from "../api/types";
 
-export const ShowBookContext = createContext();
+interface ContextType {
+  book?: IBook;
+  setBook?: Dispatch<SetStateAction<IBook>>;
+}
 
-const ShowBookContextProvider = ({ children }) => {
+export const ShowBookContext = createContext<ContextType>({});
+
+interface ShowBookContextProviderProps {
+  children: ReactNode;
+}
+
+const ShowBookContextProvider = ({
+  children,
+}: ShowBookContextProviderProps) => {
   const [book, setBook] = useState<IBook>({});
+
+  const value: ContextType = {
+    book,
+    setBook,
+  };
+
   return (
-    <ShowBookContext.Provider value={{ book, setBook }}>
+    <ShowBookContext.Provider value={value}>
       {children}
     </ShowBookContext.Provider>
   );
