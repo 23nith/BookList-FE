@@ -1,10 +1,12 @@
-import type { NextPage } from "next";
+import { useContext } from "react";
 import styles from "../styles/Home.module.css";
 import { MdAddCircle } from "react-icons/md";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { FaMinusCircle } from "react-icons/fa";
 import { FaBook } from "react-icons/fa";
 import { IBook } from "../api/types";
+import { ShowBookContext } from "../contexts/ShowBookContext";
+import { useRouter } from "next/router";
 
 interface BooklistProps {
   book: IBook;
@@ -12,14 +14,17 @@ interface BooklistProps {
 }
 
 const BookList = ({ book, state }: BooklistProps) => {
+  const router = useRouter();
+  const { setBook } = useContext(ShowBookContext);
   const handleBookClick = (e) => {
-    console.log(e);
+    setBook(e);
+    router.push("/book");
   };
   return (
     <div
       className="booklist_box cursor-pointer"
       onClick={(e) => {
-        handleBookClick(book.id);
+        handleBookClick(book);
       }}
     >
       <div className="grow p-5">
