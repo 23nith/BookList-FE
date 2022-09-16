@@ -12,9 +12,16 @@ interface BooklistProps {
 }
 
 const BookList = ({ book, state }: BooklistProps) => {
-  const handleBookClick = () => {};
+  const handleBookClick = (e) => {
+    console.log(e);
+  };
   return (
-    <div className="booklist_box cursor-pointer" onClick={handleBookClick}>
+    <div
+      className="booklist_box cursor-pointer"
+      onClick={(e) => {
+        handleBookClick(book.id);
+      }}
+    >
       <div className="grow p-5">
         <img
           src={book.cover_image_url}
