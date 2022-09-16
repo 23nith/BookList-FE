@@ -1,33 +1,36 @@
 import React, { useContext } from "react";
 import { ShowBookContext } from "../contexts/ShowBookContext";
+import { MdAddCircle } from "react-icons/md";
 
 function book() {
   const { book } = useContext(ShowBookContext);
 
   return (
-    <div className="border-2 border-black border-solid flex flex-row">
-      <div className="border-2 border-black border-solid grow">
+    <div className="flex flex-row gap-5">
+      <div className="grow">
         <img
           src={book.cover_image_url}
-          width={140}
-          height={210}
-          className="min-w-140"
+          width={180}
+          height={270}
+          className="min-w-[180px]"
         />
       </div>
-      <div className="border-2 border-black border-solid grow-3">
-        <div className="flex flex-row">
-          <div className="grow-[3] border-2 border-black border-solid">
-            <div>{book.title}</div>
-            <div className="flex flex-row border-2 border-black border-solid">
-              <div className="px-3">{book.author}</div> |{" "}
-              <div className="px-3">{book.publisher}</div>
+      <div className="grow-3">
+        <div className="flex flex-row mb-14">
+          <div className="grow-[3] leading-5">
+            <div className="text-4xl font-medium p-2 pt-0">{book.title}</div>
+            <div className="flex flex-row ">
+              <div className="px-3 italic">{book.author}</div> |{" "}
+              <div className="px-3 italic">{book.publisher}</div>
             </div>
           </div>
-          <div className="grow-[1] border-2 border-black border-solid max-w-[24px]">
-            <div className="max-w-[24px]">x</div>
+          <div className="grow-[1] max-w-[24px] flex flex-col justify-center relative">
+            <div className="absolute p-2 rounded-30 border-solid border-2 border-slate-200 right-[2px] bg-white text-custom_gray">
+              <MdAddCircle className="hover:text-indigo-600" />
+            </div>
           </div>
         </div>
-        <div>{book.synopsis}</div>
+        <div className="mt-6">{book.synopsis}</div>
       </div>
     </div>
   );
