@@ -12,6 +12,7 @@ import { IBook } from "../api/types";
 interface ContextType {
   books?: IBook[];
   setBooks?: Dispatch<SetStateAction<IBook[]>>;
+  resetBooks?: () => void;
 }
 
 export const BooksContext = createContext<ContextType>({});
@@ -31,9 +32,14 @@ const BooksProvider = ({ children }: BooksProviderProps) => {
     fetchBooks(onComplete);
   }, []);
 
+  const resetBooks = () => {
+    fetchBooks(onComplete);
+  };
+
   const value: ContextType = {
     books,
     setBooks,
+    resetBooks,
   };
 
   return (

@@ -1,10 +1,14 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { BookList } from "../components/BookList";
 import { Search } from "../components/Search";
 import { BooksContext } from "../contexts/BooksContext";
 
 const discover = () => {
-  const { books } = useContext(BooksContext);
+  const { books, resetBooks } = useContext(BooksContext);
+
+  useEffect(() => {
+    resetBooks();
+  }, []);
 
   return (
     <>
