@@ -20,6 +20,10 @@ const BookList = ({ book, state }: BooklistProps) => {
     setBook(e);
     router.push("/book");
   };
+  const handleAddToReadingList = (e, bookID) => {
+    e.stopPropagation();
+    console.log("book add clicked: ", bookID);
+  };
   return (
     <div
       className="booklist_box cursor-pointer"
@@ -50,7 +54,12 @@ const BookList = ({ book, state }: BooklistProps) => {
       {state == "discover" && (
         <div className="relative flex justify-center flex-col">
           <div className="absolute p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
-            <MdAddCircle className="hover:text-indigo-600" />
+            <MdAddCircle
+              className="hover:text-indigo-600"
+              onClick={(e) => {
+                handleAddToReadingList(e, book.id);
+              }}
+            />
           </div>
         </div>
       )}
