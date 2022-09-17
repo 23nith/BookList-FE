@@ -23,12 +23,15 @@ const BookList = ({ book, state }: BooklistProps) => {
   const { user } = useContext(UserContext);
   const { setBooks } = useContext(BooksContext);
 
-  const handleBookClick = (e) => {
+  const handleBookClick = (e: React.SyntheticEvent<EventTarget>) => {
     setBook(e);
     router.push("/book");
   };
 
-  const handleAddToReadingList = async (e, bookID) => {
+  const handleAddToReadingList = async (
+    e: React.SyntheticEvent<EventTarget>,
+    bookID: number
+  ) => {
     e.stopPropagation();
     const onComplete = () => {
       fetchBooks(setBooks);

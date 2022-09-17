@@ -1,6 +1,10 @@
 import { authHeaders, baseUrl } from "./base";
 
-export const addToReadingList = (bookID, userID, onComplete) => {
+export const addToReadingList = (
+  bookID: number,
+  userID: number,
+  onComplete: () => void
+) => {
   fetch(`${baseUrl()}/api/v1/add_list_item`, {
     method: "post",
     headers: { ...authHeaders() },
