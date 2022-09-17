@@ -1,27 +1,33 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styles from "../styles/Home.module.css";
 import { MdAddCircle } from "react-icons/md";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { FaMinusCircle } from "react-icons/fa";
 import { FaBook } from "react-icons/fa";
-import { IBook } from "../api/types";
+import { IBook, ListItem } from "../api/types";
 import { ShowBookContext } from "../contexts/ShowBookContext";
 import { useRouter } from "next/router";
 import { UserContext } from "../contexts/UserContext";
 import { addToReadingList } from "../api/addToReadingList";
 import { BooksContext } from "../contexts/BooksContext";
 import { fetchBooks } from "../api/fetchBooks";
+import { removeFromReadingList } from "../api/removeFromReadingList";
+import { fetchReadingList } from "../api/fetchReadingList";
+import { ReadingListContext } from "../contexts/ReadingListContext";
 
 interface BooklistProps {
   book: IBook;
   state: string;
+  list?: ListItem;
 }
 
-const BookList = ({ book, state }: BooklistProps) => {
+const BookList = ({ book, state, list }: BooklistProps) => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const { setBook } = useContext(ShowBookContext);
   const { user } = useContext(UserContext);
   const { setBooks } = useContext(BooksContext);
+  const { setReadingList } = useContext(ReadingListContext);
 
   const handleBookClick = (e: React.SyntheticEvent<EventTarget>) => {
     setBook(e);
@@ -37,6 +43,18 @@ const BookList = ({ book, state }: BooklistProps) => {
       fetchBooks(setBooks);
     };
     await addToReadingList(bookID, user.id, onComplete);
+  };
+
+  const handleRemoveFromReadingList = async (
+    e: React.SyntheticEvent<EventTarget>,
+    listID: number
+  ) => {
+    e.stopPropagation();
+    console.log("List id: ", listID);
+    const onComplete = () => {
+      fetchReadingList(setIsLoading, setReadingList);
+    };
+    await removeFromReadingList(listID, onComplete);
   };
 
   return (
@@ -89,7 +107,12 @@ const BookList = ({ book, state }: BooklistProps) => {
               )}
             </div>
             <div className=" p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
-              <FaMinusCircle className="hover:text-rose-600" />
+              <FaMinusCircle
+                className="hover:text-rose-600"
+                onClick={(e) => {
+                  handleRemoveFromReadingList(e, list.id);
+                }}
+              />
             </div>
           </div>
         </div>
