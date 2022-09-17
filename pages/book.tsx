@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ShowBookContext } from "../contexts/ShowBookContext";
 import { MdAddCircle } from "react-icons/md";
 
-function book() {
+const book = () => {
   const { book } = useContext(ShowBookContext);
 
   return (
@@ -35,6 +35,6 @@ function book() {
       </div>
     </div>
   );
-}
+};
 
 export default book;

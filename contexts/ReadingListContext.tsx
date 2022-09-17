@@ -22,7 +22,7 @@ interface ReadingListProviderProps {
   children: ReactNode;
 }
 
-function ReadingListProvider({ children }: ReadingListProviderProps) {
+const ReadingListProvider = ({ children }: ReadingListProviderProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [readingList, setReadingList] = useState<ListItem[]>([]);
 
@@ -52,6 +52,6 @@ function ReadingListProvider({ children }: ReadingListProviderProps) {
       {children}
     </ReadingListContext.Provider>
   );
-}
+};
 
 export default ReadingListProvider;

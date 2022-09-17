@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { search } from "../api/search";
 import { BooksContext } from "../contexts/BooksContext";
 
-function Search() {
+const Search = () => {
   const { setBooks } = useContext(BooksContext);
   const formik = useFormik({
     initialValues: {
@@ -25,6 +25,6 @@ function Search() {
       />
     </form>
   );
-}
+};
 
 export { Search };
