@@ -9,6 +9,8 @@ import { ShowBookContext } from "../contexts/ShowBookContext";
 import { useRouter } from "next/router";
 import { UserContext } from "../contexts/UserContext";
 import { addToReadingList } from "../api/addToReadingList";
+import { BooksContext } from "../contexts/BooksContext";
+import { fetchBooks } from "../api/fetchBooks";
 
 interface BooklistProps {
   book: IBook;
@@ -19,15 +21,19 @@ const BookList = ({ book, state }: BooklistProps) => {
   const router = useRouter();
   const { setBook } = useContext(ShowBookContext);
   const { user } = useContext(UserContext);
+  const { setBooks } = useContext(BooksContext);
 
   const handleBookClick = (e) => {
     setBook(e);
     router.push("/book");
   };
 
-  const handleAddToReadingList = (e, bookID) => {
+  const handleAddToReadingList = async (e, bookID) => {
     e.stopPropagation();
-    addToReadingList(bookID, user.id);
+    const onComplete = () => {
+      fetchBooks(setBooks);
+    };
+    await addToReadingList(bookID, user.id, onComplete);
   };
 
   return (

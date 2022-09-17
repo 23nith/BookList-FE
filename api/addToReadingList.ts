@@ -1,6 +1,6 @@
 import { authHeaders, baseUrl } from "./base";
 
-export const addToReadingList = (bookID, userID) => {
+export const addToReadingList = (bookID, userID, onComplete) => {
   fetch(`${baseUrl()}/api/v1/add_list_item`, {
     method: "post",
     headers: { ...authHeaders() },
@@ -15,6 +15,11 @@ export const addToReadingList = (bookID, userID) => {
       updated_at: "",
     }),
   }).then((res) => {
-    return res.json();
+    if (res.ok) {
+      onComplete && onComplete(res);
+      return res.json();
+    } else {
+      return res.json();
+    }
   });
 };
