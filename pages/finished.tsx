@@ -23,7 +23,7 @@ const finished: NextPage = () => {
   if (isLoading) return <Spinner />;
   return (
     <>
-      {!finishedBooks && (
+      {finishedBooks.length == 0 && (
         <div className="text-center text-xl">
           <p className="my-6">
             Hey there! This is where books will go when you've finished reading
