@@ -1,14 +1,13 @@
-import { ListItem } from "./types";
 import { Dispatch, SetStateAction } from "react";
 import { authHeaders, baseUrl } from "./base";
 
 export interface IReadingListProps {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
-  setReadingList: ListItem[];
+  onComplete: () => void;
 }
 export const fetchReadingList = ({
   setIsLoading,
-  setReadingList,
+  onComplete,
 }: IReadingListProps) => {
   setIsLoading(true);
   fetch(`${baseUrl()}/api/v1/reading_list`, {
@@ -20,7 +19,7 @@ export const fetchReadingList = ({
       return res.json();
     })
     .then((data) => {
-      setReadingList(data);
+      onComplete(data);
       return data;
     });
 };
