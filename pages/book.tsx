@@ -20,8 +20,9 @@ function book() {
           <div className="grow-[3] leading-5">
             <div className="text-4xl font-medium p-2 pt-0">{book.title}</div>
             <div className="flex flex-row ">
-              <div className="px-3 italic">{book.author}</div> |{" "}
-              <div className="px-3 italic">{book.publisher}</div>
+              <div className="px-3 italic">
+                {book.author} | {book.publisher}
+              </div>
             </div>
           </div>
           <div className="grow-[1] max-w-[24px] flex flex-col justify-center relative">
