@@ -4,8 +4,10 @@ import { useRouter } from "next/router";
 import Layout from "../components/Layout";
 import FinishedBooksProvider from "../contexts/FinishedBooksContext";
 import ReadingListProvider from "../contexts/ReadingListContext";
+import ShowBookContextProvider from "../contexts/ShowBookContext";
 import BooksProvider from "../contexts/BooksContext";
 import UserContextProvider from "../contexts/UserContext";
+
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
@@ -14,6 +16,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <UserContextProvider>
         {router.pathname !== "/" ? (
           <BooksProvider>
+           <ShowBookContextProvider>
             <ReadingListProvider>
               <FinishedBooksProvider>
                 <Layout>
@@ -21,6 +24,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
                 </Layout>
               </FinishedBooksProvider>
             </ReadingListProvider>
+           </ShowBookContextProvider>
           </BooksProvider>
         ) : (
           <Component {...pageProps} />
