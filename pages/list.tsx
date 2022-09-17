@@ -1,7 +1,5 @@
-import type { NextPage } from "next";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
-import { fetchReadingList } from "../api/fetchReadingList";
+import { useContext, useEffect } from "react";
 import { BookList } from "../components/BookList";
 import { Spinner } from "../components/styled";
 import { ReadingListContext } from "../contexts/ReadingListContext";
