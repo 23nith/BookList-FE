@@ -1,20 +1,22 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { FinishedBooks } from "../contexts/FinishedBooksContext";
 import { BookList } from "../components/BookList";
 import { Spinner } from "../components/styled";
 import { fetchFinishedBooks } from "../api/fetchFinishedBooks";
 
 const finished: NextPage = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const { finishedBooks, setFinishedBooks } = useContext(FinishedBooks);
+  const { finishedBooks, isLoading, resetFinishedBooksList } =
+    useContext(FinishedBooks);
 
-  const [Finished, setFinished] = useState(() => {
-    if (finishedBooks.length == 0) {
-      fetchFinishedBooks({ setIsLoading, setFinishedBooks });
-    }
-  });
+  useEffect(() => {
+    resetFinishedBooksList();
+  }, []);
+
+  useEffect(() => {
+    resetFinishedBooksList();
+  }, [fetchFinishedBooks]);
 
   useEffect(() => {}, [finishedBooks]);
 
