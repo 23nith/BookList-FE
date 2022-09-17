@@ -14,7 +14,6 @@ const List = () => {
   }, []);
 
   useEffect(() => {
-    console.log("trigger fetchReadingList");
     resetReadingList();
   }, [fetchReadingList]);
 

@@ -50,11 +50,17 @@ const BookList = ({ book, state, list }: BooklistProps) => {
     listID: number
   ) => {
     e.stopPropagation();
-    console.log("List id: ", listID);
     const onComplete = () => {
       fetchReadingList(setIsLoading, setReadingList);
     };
     await removeFromReadingList(listID, onComplete);
+  };
+
+  const handleAddToFinishedList = async (
+    e: React.SyntheticEvent<EventTarget>,
+    list: ListItem
+  ) => {
+    e.stopPropagation();
   };
 
   return (
@@ -101,7 +107,12 @@ const BookList = ({ book, state, list }: BooklistProps) => {
           <div className="absolute h-[250px] flex flex-col justify-around">
             <div className=" p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
               {state == "reading" ? (
-                <BsCheckCircleFill className="hover:text-green-600" />
+                <BsCheckCircleFill
+                  className="hover:text-green-600"
+                  onClick={(e) => {
+                    handleAddToFinishedList(e, list);
+                  }}
+                />
               ) : (
                 <FaBook className="hover:text-yellow-400" />
               )}
