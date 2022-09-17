@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { FinishedBooks } from "../contexts/FinishedBooksContext";
 import { BookList } from "../components/BookList";
 import { Spinner } from "../components/styled";
-import { fetchFinishedBooks } from "../api/finished_books";
+import { fetchFinishedBooks } from "../api/fetchFinishedBooks";
 
 const finished: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
