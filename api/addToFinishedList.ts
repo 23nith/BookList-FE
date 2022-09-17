@@ -4,13 +4,11 @@ import { ListItem } from "./types";
 export const addToFinishedList = (
   list: ListItem,
   bookID: number,
-  userID: number
+  userID: number,
+  onComplete: () => void
 ) => {
-  let today: Date | string = new Date();
-  let dd: string = String(today.getDate()).padStart(2, "0");
-  let mm: string = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-  let yyyy: number = today.getFullYear();
-  today = mm + "/" + dd + "/" + yyyy;
+  let now = new Date();
+  let utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
 
   fetch(`${baseUrl()}/api/v1/edit_list_item`, {
     method: "post",
@@ -22,10 +20,15 @@ export const addToFinishedList = (
       rating: list.rating,
       notes: list.notes,
       start_date: list.start_date,
-      finish_date: today,
+      finish_date: utc,
       book: list.book,
     }),
   }).then((res) => {
-    return res.json();
+    if (res.ok) {
+      onComplete && onComplete(res);
+      return res.json();
+    } else {
+      return res.json();
+    }
   });
 };
