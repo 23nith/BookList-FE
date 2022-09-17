@@ -18,7 +18,7 @@ interface UserContextProviderProps {
   children: ReactNode;
 }
 
-function UserContextProvider({ children }: UserContextProviderProps) {
+const UserContextProvider = ({ children }: UserContextProviderProps) => {
   const [user, setUser] = useState<User>({});
 
   const value: ContextType = {
@@ -26,6 +26,6 @@ function UserContextProvider({ children }: UserContextProviderProps) {
     setUser,
   };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
-}
+};
 
 export default UserContextProvider;
