@@ -7,6 +7,8 @@ import { FaBook } from "react-icons/fa";
 import { IBook } from "../api/types";
 import { ShowBookContext } from "../contexts/ShowBookContext";
 import { useRouter } from "next/router";
+import { UserContext } from "../contexts/UserContext";
+import { addToReadingList } from "../api/addToReadingList";
 
 interface BooklistProps {
   book: IBook;
@@ -16,14 +18,18 @@ interface BooklistProps {
 const BookList = ({ book, state }: BooklistProps) => {
   const router = useRouter();
   const { setBook } = useContext(ShowBookContext);
+  const { user } = useContext(UserContext);
+
   const handleBookClick = (e) => {
     setBook(e);
     router.push("/book");
   };
+
   const handleAddToReadingList = (e, bookID) => {
     e.stopPropagation();
-    console.log("book add clicked: ", bookID);
+    addToReadingList(bookID, user.id);
   };
+
   return (
     <div
       className="booklist_box cursor-pointer"
