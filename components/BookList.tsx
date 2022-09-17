@@ -50,7 +50,6 @@ const BookList = ({ book, state, list }: BooklistProps) => {
     listID: number
   ) => {
     e.stopPropagation();
-    console.log("List id: ", listID);
     const onComplete = () => {
       fetchReadingList(setIsLoading, setReadingList);
     };
