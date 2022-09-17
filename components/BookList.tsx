@@ -62,4 +62,4 @@ const BookList = ({ book, state }: BooklistProps) => {
   );
 };
 
-export default BookList;
+export { BookList };

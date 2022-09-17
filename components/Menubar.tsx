@@ -9,4 +9,4 @@ const Menubar: NextPage = () => {
   );
 };
 
-export default Menubar;
+export { Menubar };
