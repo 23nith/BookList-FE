@@ -22,5 +22,12 @@ export type ListItem = {
   start_date: Date;
   finish_date: Date | null;
   book: IBook;
-}
+};
 
+export interface User {
+  id: number;
+  username: string;
+  created_at: Date;
+  updated_at: Date;
+  jti: string;
+}
