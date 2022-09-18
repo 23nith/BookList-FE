@@ -15,6 +15,8 @@ import { removeFromReadingList } from "../api/removeFromReadingList";
 import { fetchReadingList } from "../api/fetchReadingList";
 import { ReadingListContext } from "../contexts/ReadingListContext";
 import { addToFinishedList } from "../api/addToFinishedList";
+import { fetchFinishedBooks } from "../api/fetchFinishedBooks";
+import { FinishedBooks } from "../contexts/FinishedBooksContext";
 
 interface BooklistProps {
   book: IBook;
@@ -29,6 +31,7 @@ const BookList = ({ book, state, list }: BooklistProps) => {
   const { user } = useContext(UserContext);
   const { setBooks } = useContext(BooksContext);
   const { setReadingList } = useContext(ReadingListContext);
+  const { setFinishedBooks } = useContext(FinishedBooks);
 
   const handleBookClick = (e: React.SyntheticEvent<EventTarget>) => {
     setBook(e);
@@ -52,7 +55,11 @@ const BookList = ({ book, state, list }: BooklistProps) => {
   ) => {
     e.stopPropagation();
     const onComplete = () => {
-      fetchReadingList(setIsLoading, setReadingList);
+      if (router.pathname == "/list") {
+        fetchReadingList(setIsLoading, setReadingList);
+      } else {
+        fetchFinishedBooks(setIsLoading, setFinishedBooks);
+      }
     };
     await removeFromReadingList(listID, onComplete);
   };
