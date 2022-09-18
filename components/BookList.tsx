@@ -17,6 +17,7 @@ import { ReadingListContext } from "../contexts/ReadingListContext";
 import { addToFinishedList } from "../api/addToFinishedList";
 import { fetchFinishedBooks } from "../api/fetchFinishedBooks";
 import { FinishedBooks } from "../contexts/FinishedBooksContext";
+import { markAsReading } from "../api/markAsReading";
 
 interface BooklistProps {
   book: IBook;
@@ -75,6 +76,17 @@ const BookList = ({ book, state, list }: BooklistProps) => {
     await addToFinishedList(list, list.book.id, list.user_id, onComplete);
   };
 
+  const handleReturnToReadingList = async (
+    e: React.SyntheticEvent<EventTarget>,
+    list: ListItem
+  ) => {
+    e.stopPropagation();
+    const onComplete = () => {
+      fetchFinishedBooks(setIsLoading, setFinishedBooks);
+    };
+    await markAsReading(list, list.book.id, list.user_id, onComplete);
+  };
+
   return (
     <div
       className="booklist_box cursor-pointer"
@@ -126,7 +138,12 @@ const BookList = ({ book, state, list }: BooklistProps) => {
                   }}
                 />
               ) : (
-                <FaBook className="hover:text-yellow-400" />
+                <FaBook
+                  className="hover:text-yellow-400"
+                  onClick={(e) => {
+                    handleReturnToReadingList(e, list);
+                  }}
+                />
               )}
             </div>
             <div className=" p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
