@@ -1,7 +1,7 @@
 import { authHeaders, baseUrl } from "./base";
 import { ListItem } from "./types";
 
-export const addToFinishedList = (
+export const markAsFinished = (
   list: ListItem,
   bookID: number,
   userID: number,

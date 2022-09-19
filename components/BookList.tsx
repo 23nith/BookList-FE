@@ -14,10 +14,11 @@ import { fetchBooks } from "../api/fetchBooks";
 import { removeFromReadingList } from "../api/removeFromReadingList";
 import { fetchReadingList } from "../api/fetchReadingList";
 import { ReadingListContext } from "../contexts/ReadingListContext";
-import { addToFinishedList } from "../api/addToFinishedList";
 import { fetchFinishedBooks } from "../api/fetchFinishedBooks";
 import { FinishedBooks } from "../contexts/FinishedBooksContext";
 import { markAsInProgress } from "../api/markAsInProgress";
+import { markAsFinished } from "../api/markAsFinished";
+
 
 interface BooklistProps {
   book: IBook;
@@ -70,10 +71,8 @@ const BookList = ({ book, state, list }: BooklistProps) => {
     list: ListItem
   ) => {
     e.stopPropagation();
-    const onComplete = () => {
-      fetchReadingList(setIsLoading, setReadingList);
-    };
-    await addToFinishedList(list, list.book.id, list.user_id, onComplete);
+    const onComplete = () => fetchReadingList(setIsLoading, setReadingList);
+    await markAsFinished(list, list.book.id, list.user_id, onComplete);
   };
 
   const handleReturnToReadingList = async (
