@@ -45,7 +45,7 @@ const BookList = ({ book, state, list }: BooklistProps) => {
     await addToReadingList(bookID, user.id, onComplete);
   };
 
-  const handleRemoveFromReadingList = async (
+  const handleClickRemove = async (
     e: React.SyntheticEvent<EventTarget>,
     listID: number
   ) => {
@@ -109,7 +109,7 @@ const BookList = ({ book, state, list }: BooklistProps) => {
               <FaMinusCircle
                 className="hover:text-rose-600"
                 onClick={(e) => {
-                  handleRemoveFromReadingList(e, list.id);
+                  handleClickRemove(e, list.id);
                 }}
               />
             </div>
