@@ -1,6 +1,6 @@
 import { authHeaders, baseUrl } from "./base";
 
-export const markAsReading = (
+export const markAsInProgress = (
   list: ListItem,
   bookID: number,
   userID: number,

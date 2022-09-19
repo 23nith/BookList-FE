@@ -17,8 +17,8 @@ import { ReadingListContext } from "../contexts/ReadingListContext";
 import { addToFinishedList } from "../api/addToFinishedList";
 import { fetchFinishedBooks } from "../api/fetchFinishedBooks";
 import { FinishedBooks } from "../contexts/FinishedBooksContext";
-import { markAsReading } from "../api/markAsReading";
 import { ShowBookPageContext } from "../contexts/ShowBookPageContext";
+import { markAsInProgress } from "../api/markAsInProgress";
 
 interface BooklistProps {
   book: IBook;
@@ -87,7 +87,7 @@ const BookList = ({ book, state, list }: BooklistProps) => {
     const onComplete = () => {
       fetchFinishedBooks(setIsLoading, setFinishedBooks);
     };
-    await markAsReading(list, list.book.id, list.user_id, onComplete);
+    await markAsInProgress(list, list.book.id, list.user_id, onComplete);
   };
 
   return (
