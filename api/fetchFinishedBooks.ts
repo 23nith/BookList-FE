@@ -1,15 +1,9 @@
-import { ListItem } from "./types";
 import { authHeaders, baseUrl } from "./base";
 
-export interface IFinishedBooksProps {
-  setIsLoading: React.Dispatch<React.SetStateAction<Boolean>>;
-  setFinishedBooks: ListItem[];
-}
-
-export const fetchFinishedBooks = ({
-  setIsLoading,
-  setFinishedBooks,
-}: IFinishedBooksProps): Promise<ListItem[]> => {
+export const fetchFinishedBooks = (
+  setIsLoading: React.Dispatch<React.SetStateAction<Boolean>>,
+  setFinishedBooks: () => void
+) => {
   setIsLoading(true);
   fetch(`${baseUrl()}/api/v1/finished_books`, {
     method: "get",
