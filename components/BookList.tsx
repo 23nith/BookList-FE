@@ -1,30 +1,45 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styles from "../styles/Home.module.css";
 import { MdAddCircle } from "react-icons/md";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { FaMinusCircle } from "react-icons/fa";
 import { FaBook } from "react-icons/fa";
-import { IBook } from "../api/types";
+import { IBook, ListItem } from "../api/types";
 import { ShowBookContext } from "../contexts/ShowBookContext";
 import { useRouter } from "next/router";
 import { UserContext } from "../contexts/UserContext";
 import { addToReadingList } from "../api/addToReadingList";
 import { BooksContext } from "../contexts/BooksContext";
 import { fetchBooks } from "../api/fetchBooks";
+import { removeFromReadingList } from "../api/removeFromReadingList";
+import { fetchReadingList } from "../api/fetchReadingList";
+import { ReadingListContext } from "../contexts/ReadingListContext";
+import { fetchFinishedBooks } from "../api/fetchFinishedBooks";
+import { FinishedBooks } from "../contexts/FinishedBooksContext";
+import { ShowBookPageContext } from "../contexts/ShowBookPageContext";
+import { markAsInProgress } from "../api/markAsInProgress";
+import { markAsFinished } from "../api/markAsFinished";
+
 
 interface BooklistProps {
   book: IBook;
   state: string;
+  list?: ListItem;
 }
 
-const BookList = ({ book, state }: BooklistProps) => {
+const BookList = ({ book, state, list }: BooklistProps) => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const { setBook } = useContext(ShowBookContext);
   const { user } = useContext(UserContext);
   const { setBooks } = useContext(BooksContext);
+  const { setReadingList } = useContext(ReadingListContext);
+  const { setFinishedBooks } = useContext(FinishedBooks);
+  const { previousPage, setPreviousPage } = useContext(ShowBookPageContext);
 
   const handleBookClick = (e: React.SyntheticEvent<EventTarget>) => {
     setBook(e);
+    setPreviousPage(router.pathname);
     router.push("/book");
   };
 
@@ -37,6 +52,41 @@ const BookList = ({ book, state }: BooklistProps) => {
       fetchBooks(setBooks);
     };
     await addToReadingList(bookID, user.id, onComplete);
+  };
+
+  const handleClickRemove = async (
+    e: React.SyntheticEvent<EventTarget>,
+    listID: number
+  ) => {
+    e.stopPropagation();
+    const onComplete = () => {
+      if (router.pathname == "/list") {
+        fetchReadingList(setIsLoading, setReadingList);
+      } else {
+        fetchFinishedBooks(setIsLoading, setFinishedBooks);
+      }
+    };
+    await removeFromReadingList(listID, onComplete);
+  };
+
+  const handleAddToFinishedList = async (
+    e: React.SyntheticEvent<EventTarget>,
+    list: ListItem
+  ) => {
+    e.stopPropagation();
+    const onComplete = () => fetchReadingList(setIsLoading, setReadingList);
+    await markAsFinished(list, list.book.id, list.user_id, onComplete);
+  };
+
+  const handleReturnToReadingList = async (
+    e: React.SyntheticEvent<EventTarget>,
+    list: ListItem
+  ) => {
+    e.stopPropagation();
+    const onComplete = () => {
+      fetchFinishedBooks(setIsLoading, setFinishedBooks);
+    };
+    await markAsInProgress(list, list.book.id, list.user_id, onComplete);
   };
 
   return (
@@ -83,13 +133,28 @@ const BookList = ({ book, state }: BooklistProps) => {
           <div className="absolute h-[250px] flex flex-col justify-around">
             <div className=" p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
               {state == "reading" ? (
-                <BsCheckCircleFill className="hover:text-green-600" />
+                <BsCheckCircleFill
+                  className="hover:text-green-600"
+                  onClick={(e) => {
+                    handleAddToFinishedList(e, list);
+                  }}
+                />
               ) : (
-                <FaBook className="hover:text-yellow-400" />
+                <FaBook
+                  className="hover:text-yellow-400"
+                  onClick={(e) => {
+                    handleReturnToReadingList(e, list);
+                  }}
+                />
               )}
             </div>
             <div className=" p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
-              <FaMinusCircle className="hover:text-rose-600" />
+              <FaMinusCircle
+                className="hover:text-rose-600"
+                onClick={(e) => {
+                  handleClickRemove(e, list.id);
+                }}
+              />
             </div>
           </div>
         </div>

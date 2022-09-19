@@ -32,12 +32,12 @@ const ReadingListProvider = ({ children }: ReadingListProviderProps) => {
 
   useEffect(() => {
     if (readingList.length == 0) {
-      fetchReadingList({ setIsLoading, setReadingList, onComplete });
+      fetchReadingList(setIsLoading, setReadingList, onComplete);
     }
   }, []);
 
   const resetReadingList = () => {
-    fetchReadingList({ setIsLoading, setReadingList, onComplete });
+    fetchReadingList(setIsLoading, setReadingList, onComplete);
   };
 
   const value: ContextType = {
