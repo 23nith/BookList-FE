@@ -6,6 +6,7 @@ import { FaMinusCircle } from "react-icons/fa";
 import { FaBook } from "react-icons/fa";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { ShowBookPageContext } from "../contexts/ShowBookPageContext";
+import { Notes } from "../components/Notes";
 
 const book = () => {
   const { book } = useContext(ShowBookContext);
@@ -66,16 +67,7 @@ const book = () => {
           <div className="mt-6">{book.synopsis}</div>
         </div>
       </div>
-      {previousPage != "/discover" && (
-        <div className="mt-10 mb-20">
-          <div className="font-bold mb-3">Notes</div>
-          <div>
-            <form>
-              <textarea className="textarea"></textarea>
-            </form>
-          </div>
-        </div>
-      )}
+      {previousPage != "/discover" && <Notes />}
     </div>
   );
 };
