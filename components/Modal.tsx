@@ -27,7 +27,6 @@ export const Modal = ({ openModal, setOpenModal }: ModalProps) => {
       router.push("/list");
     };
     await login(values, onCompleted, setIsLoading);
-    setCurrentUser(setUser);
   };
   const handleRegister = async (values: FormValues) => {
     const onCompleted = () => {
