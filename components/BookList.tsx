@@ -14,7 +14,7 @@ import { fetchBooks } from "../api/fetchBooks";
 import { removeFromReadingList } from "../api/removeFromReadingList";
 import { fetchReadingList } from "../api/fetchReadingList";
 import { ReadingListContext } from "../contexts/ReadingListContext";
-import { addToFinishedList } from "../api/addToFinishedList";
+import { markAsFinished } from "../api/markAsFinished";
 
 interface BooklistProps {
   book: IBook;
@@ -63,7 +63,7 @@ const BookList = ({ book, state, list }: BooklistProps) => {
   ) => {
     e.stopPropagation();
     const onComplete = () => fetchReadingList(setIsLoading, setReadingList);
-    await addToFinishedList(list, list.book.id, list.user_id, onComplete);
+    await markAsFinished(list, list.book.id, list.user_id, onComplete);
   };
 
   return (
