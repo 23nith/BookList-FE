@@ -16,6 +16,7 @@ import { fetchReadingList } from "../api/fetchReadingList";
 import { ReadingListContext } from "../contexts/ReadingListContext";
 import { fetchFinishedBooks } from "../api/fetchFinishedBooks";
 import { FinishedBooks } from "../contexts/FinishedBooksContext";
+import { ShowBookPageContext } from "../contexts/ShowBookPageContext";
 import { markAsInProgress } from "../api/markAsInProgress";
 import { markAsFinished } from "../api/markAsFinished";
 
@@ -34,9 +35,11 @@ const BookList = ({ book, state, list }: BooklistProps) => {
   const { setBooks } = useContext(BooksContext);
   const { setReadingList } = useContext(ReadingListContext);
   const { setFinishedBooks } = useContext(FinishedBooks);
+  const { previousPage, setPreviousPage } = useContext(ShowBookPageContext);
 
   const handleBookClick = (e: React.SyntheticEvent<EventTarget>) => {
     setBook(e);
+    setPreviousPage(router.pathname);
     router.push("/book");
   };
 

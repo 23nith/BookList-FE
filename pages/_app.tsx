@@ -7,7 +7,7 @@ import ReadingListProvider from "../contexts/ReadingListContext";
 import ShowBookContextProvider from "../contexts/ShowBookContext";
 import BooksProvider from "../contexts/BooksContext";
 import UserContextProvider from "../contexts/UserContext";
-
+import ShowBookPageContextProvider from "../contexts/ShowBookPageContext";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
@@ -15,17 +15,19 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <>
       <UserContextProvider>
         {router.pathname !== "/" ? (
-          <BooksProvider>
-           <ShowBookContextProvider>
-            <ReadingListProvider>
-              <FinishedBooksProvider>
-                <Layout>
-                  <Component {...pageProps} />
-                </Layout>
-              </FinishedBooksProvider>
-            </ReadingListProvider>
-           </ShowBookContextProvider>
-          </BooksProvider>
+          <ShowBookPageContextProvider>
+            <BooksProvider>
+              <ShowBookContextProvider>
+                <ReadingListProvider>
+                  <FinishedBooksProvider>
+                    <Layout>
+                      <Component {...pageProps} />
+                    </Layout>
+                  </FinishedBooksProvider>
+                </ReadingListProvider>
+              </ShowBookContextProvider>
+            </BooksProvider>
+          </ShowBookPageContextProvider>
         ) : (
           <Component {...pageProps} />
         )}
