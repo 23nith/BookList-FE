@@ -19,6 +19,10 @@ a {
   box-sizing: border-box;
 }
 
+.textarea {
+  @apply border border-solid border-custom_light_gray bg-custom_light_gray4 px-[12px] py-[8px] min-h-[300px] w-full;
+}
+
 .nav_li_active {
   @apply rounded-sm border-solid border-l-4 block h-full mx-0 my-1 py-2 pl-2 pr-4 w-full text-custom_gray border-custom_blue bg-custom_light_gray;
 }

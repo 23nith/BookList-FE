@@ -39,6 +39,7 @@ const finished: NextPage = () => {
         finishedBooks.map((listItem) => (
           <BookList
             book={listItem.book}
+            list={listItem}
             key={listItem.book.id}
             state={"finished"}
           />

@@ -14,7 +14,12 @@ import { fetchBooks } from "../api/fetchBooks";
 import { removeFromReadingList } from "../api/removeFromReadingList";
 import { fetchReadingList } from "../api/fetchReadingList";
 import { ReadingListContext } from "../contexts/ReadingListContext";
+import { fetchFinishedBooks } from "../api/fetchFinishedBooks";
+import { FinishedBooks } from "../contexts/FinishedBooksContext";
+import { ShowBookPageContext } from "../contexts/ShowBookPageContext";
+import { markAsInProgress } from "../api/markAsInProgress";
 import { markAsFinished } from "../api/markAsFinished";
+
 
 interface BooklistProps {
   book: IBook;
@@ -29,9 +34,12 @@ const BookList = ({ book, state, list }: BooklistProps) => {
   const { user } = useContext(UserContext);
   const { setBooks } = useContext(BooksContext);
   const { setReadingList } = useContext(ReadingListContext);
+  const { setFinishedBooks } = useContext(FinishedBooks);
+  const { previousPage, setPreviousPage } = useContext(ShowBookPageContext);
 
   const handleBookClick = (e: React.SyntheticEvent<EventTarget>) => {
     setBook(e);
+    setPreviousPage(router.pathname);
     router.push("/book");
   };
 
@@ -52,7 +60,11 @@ const BookList = ({ book, state, list }: BooklistProps) => {
   ) => {
     e.stopPropagation();
     const onComplete = () => {
-      fetchReadingList(setIsLoading, setReadingList);
+      if (router.pathname == "/list") {
+        fetchReadingList(setIsLoading, setReadingList);
+      } else {
+        fetchFinishedBooks(setIsLoading, setFinishedBooks);
+      }
     };
     await removeFromReadingList(listID, onComplete);
   };
@@ -64,6 +76,17 @@ const BookList = ({ book, state, list }: BooklistProps) => {
     e.stopPropagation();
     const onComplete = () => fetchReadingList(setIsLoading, setReadingList);
     await markAsFinished(list, list.book.id, list.user_id, onComplete);
+  };
+
+  const handleReturnToReadingList = async (
+    e: React.SyntheticEvent<EventTarget>,
+    list: ListItem
+  ) => {
+    e.stopPropagation();
+    const onComplete = () => {
+      fetchFinishedBooks(setIsLoading, setFinishedBooks);
+    };
+    await markAsInProgress(list, list.book.id, list.user_id, onComplete);
   };
 
   return (
@@ -117,7 +140,12 @@ const BookList = ({ book, state, list }: BooklistProps) => {
                   }}
                 />
               ) : (
-                <FaBook className="hover:text-yellow-400" />
+                <FaBook
+                  className="hover:text-yellow-400"
+                  onClick={(e) => {
+                    handleReturnToReadingList(e, list);
+                  }}
+                />
               )}
             </div>
             <div className=" p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
