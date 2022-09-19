@@ -62,9 +62,7 @@ const BookList = ({ book, state, list }: BooklistProps) => {
     list: ListItem
   ) => {
     e.stopPropagation();
-    const onComplete = () => {
-      fetchReadingList(setIsLoading, setReadingList);
-    };
+    const onComplete = () => fetchReadingList(setIsLoading, setReadingList);
     await addToFinishedList(list, list.book.id, list.user_id, onComplete);
   };
 
