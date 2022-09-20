@@ -8,11 +8,58 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { ShowBookPageContext } from "../contexts/ShowBookPageContext";
 import { Notes } from "../components/Notes";
 import { IBook } from "../api/types";
+import { fetchBooks } from "../api/fetchBooks";
+import { addToReadingList } from "../api/addToReadingList";
+import { useRouter } from "next/router";
+import { UserContext } from "../contexts/UserContext";
+import { removeFromReadingList } from "../api/removeFromReadingList";
+import { fetchReadingList } from "../api/fetchReadingList";
+import { markAsFinished } from "../api/markAsFinished";
+import { markAsInProgress } from "../api/markAsInProgress";
 
 const book = () => {
+  const { user } = useContext(UserContext);
   const { book, list } = useContext(ShowBookContext);
   const { previousPage } = useContext(ShowBookPageContext);
   const currentBook: IBook = previousPage != "/discover" ? list.book : book;
+  const router = useRouter();
+
+  const handleAddToReadingList = async (
+    e: React.SyntheticEvent<EventTarget>,
+    bookID: number
+  ) => {
+    e.stopPropagation();
+    const onComplete = () => router.push(previousPage);
+    await addToReadingList(bookID, user.id, onComplete);
+  };
+
+  const handleClickRemove = async (
+    e: React.SyntheticEvent<EventTarget>,
+    listID: number
+  ) => {
+    e.stopPropagation();
+    const onComplete = () => router.push(previousPage);
+
+    await removeFromReadingList(listID, onComplete);
+  };
+
+  const handleAddToFinishedList = async (
+    e: React.SyntheticEvent<EventTarget>,
+    list: ListItem
+  ) => {
+    e.stopPropagation();
+    const onComplete = () => router.push(previousPage);
+    await markAsFinished(list, currentBook.id, list.user_id, onComplete);
+  };
+
+  const handleReturnToReadingList = async (
+    e: React.SyntheticEvent<EventTarget>,
+    list: ListItem
+  ) => {
+    e.stopPropagation();
+    const onComplete = () => router.push(previousPage);
+    await markAsInProgress(list, currentBook.id, list.user_id, onComplete);
+  };
 
   return (
     <div className="flex flex-col">
@@ -49,7 +96,12 @@ const book = () => {
             {previousPage == "/discover" && (
               <div className="grow-[1] max-w-[24px] flex flex-col justify-center min-w-fit">
                 <div className="p-2 rounded-30 border-solid border-2 border-slate-200 bg-white text-custom_gray">
-                  <MdAddCircle className="hover:text-indigo-600" />
+                  <MdAddCircle
+                    className="hover:text-indigo-600"
+                    onClick={(e) => {
+                      handleAddToReadingList(e, currentBook.id);
+                    }}
+                  />
                 </div>
               </div>
             )}
@@ -57,13 +109,28 @@ const book = () => {
               <div className="flex flex-col justify-around">
                 <div className=" p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white text-custom_gray">
                   {previousPage == "/list" ? (
-                    <BsCheckCircleFill className="hover:text-green-600" />
+                    <BsCheckCircleFill
+                      className="hover:text-green-600"
+                      onClick={(e) => {
+                        handleAddToFinishedList(e, list);
+                      }}
+                    />
                   ) : (
-                    <FaBook className="hover:text-yellow-400" />
+                    <FaBook
+                      className="hover:text-yellow-400"
+                      onClick={(e) => {
+                        handleReturnToReadingList(e, list);
+                      }}
+                    />
                   )}
                 </div>
                 <div className=" p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white text-custom_gray">
-                  <FaMinusCircle className="hover:text-rose-600" />
+                  <FaMinusCircle
+                    className="hover:text-rose-600"
+                    onClick={(e) => {
+                      handleClickRemove(e, list.id);
+                    }}
+                  />
                 </div>
               </div>
             )}
