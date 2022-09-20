@@ -8,12 +8,10 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { ShowBookPageContext } from "../contexts/ShowBookPageContext";
 import { Notes } from "../components/Notes";
 import { IBook } from "../api/types";
-import { fetchBooks } from "../api/fetchBooks";
 import { addToReadingList } from "../api/addToReadingList";
 import { useRouter } from "next/router";
 import { UserContext } from "../contexts/UserContext";
 import { removeFromReadingList } from "../api/removeFromReadingList";
-import { fetchReadingList } from "../api/fetchReadingList";
 import { markAsFinished } from "../api/markAsFinished";
 import { markAsInProgress } from "../api/markAsInProgress";
 
