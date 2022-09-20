@@ -6,9 +6,6 @@ import { LoginForm } from "./LoginForm";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { FormValues } from "../api/types";
-import { setCurrentUser } from "../api/setCurrentUser";
-import { useContext } from "react";
-import { UserContext } from "../contexts/UserContext";
 
 interface ModalProps {
   openModal: string | boolean;
@@ -16,7 +13,6 @@ interface ModalProps {
 }
 
 export const Modal = ({ openModal, setOpenModal }: ModalProps) => {
-  const { setUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const handleClickDismiss = () => {
@@ -27,7 +23,6 @@ export const Modal = ({ openModal, setOpenModal }: ModalProps) => {
       router.push("/list");
     };
     await login(values, onCompleted, setIsLoading);
-    setCurrentUser(setUser);
   };
   const handleRegister = async (values: FormValues) => {
     const onCompleted = () => {
