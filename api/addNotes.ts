@@ -1,10 +1,10 @@
 import { authHeaders, baseUrl } from "./base";
+import { ListItem } from "./types";
 
 export const addNotes = (
   notes: string,
-  bookID: number,
+  list: ListItem,
   userID: number,
-  onComplete: () => void
 ) => {
   fetch(`${baseUrl()}/api/v1/edit_list_item`, {
     method: "post"
@@ -21,7 +21,6 @@ export const addNotes = (
     })
   }).then((res) => {
     if (res.ok) {
-      onComplete && onComplete(res);
       return res.json();
     } else {
       return res.json();
