@@ -9,12 +9,10 @@ export const addNotes = (notes: string, list: ListItem) => {
       id: list.id,
       book_id: list.book.id,
       user_id: list.user_id,
-      rating: list.book.rating,
+      rating: list.rating,
       notes: notes,
-      start_date: list.book.start_date,
-      finish_date: list.book.finish_date,
-      created_at: list.book.created_at,
-      updated_at: list.book.updated_at,
+      start_date: list.start_date,
+      finish_date: list.finish_date,
     }),
   }).then((res) => {
     return res.json();
