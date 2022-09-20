@@ -8,18 +8,18 @@ import React, {
 import { User } from "../api/types";
 
 interface ContextType {
-  user?: User;
-  setUser?: Dispatch<SetStateAction<User>>;
+  user?: User | null;
+  setUser?: Dispatch<SetStateAction<User | null>>;
 }
 
-export const UserContext = createContext<ContextType>(null);
+export const UserContext = createContext<ContextType>({});
 
 interface UserContextProviderProps {
   children: ReactNode;
 }
 
 const UserContextProvider = ({ children }: UserContextProviderProps) => {
-  const [user, setUser] = useState<User>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   const value: ContextType = {
     user,
