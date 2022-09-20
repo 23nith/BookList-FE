@@ -4,10 +4,7 @@ import { UserContext } from "../contexts/UserContext";
 import { setCurrentUser } from "../api/setCurrentUser";
 
 const Menubar = () => {
-  const { user, setUser } = useContext(UserContext);
-  useEffect(() => {
-    setCurrentUser(setUser);
-  }, []);
+  const { user } = useContext(UserContext);
 
   return (
     <div className="flex justify-end p-2">

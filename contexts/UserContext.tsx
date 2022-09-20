@@ -12,14 +12,14 @@ interface ContextType {
   setUser?: Dispatch<SetStateAction<User>>;
 }
 
-export const UserContext = createContext<ContextType>({});
+export const UserContext = createContext<ContextType>(null);
 
 interface UserContextProviderProps {
   children: ReactNode;
 }
 
 const UserContextProvider = ({ children }: UserContextProviderProps) => {
-  const [user, setUser] = useState<User>({});
+  const [user, setUser] = useState<User>(null);
 
   const value: ContextType = {
     user,
