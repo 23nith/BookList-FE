@@ -13,7 +13,6 @@ const Notes = ({ list }: NotesProps) => {
       notes: list.notes,
     },
     onSubmit: (values) => {
-      console.log("Notes: ", values);
       addNotes(values.notes, list);
     },
   });

@@ -2,7 +2,6 @@ import { authHeaders, baseUrl } from "./base";
 import { ListItem } from "./types";
 
 export const addNotes = (notes: string, list: ListItem) => {
-  console.log("list item: ", list);
   fetch(`${baseUrl()}/api/v1/edit_list_item`, {
     method: "post",
     headers: { ...authHeaders() },
