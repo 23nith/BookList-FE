@@ -20,7 +20,6 @@ import { ShowBookPageContext } from "../contexts/ShowBookPageContext";
 import { markAsInProgress } from "../api/markAsInProgress";
 import { markAsFinished } from "../api/markAsFinished";
 
-
 interface BooklistProps {
   book: IBook;
   state: string;
@@ -30,7 +29,7 @@ interface BooklistProps {
 const BookList = ({ book, state, list }: BooklistProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const { setBook } = useContext(ShowBookContext);
+  const { setBook, setList } = useContext(ShowBookContext);
   const { user } = useContext(UserContext);
   const { setBooks } = useContext(BooksContext);
   const { setReadingList } = useContext(ReadingListContext);
@@ -38,7 +37,11 @@ const BookList = ({ book, state, list }: BooklistProps) => {
   const { previousPage, setPreviousPage } = useContext(ShowBookPageContext);
 
   const handleBookClick = (e: React.SyntheticEvent<EventTarget>) => {
-    setBook(e);
+    if (router.pathname == "/discover") {
+      setBook(e);
+    } else {
+      setList(e);
+    }
     setPreviousPage(router.pathname);
     router.push("/book");
   };
@@ -93,7 +96,7 @@ const BookList = ({ book, state, list }: BooklistProps) => {
     <div
       className="booklist_box cursor-pointer"
       onClick={(e) => {
-        handleBookClick(book);
+        handleBookClick(router.pathname == "/discover" ? book : list);
       }}
     >
       <div className="grow p-5">

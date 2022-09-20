@@ -7,9 +7,10 @@ import { FaBook } from "react-icons/fa";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { ShowBookPageContext } from "../contexts/ShowBookPageContext";
 import { Notes } from "../components/Notes";
+import { UserContext } from "../contexts/UserContext";
 
 const book = () => {
-  const { book } = useContext(ShowBookContext);
+  const { book, list } = useContext(ShowBookContext);
   const { previousPage } = useContext(ShowBookPageContext);
 
   return (
@@ -17,7 +18,11 @@ const book = () => {
       <div className="flex flex-row gap-5">
         <div className="grow">
           <img
-            src={book.cover_image_url}
+            src={
+              previousPage != "/discover"
+                ? list.book.cover_image_url
+                : book.cover_image_url
+            }
             width={180}
             height={270}
             className="min-w-[180px]"
@@ -26,10 +31,16 @@ const book = () => {
         <div className="grow-3">
           <div className="flex flex-row mb-14">
             <div className="grow-[3] leading-5">
-              <div className="text-4xl font-medium p-2 pt-0">{book.title}</div>
+              <div className="text-4xl font-medium p-2 pt-0">
+                {previousPage != "/discover" ? list.book.title : book.title}
+              </div>
               <div className="flex flex-row">
                 <div className="px-3 italic h-[21px]">
-                  {book.author} | {book.publisher}
+                  {previousPage != "/discover" ? list.book.author : book.author}{" "}
+                  |{" "}
+                  {previousPage != "/discover"
+                    ? list.book.publisher
+                    : book.publisher}
                 </div>
               </div>
               <div className="p-2 pt-0 mt-4">
@@ -64,10 +75,12 @@ const book = () => {
               </div>
             )}
           </div>
-          <div className="mt-6">{book.synopsis}</div>
+          <div className="mt-6">
+            {previousPage != "/discover" ? list.book.synopsis : book.synopsis}
+          </div>
         </div>
       </div>
-      {previousPage != "/discover" && <Notes />}
+      {previousPage != "/discover" && <Notes list={list} />}
     </div>
   );
 };

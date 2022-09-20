@@ -1,22 +1,20 @@
 import { useFormik } from "formik";
 import React from "react";
+import { addNotes } from "../api/addNotes";
 import { ListItem } from "../api/types";
 
-interface FormValue {
-  notes: string;
+interface NotesProps {
+  list: ListItem;
 }
 
-const Notes = (
-  addNotes: (FormData: FormValue, list: ListItem, userID: number) => void,
-  list: ListItem,
-  userID: number
-) => {
+const Notes = ({ list }: NotesProps) => {
   const formik = useFormik({
     initialValues: {
-      notes: "",
+      notes: list.notes,
     },
     onSubmit: (values) => {
-      addNotes(values, list, userID);
+      console.log("Notes: ", values);
+      addNotes(values.notes, list);
     },
   });
   return (
@@ -25,6 +23,7 @@ const Notes = (
       <div>
         <form>
           <textarea
+            id="notes"
             className="textarea"
             onChange={(e) => {
               formik.handleChange(e);
