@@ -17,10 +17,6 @@ export const addNotes = (notes: string, list: ListItem) => {
       updated_at: list.book.updated_at,
     }),
   }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return res.json();
-    }
+    return res.json();
   });
 };
