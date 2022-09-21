@@ -22,6 +22,42 @@ const book = () => {
   const currentBook: IBook = previousPage != "/discover" ? list.book : book;
   const router = useRouter();
 
+  const startDate = new Date(list?.start_date);
+  const startMonth = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ][startDate.getMonth()];
+  const startDay = startDate.getDay();
+  const start_date_formatted = startMonth + " " + startDay;
+
+  const finishDate = new Date(list?.finish_date);
+  const finishMonth = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ][finishDate.getMonth()];
+  const finishDay = finishDate.getDay();
+  const finish_date_formatted = finishMonth + " " + finishDay;
+
   const handleAddToReadingList = async (
     e: React.SyntheticEvent<EventTarget>,
     bookID: number
@@ -85,10 +121,16 @@ const book = () => {
                 {previousPage != "/discover" && (
                   <>
                     <FaRegCalendarAlt className="inline mb-1" />{" "}
-                    <span className="inline text-center">Sep 22</span>
+                    <span className="inline text-center">
+                      {start_date_formatted}
+                    </span>
                   </>
                 )}{" "}
-                {previousPage == "/finished" ? <span>— Sep 23</span> : ""}
+                {previousPage == "/finished" ? (
+                  <span>— {finish_date_formatted}</span>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             {previousPage == "/discover" && (
