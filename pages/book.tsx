@@ -23,13 +23,13 @@ const book = () => {
   const currentBook: IBook = previousPage != "/discover" ? list.book : book;
   const router = useRouter();
 
-  const startMonth: string = moment().month(list?.start_date).format("MMM");
-  const startDay: string = moment().date(list?.start_date).format("DD");
+  const startMonth: string = moment().month(list?.created_at).format("MMM");
+  const startDay: string = moment().date(list?.created_at).format("DD");
   const start_date_formatted: string = startMonth + " " + startDay;
 
   let finish_date_formatted: string;
 
-  if (list.finish_date) {
+  if (list?.finish_date) {
     const finishMonth: string = moment().month(list?.finish_date).format("MMM");
     const finishDay: string = moment().date(list?.finish_date).format("DD");
     finish_date_formatted = finishMonth + " " + finishDay;
