@@ -36,11 +36,11 @@ const BookList = ({ book, state, list }: BooklistProps) => {
   const { setFinishedBooks } = useContext(FinishedBooks);
   const { previousPage, setPreviousPage } = useContext(ShowBookPageContext);
 
-  const handleBookClick = (e: React.SyntheticEvent<EventTarget>) => {
+  const handleBookClick = (item: IBook | ListItem) => {
     if (router.pathname == "/discover") {
-      setBook(e);
+      setBook(item);
     } else {
-      setList(e);
+      setList(item);
     }
     setPreviousPage(router.pathname);
     router.push("/book");
@@ -78,7 +78,7 @@ const BookList = ({ book, state, list }: BooklistProps) => {
   ) => {
     e.stopPropagation();
     const onComplete = () => fetchReadingList(setIsLoading, setReadingList);
-    await markAsFinished(list, list.book.id, list.user_id, onComplete);
+    await markAsFinished(list, onComplete);
   };
 
   const handleReturnToReadingList = async (
@@ -89,7 +89,7 @@ const BookList = ({ book, state, list }: BooklistProps) => {
     const onComplete = () => {
       fetchFinishedBooks(setIsLoading, setFinishedBooks);
     };
-    await markAsInProgress(list, list.book.id, list.user_id, onComplete);
+    await markAsInProgress(list, onComplete);
   };
 
   return (
