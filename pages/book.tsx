@@ -23,16 +23,12 @@ const book = () => {
   const currentBook: IBook = previousPage != "/discover" ? list.book : book;
   const router = useRouter();
 
-  const startMonth: string = moment().month(list?.created_at).format("MMM");
-  const startDay: string = moment().date(list?.created_at).format("DD");
-  const start_date_formatted: string = startMonth + " " + startDay;
+  const start_date_formatted: string = moment(list.created_at).format("MMM DD");
 
   let finish_date_formatted: string;
 
   if (list?.finish_date) {
-    const finishMonth: string = moment().month(list?.finish_date).format("MMM");
-    const finishDay: string = moment().date(list?.finish_date).format("DD");
-    finish_date_formatted = finishMonth + " " + finishDay;
+    finish_date_formatted = moment(list.created_at).format("MMM DD");
   }
 
   const handleAddToReadingList = async (
