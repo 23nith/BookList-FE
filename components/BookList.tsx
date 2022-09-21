@@ -36,11 +36,11 @@ const BookList = ({ book, state, list }: BooklistProps) => {
   const { setFinishedBooks } = useContext(FinishedBooks);
   const { previousPage, setPreviousPage } = useContext(ShowBookPageContext);
 
-  const handleBookClick = (e: React.SyntheticEvent<EventTarget>) => {
+  const handleBookClick = (item: IBook | ListItem) => {
     if (router.pathname == "/discover") {
-      setBook(e);
+      setBook(item);
     } else {
-      setList(e);
+      setList(item);
     }
     setPreviousPage(router.pathname);
     router.push("/book");
