@@ -13,6 +13,12 @@ const Search = () => {
       search(values, setBooks);
     },
   });
+
+  const handleSubmit = (e) => {
+    formik.handleChange(e);
+    formik.submitForm();
+  };
+
   return (
     <form onSubmit={formik.handleSubmit}>
       <input
@@ -20,7 +26,7 @@ const Search = () => {
         type="text"
         className="bg-custom_light_gray rounded-3 px-4 py-3 w-full text-custom_gray"
         placeholder="Search books ..."
-        onChange={formik.handleChange}
+        onChange={handleSubmit}
         value={formik.values.query}
       />
     </form>
