@@ -37,7 +37,7 @@ const book = () => {
     "Nov",
     "Dec",
   ][startDate.getMonth()];
-  const startDay = startDate.getDay();
+  const startDay = startDate.getDate();
   const start_date_formatted = startMonth + " " + startDay;
 
   const finishDate = new Date(list?.finish_date);
@@ -55,7 +55,7 @@ const book = () => {
     "Nov",
     "Dec",
   ][finishDate.getMonth()];
-  const finishDay = finishDate.getDay();
+  const finishDay = finishDate.getDate();
   const finish_date_formatted = finishMonth + " " + finishDay;
 
   const handleAddToReadingList = async (
