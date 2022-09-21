@@ -6,17 +6,11 @@ export const markAsInProgress = (
   userID: number,
   onComplete: () => void
 ) => {
-  fetch(`${baseUrl()}/api/v1/edit_list_item`, {
-    method: "post",
+  fetch(`${baseUrl()}/api/v1/list_item/${list.id}`, {
+    method: "PATCH",
     headers: { ...authHeaders() },
     body: JSON.stringify({
-      id: list.id,
-      book_id: bookID,
-      user_id: userID,
-      rating: list.rating,
-      notes: list.notes,
-      start_date: list.start_date,
-      finish_date: null,
+      list_item: { finish_date: null },
     }),
   }).then((res) => {
     if (res.ok) {

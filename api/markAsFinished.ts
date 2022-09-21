@@ -10,18 +10,11 @@ export const markAsFinished = (
   let now = new Date();
   let utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
 
-  fetch(`${baseUrl()}/api/v1/edit_list_item`, {
-    method: "post",
+  fetch(`${baseUrl()}/api/v1/list_item/${list.id}`, {
+    method: "PATCH",
     headers: { ...authHeaders() },
     body: JSON.stringify({
-      id: list.id,
-      book_id: bookID,
-      user_id: userID,
-      rating: list.rating,
-      notes: list.notes,
-      start_date: list.start_date,
-      finish_date: utc,
-      book: list.book,
+      list_item: { finish_date: utc },
     }),
   }).then((res) => {
     if (res.ok) {
