@@ -78,7 +78,7 @@ const BookList = ({ book, state, list }: BooklistProps) => {
   ) => {
     e.stopPropagation();
     const onComplete = () => fetchReadingList(setIsLoading, setReadingList);
-    await markAsFinished(list, list.book.id, list.user_id, onComplete);
+    await markAsFinished(list, onComplete);
   };
 
   const handleReturnToReadingList = async (
@@ -89,7 +89,7 @@ const BookList = ({ book, state, list }: BooklistProps) => {
     const onComplete = () => {
       fetchFinishedBooks(setIsLoading, setFinishedBooks);
     };
-    await markAsInProgress(list, list.book.id, list.user_id, onComplete);
+    await markAsInProgress(list, onComplete);
   };
 
   return (

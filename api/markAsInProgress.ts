@@ -1,11 +1,6 @@
 import { authHeaders, baseUrl } from "./base";
 
-export const markAsInProgress = (
-  list: ListItem,
-  bookID: number,
-  userID: number,
-  onComplete: () => void
-) => {
+export const markAsInProgress = (list: ListItem, onComplete: () => void) => {
   fetch(`${baseUrl()}/api/v1/list_item/${list.id}`, {
     method: "PATCH",
     headers: { ...authHeaders() },

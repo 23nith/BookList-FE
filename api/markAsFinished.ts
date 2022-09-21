@@ -1,12 +1,7 @@
 import { authHeaders, baseUrl } from "./base";
 import { ListItem } from "./types";
 
-export const markAsFinished = (
-  list: ListItem,
-  bookID: number,
-  userID: number,
-  onComplete: () => void
-) => {
+export const markAsFinished = (list: ListItem, onComplete: () => void) => {
   let now = new Date();
   let utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
 
