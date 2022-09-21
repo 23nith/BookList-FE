@@ -13,11 +13,9 @@ export const addToReadingList = (
       user_id: userID,
       rating: 0,
       notes: "",
-      start_date: "",
       finish_date: null,
-      created_at: "",
-      updated_at: "",
-    },
+    }),
+
   }).then((res) => {
     if (res.ok) {
       onComplete && onComplete(res);
