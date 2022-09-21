@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { FormValues } from "../Interfaces/interfaces";
+import { FormValues } from "../api/types";
 import { Spinner } from "./styled";
 
 interface LoginFormProps {

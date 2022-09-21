@@ -20,7 +20,6 @@ import { ShowBookPageContext } from "../contexts/ShowBookPageContext";
 import { markAsInProgress } from "../api/markAsInProgress";
 import { markAsFinished } from "../api/markAsFinished";
 
-
 interface BooklistProps {
   book: IBook;
   state: string;
@@ -30,15 +29,19 @@ interface BooklistProps {
 const BookList = ({ book, state, list }: BooklistProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const { setBook } = useContext(ShowBookContext);
+  const { setBook, setList } = useContext(ShowBookContext);
   const { user } = useContext(UserContext);
   const { setBooks } = useContext(BooksContext);
   const { setReadingList } = useContext(ReadingListContext);
   const { setFinishedBooks } = useContext(FinishedBooks);
   const { previousPage, setPreviousPage } = useContext(ShowBookPageContext);
 
-  const handleBookClick = (e: React.SyntheticEvent<EventTarget>) => {
-    setBook(e);
+  const handleBookClick = (item: IBook | ListItem) => {
+    if (router.pathname == "/discover") {
+      setBook(item);
+    } else {
+      setList(item);
+    }
     setPreviousPage(router.pathname);
     router.push("/book");
   };
@@ -75,7 +78,7 @@ const BookList = ({ book, state, list }: BooklistProps) => {
   ) => {
     e.stopPropagation();
     const onComplete = () => fetchReadingList(setIsLoading, setReadingList);
-    await markAsFinished(list, list.book.id, list.user_id, onComplete);
+    await markAsFinished(list, onComplete);
   };
 
   const handleReturnToReadingList = async (
@@ -86,14 +89,14 @@ const BookList = ({ book, state, list }: BooklistProps) => {
     const onComplete = () => {
       fetchFinishedBooks(setIsLoading, setFinishedBooks);
     };
-    await markAsInProgress(list, list.book.id, list.user_id, onComplete);
+    await markAsInProgress(list, onComplete);
   };
 
   return (
     <div
       className="booklist_box cursor-pointer"
       onClick={(e) => {
-        handleBookClick(book);
+        handleBookClick(router.pathname == "/discover" ? book : list);
       }}
     >
       <div className="grow p-5">

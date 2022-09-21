@@ -5,11 +5,13 @@ import React, {
   Dispatch,
   SetStateAction,
 } from "react";
-import { IBook } from "../api/types";
+import { IBook, ListItem } from "../api/types";
 
 interface ContextType {
   book?: IBook;
   setBook?: Dispatch<SetStateAction<IBook>>;
+  list?: ListItem;
+  setList?: Dispatch<SetStateAction<ListItem>>;
 }
 
 export const ShowBookContext = createContext<ContextType>({});
@@ -22,10 +24,13 @@ const ShowBookContextProvider = ({
   children,
 }: ShowBookContextProviderProps) => {
   const [book, setBook] = useState<IBook>({});
+  const [list, setList] = useState<ListItem>({});
 
   const value: ContextType = {
     book,
     setBook,
+    list,
+    setList,
   };
 
   return (
