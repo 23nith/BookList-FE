@@ -16,6 +16,12 @@ const Notes = ({ list }: NotesProps) => {
       addNotes(values.notes, list);
     },
   });
+
+  const handleSubmit = (e) => {
+    formik.handleChange(e);
+    formik.submitForm();
+  };
+
   return (
     <div className="mt-10 mb-20">
       <div className="font-bold mb-3">Notes</div>
@@ -24,10 +30,7 @@ const Notes = ({ list }: NotesProps) => {
           <textarea
             id="notes"
             className="textarea"
-            onChange={(e) => {
-              formik.handleChange(e);
-              formik.submitForm();
-            }}
+            onChange={handleSubmit}
             value={formik.values.notes}
           ></textarea>
         </form>
