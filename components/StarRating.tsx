@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import styles from "../styles/Home.module.css";
+import { setRating as setScore } from "../api/setRating";
 
-export const StarRating = ({ score }) => {
-  const [rating, setRating] = useState(score);
+export const StarRating = ({ list }) => {
+  const [rating, setRating] = useState(list.rating);
   const [hover, setHover] = useState(null);
 
   const handleOnClick = (ratingValue) => {
+    setScore(list, ratingValue);
     setRating(ratingValue);
   };
 

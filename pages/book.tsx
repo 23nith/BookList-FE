@@ -15,6 +15,7 @@ import { removeFromReadingList } from "../api/removeFromReadingList";
 import { markAsFinished } from "../api/markAsFinished";
 import { markAsInProgress } from "../api/markAsInProgress";
 import moment from "moment";
+import { StarRating } from "../components/StarRating";
 
 const book = () => {
   const { user } = useContext(UserContext);
@@ -89,6 +90,9 @@ const book = () => {
                 <div className="px-3 italic h-[21px]">
                   {currentBook.author} | {currentBook.publisher}
                 </div>
+              </div>
+              <div className="ml-2 mt-2">
+                {previousPage == "/finished" ? <StarRating list={list} /> : ""}
               </div>
               <div className="p-2 pt-0 mt-4">
                 {previousPage != "/discover" && (

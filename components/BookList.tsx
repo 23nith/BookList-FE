@@ -93,10 +93,6 @@ const BookList = ({ book, state, list }: BooklistProps) => {
     await markAsInProgress(list, onComplete);
   };
 
-  const cancel = (e) => {
-    e.stopPropagation();
-  };
-
   return (
     <div
       className="booklist_box cursor-pointer"
@@ -116,11 +112,7 @@ const BookList = ({ book, state, list }: BooklistProps) => {
         <div className="flex flex-row justify-between mb-5">
           <div className={styles.booklist_title}>
             <h3>{book.title}</h3>
-            {router.pathname == "/finished" ? (
-              <StarRating score={list?.rating} onClick={cancel} />
-            ) : (
-              ""
-            )}
+            {router.pathname == "/finished" ? <StarRating list={list} /> : ""}
           </div>
           <div>
             <p>{book.author}</p>
