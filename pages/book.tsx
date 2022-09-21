@@ -14,6 +14,7 @@ import { UserContext } from "../contexts/UserContext";
 import { removeFromReadingList } from "../api/removeFromReadingList";
 import { markAsFinished } from "../api/markAsFinished";
 import { markAsInProgress } from "../api/markAsInProgress";
+import moment from "moment";
 
 const book = () => {
   const { user } = useContext(UserContext);
@@ -22,41 +23,17 @@ const book = () => {
   const currentBook: IBook = previousPage != "/discover" ? list.book : book;
   const router = useRouter();
 
-  const startDate = new Date(list?.start_date);
-  const startMonth = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ][startDate.getMonth()];
-  const startDay = startDate.getDate();
+  const startMonth = moment().month(list?.start_date).format("MMM");
+  const startDay = moment().date(list?.start_date).format("DD");
   const start_date_formatted = startMonth + " " + startDay;
 
-  const finishDate = new Date(list?.finish_date);
-  const finishMonth = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ][finishDate.getMonth()];
-  const finishDay = finishDate.getDate();
-  const finish_date_formatted = finishMonth + " " + finishDay;
+  let finish_date_formatted;
+
+  if (list.finish_date) {
+    const finishMonth = moment().month(list?.finish_date).format("MMM");
+    const finishDay = moment().date(list?.finish_date).format("DD");
+    finish_date_formatted = finishMonth + " " + finishDay;
+  }
 
   const handleAddToReadingList = async (
     e: React.SyntheticEvent<EventTarget>,
