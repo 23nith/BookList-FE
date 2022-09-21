@@ -47,7 +47,7 @@ const book = () => {
   ) => {
     e.stopPropagation();
     const onComplete = () => router.push(previousPage);
-    await markAsFinished(list, currentBook.id, list.user_id, onComplete);
+    await markAsFinished(list, onComplete);
   };
 
   const handleReturnToReadingList = async (
@@ -56,7 +56,7 @@ const book = () => {
   ) => {
     e.stopPropagation();
     const onComplete = () => router.push(previousPage);
-    await markAsInProgress(list, currentBook.id, list.user_id, onComplete);
+    await markAsInProgress(list, onComplete);
   };
 
   return (
