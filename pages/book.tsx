@@ -14,6 +14,7 @@ import { UserContext } from "../contexts/UserContext";
 import { removeFromReadingList } from "../api/removeFromReadingList";
 import { markAsFinished } from "../api/markAsFinished";
 import { markAsInProgress } from "../api/markAsInProgress";
+import moment from "moment";
 
 const book = () => {
   const { user } = useContext(UserContext);
@@ -21,6 +22,14 @@ const book = () => {
   const { previousPage } = useContext(ShowBookPageContext);
   const currentBook: IBook = previousPage != "/discover" ? list.book : book;
   const router = useRouter();
+
+  const start_date_formatted: string = moment(list.created_at).format("MMM DD");
+
+  let finish_date_formatted: string;
+
+  if (list?.finish_date) {
+    finish_date_formatted = moment(list.created_at).format("MMM DD");
+  }
 
   const handleAddToReadingList = async (
     e: React.SyntheticEvent<EventTarget>,
@@ -85,10 +94,16 @@ const book = () => {
                 {previousPage != "/discover" && (
                   <>
                     <FaRegCalendarAlt className="inline mb-1" />{" "}
-                    <span className="inline text-center">Sep 22</span>
+                    <span className="inline text-center">
+                      {start_date_formatted}
+                    </span>
                   </>
                 )}{" "}
-                {previousPage == "/finished" ? <span>— Sep 23</span> : ""}
+                {previousPage == "/finished" ? (
+                  <span>— {finish_date_formatted}</span>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             {previousPage == "/discover" && (
