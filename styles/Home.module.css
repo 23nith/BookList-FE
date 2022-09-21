@@ -20,6 +20,16 @@
   border-left: 5px solid transparent;
 }
 
+.radio {
+  display: none;
+}
+
+.star {
+  cursor: pointer;
+  transition: color 200ms;
+  display: inline-block;
+}
+
 .nav_box {
   padding: 1em 1.5em;
   border: 1px solid rgb(241, 241, 244);
