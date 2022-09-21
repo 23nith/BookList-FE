@@ -1,16 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FaStar } from "react-icons/fa";
 import styles from "../styles/Home.module.css";
 import { setRating as setScore } from "../api/setRating";
+import { FinishedBooks } from "../contexts/FinishedBooksContext";
 
 export const StarRating = ({ list }) => {
   const [rating, setRating] = useState(list.rating);
   const [hover, setHover] = useState(null);
+  const { finishedBooks } = useContext(FinishedBooks);
 
   const handleOnClick = (ratingValue) => {
     setScore(list, ratingValue);
     setRating(ratingValue);
   };
+
+  useEffect(() => {
+    setRating(list.rating);
+  }, [finishedBooks]);
 
   const stopBubbling = (e) => {
     e.stopPropagation();
