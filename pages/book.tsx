@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { ShowBookContext } from "../contexts/ShowBookContext";
 import { MdAddCircle } from "react-icons/md";
 import { BsCheckCircleFill } from "react-icons/bs";
@@ -16,13 +16,19 @@ import { markAsFinished } from "../api/markAsFinished";
 import { markAsInProgress } from "../api/markAsInProgress";
 import moment from "moment";
 import { StarRating } from "../components/StarRating";
+import { fetchUpdatedRating } from "../api/fetchUpdatedRating";
 
 const book = () => {
   const { user } = useContext(UserContext);
-  const { book, list } = useContext(ShowBookContext);
+  const { book, list, setList } = useContext(ShowBookContext);
+  const [rating, setRating] = useState(0);
   const { previousPage } = useContext(ShowBookPageContext);
   const currentBook: IBook = previousPage != "/discover" ? list.book : book;
   const router = useRouter();
+
+  useEffect(() => {
+    fetchUpdatedRating(list?.id, setRating);
+  }, []);
 
   const start_date_formatted: string = moment(list.created_at).format("MMM DD");
 
@@ -92,7 +98,11 @@ const book = () => {
                 </div>
               </div>
               <div className="ml-2 mt-2">
-                {previousPage == "/finished" ? <StarRating list={list} /> : ""}
+                {previousPage == "/finished" ? (
+                  <StarRating list={{ rating }} id={list.id} />
+                ) : (
+                  ""
+                )}
               </div>
               <div className="p-2 pt-0 mt-4">
                 {previousPage != "/discover" && (

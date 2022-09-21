@@ -1,7 +1,7 @@
 import { authHeaders, baseUrl } from "./base";
 
-export const setRating = (list, rating) => {
-  fetch(`${baseUrl()}/api/v1/list_item/${list.id}`, {
+export const setRating = (id: number, rating: number) => {
+  fetch(`${baseUrl()}/api/v1/list_item/${id}`, {
     method: "PATCH",
     headers: { ...authHeaders() },
     body: JSON.stringify({

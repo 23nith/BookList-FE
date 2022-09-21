@@ -3,29 +3,36 @@ import { FaStar } from "react-icons/fa";
 import styles from "../styles/Home.module.css";
 import { setRating as setScore } from "../api/setRating";
 import { FinishedBooks } from "../contexts/FinishedBooksContext";
+import { fetchUpdatedRating } from "../api/fetchUpdatedRating";
+import { ListItem } from "../api/types";
 
-export const StarRating = ({ list }) => {
-  const [rating, setRating] = useState(list.rating);
-  const [hover, setHover] = useState(null);
+interface StarRatingProps {
+  list: ListItem;
+  id: number;
+}
+
+export const StarRating = ({ list, id }: StarRatingProps) => {
+  const [rating, setRating] = useState<number>(list.rating);
+  const [hover, setHover] = useState<number | null>(null);
   const { finishedBooks } = useContext(FinishedBooks);
 
-  const handleOnClick = (ratingValue) => {
-    setScore(list, ratingValue);
+  const handleOnClick = (ratingValue: number) => {
+    setScore(id || list.id, ratingValue);
     setRating(ratingValue);
   };
 
   useEffect(() => {
     setRating(list.rating);
-  }, [finishedBooks]);
+  }, [list, fetchUpdatedRating, finishedBooks]);
 
-  const stopBubbling = (e) => {
+  const stopBubbling = (e: React.SyntheticEvent<EventTarget>) => {
     e.stopPropagation();
   };
 
   return (
     <div onClick={stopBubbling}>
       {[...Array(5)].map((star, i) => {
-        const ratingValue = i + 1;
+        const ratingValue: number = i + 1;
         return (
           <label>
             <input
