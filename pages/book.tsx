@@ -28,7 +28,7 @@ const book = () => {
   let finish_date_formatted: string;
 
   if (list?.finish_date) {
-    finish_date_formatted = moment(list.created_at).format("MMM DD");
+    finish_date_formatted = moment(list.finish_date).format("MMM DD");
   }
 
   const handleAddToReadingList = async (
