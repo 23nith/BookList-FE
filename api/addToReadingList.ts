@@ -10,7 +10,7 @@ export const addToReadingList = (
   fetch(`${baseUrl()}/api/v1/add_list_item`, {
     method: "post",
     headers: { ...authHeaders() },
-    body: {
+    body: JSON.stringify({
       book_id: bookID,
       user_id: userID,
       rating: 0,
@@ -19,7 +19,7 @@ export const addToReadingList = (
       finish_date: null,
       created_at: "",
       updated_at: "",
-    },
+    }),
   }).then((res) => {
     if (res.ok) {
       onComplete && onComplete(res);
