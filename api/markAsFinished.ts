@@ -1,9 +1,9 @@
+import moment from "moment";
 import { authHeaders, baseUrl } from "./base";
 import { ListItem } from "./types";
 
 export const markAsFinished = (list: ListItem, onComplete: () => void) => {
-  let now = new Date();
-  let utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
+  let utc = moment().format();
 
   fetch(`${baseUrl()}/api/v1/list_item/${list.id}`, {
     method: "PATCH",
