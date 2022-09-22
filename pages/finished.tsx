@@ -49,6 +49,7 @@ const finished: NextPage = () => {
             state={"finished"}
           />
         ))}
+      <div className="py-20"></div>
     </>
   );
 };
