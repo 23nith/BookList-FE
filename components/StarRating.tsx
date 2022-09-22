@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { FaStar } from "react-icons/fa";
-import styles from "../styles/Home.module.css";
 import { setRating as setScore } from "../api/setRating";
 import { FinishedBooks } from "../contexts/FinishedBooksContext";
 import { fetchUpdatedRating } from "../api/fetchUpdatedRating";
@@ -37,7 +36,7 @@ export const StarRating = ({ list, id }: StarRatingProps) => {
           <label>
             <input
               type="radio"
-              className={styles.radio}
+              className="radio"
               name="rating"
               value={ratingValue}
               onClick={() => {
@@ -45,7 +44,7 @@ export const StarRating = ({ list, id }: StarRatingProps) => {
               }}
             />
             <FaStar
-              className={styles.star}
+              className="star"
               color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
               size={20}
               onMouseEnter={() => {

@@ -19,6 +19,15 @@ a {
   box-sizing: border-box;
 }
 
+.radio {
+  @apply hidden;
+}
+
+.star {
+  @apply cursor-pointer inline-block;
+  transition: color 200ms;
+}
+
 .textarea {
   @apply border border-solid border-custom_light_gray bg-custom_light_gray4 px-[12px] py-[8px] min-h-[300px] w-full;
 }
