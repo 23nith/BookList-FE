@@ -61,7 +61,15 @@ export const LoginForm = ({
       </div>
       <div className="loginFormButtonDiv">
         {isLoading ? (
-          <Spinner />
+          <button
+            className={
+              buttonText == "login"
+                ? "loginFormButtonLogin"
+                : "loginFormButtonRegister"
+            }
+          >
+            {buttonText} <Spinner className="inline-block" />
+          </button>
         ) : (
           <button
             className={
