@@ -17,7 +17,12 @@ const List = () => {
     resetReadingList();
   }, [fetchReadingList]);
 
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <div className="flex h-[70vh] justify-center align-middle items-center">
+        <Spinner size={50} />
+      </div>
+    );
   return (
     <>
       {readingList.length == 0 && (
@@ -41,6 +46,7 @@ const List = () => {
             state={"reading"}
           />
         ))}
+      <div className="py-20"></div>
     </>
   );
 };

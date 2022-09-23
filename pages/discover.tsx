@@ -31,6 +31,7 @@ const discover = () => {
             <BookList book={book} key={book.id} state={"discover"} />
           ))}
       </div>
+      <div className="py-20"></div>
     </>
   );
 };

@@ -19,6 +19,7 @@ import { FinishedBooks } from "../contexts/FinishedBooksContext";
 import { ShowBookPageContext } from "../contexts/ShowBookPageContext";
 import { markAsInProgress } from "../api/markAsInProgress";
 import { markAsFinished } from "../api/markAsFinished";
+import { StarRating } from "./StarRating";
 
 interface BooklistProps {
   book: IBook;
@@ -94,7 +95,7 @@ const BookList = ({ book, state, list }: BooklistProps) => {
 
   return (
     <div
-      className="booklist_box cursor-pointer"
+      className="booklist_box cursor-pointer hover:shadow-md"
       onClick={(e) => {
         handleBookClick(router.pathname == "/discover" ? book : list);
       }}
@@ -111,6 +112,7 @@ const BookList = ({ book, state, list }: BooklistProps) => {
         <div className="flex flex-row justify-between mb-5">
           <div className={styles.booklist_title}>
             <h3>{book.title}</h3>
+            {router.pathname == "/finished" ? <StarRating list={list} /> : ""}
           </div>
           <div>
             <p>{book.author}</p>

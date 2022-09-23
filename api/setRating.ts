@@ -1,12 +1,11 @@
 import { authHeaders, baseUrl } from "./base";
-import { ListItem } from "./types";
 
-export const addNotes = (notes: string, list: ListItem) => {
-  fetch(`${baseUrl()}/api/v1/list_item/${list.id}`, {
+export const setRating = (id: number, rating: number) => {
+  fetch(`${baseUrl()}/api/v1/list_item/${id}`, {
     method: "PATCH",
     headers: { ...authHeaders() },
     body: JSON.stringify({
-      list_item: { notes: notes },
+      list_item: { rating: rating },
     }),
   }).then((res) => {
     return res.json();
