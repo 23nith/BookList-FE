@@ -5,7 +5,7 @@ export const markAsInProgress = (list: ListItem, onComplete: () => void) => {
     method: "PATCH",
     headers: { ...authHeaders() },
     body: JSON.stringify({
-      list_item: { finish_date: null },
+      list_item: { finish_date: null, rating: 0 },
     }),
   }).then((res) => {
     if (res.ok) {

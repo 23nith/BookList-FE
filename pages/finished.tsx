@@ -20,7 +20,12 @@ const finished: NextPage = () => {
 
   useEffect(() => {}, [finishedBooks]);
 
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <div className="flex h-[70vh] justify-center align-middle items-center">
+        <Spinner size={50} />
+      </div>
+    );
   return (
     <>
       {finishedBooks.length == 0 && (
@@ -44,6 +49,7 @@ const finished: NextPage = () => {
             state={"finished"}
           />
         ))}
+      <div className="py-20"></div>
     </>
   );
 };

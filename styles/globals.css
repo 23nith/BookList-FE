@@ -33,7 +33,11 @@ a {
 }
 
 .nav_li_active {
-  @apply rounded-sm border-solid border-l-4 block h-full mx-0 my-1 py-2 pl-2 pr-4 w-full text-custom_gray border-custom_blue bg-custom_light_gray;
+  @apply rounded-sm border-solid border-l-4 block h-full mx-0 my-1 py-2 pl-2 pr-4 w-full text-custom_blue border-custom_blue bg-custom_light_gray;
+}
+
+.hover_nav_li {
+  @apply hover:text-custom_blue hover:bg-custom_light_gray rounded-sm block h-full mx-0 my-1 py-2 pl-2 pr-4 w-full;
 }
 
 .booklist_box {

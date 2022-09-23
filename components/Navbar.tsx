@@ -6,11 +6,11 @@ import { useRouter } from "next/router";
 const Navbar: NextPage = () => {
   const router = useRouter();
   return (
-    <div className="grow h-full  p-1 min-w-200">
+    <div className="grow h-full p-1 min-w-200 max-w-200">
       <div className="pt-4">
         <ul className={styles.nav_box}>
           <li
-            className={`pl-2 py-3 ${
+            className={`pl-2 py-3 hover_nav_li ${
               router.pathname == "/list" ? "nav_li_active" : ""
             }`}
           >
@@ -19,7 +19,7 @@ const Navbar: NextPage = () => {
             </Link>
           </li>
           <li
-            className={`pl-2 py-3 ${
+            className={`pl-2 py-3 hover_nav_li ${
               router.pathname == "/finished" ? "nav_li_active" : ""
             }`}
           >
@@ -28,7 +28,7 @@ const Navbar: NextPage = () => {
             </Link>
           </li>
           <li
-            className={`pl-2 py-3 ${
+            className={`pl-2 py-3 hover_nav_li ${
               router.pathname == "/discover" ? "nav_li_active" : ""
             }`}
           >

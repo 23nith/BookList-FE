@@ -95,7 +95,7 @@ const BookList = ({ book, state, list }: BooklistProps) => {
 
   return (
     <div
-      className="booklist_box cursor-pointer"
+      className="booklist_box cursor-pointer hover:shadow-md"
       onClick={(e) => {
         handleBookClick(router.pathname == "/discover" ? book : list);
       }}
