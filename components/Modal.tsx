@@ -1,7 +1,7 @@
 import Dialog from "@reach/dialog";
 import styles from "../styles/Home.module.css";
-import { login } from "../api/login";
-import { register } from "../api/register";
+import { login } from "../api/auth/login";
+import { register } from "../api/auth/register";
 import { LoginForm } from "./LoginForm";
 import { useRouter } from "next/router";
 import { useState } from "react";

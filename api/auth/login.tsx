@@ -1,5 +1,5 @@
-import { baseUrl } from "./base";
-import { FormValues } from "./types";
+import { baseUrl } from "../base";
+import { FormValues } from "../types";
 
 export const login = (
   formData: FormValues,

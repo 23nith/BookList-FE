@@ -1,4 +1,4 @@
-import { authHeaders, baseUrl } from "./base";
+import { authHeaders, baseUrl } from "../base";
 
 export const logout = () => {
   fetch(`${baseUrl()}/logout`, {

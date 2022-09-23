@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useContext, useEffect } from "react";
-import { fetchReadingList } from "../api/fetchReadingList";
+import { fetchReadingList } from "../api/books/fetchReadingList";
 import { BookList } from "../components/BookList";
 import { Spinner } from "../components/styled";
 import { ReadingListContext } from "../contexts/ReadingListContext";

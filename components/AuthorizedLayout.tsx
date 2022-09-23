@@ -1,5 +1,5 @@
 import { useContext, useEffect, ReactNode } from "react";
-import { setCurrentUser } from "../api/setCurrentUser";
+import { setCurrentUser } from "../api/auth/setCurrentUser";
 import { UserContext } from "../contexts/UserContext";
 
 interface AuthorizedLayoutProps {

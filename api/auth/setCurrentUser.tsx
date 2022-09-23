@@ -1,6 +1,6 @@
-import { authHeaders, baseUrl } from "./base";
+import { authHeaders, baseUrl } from "../base";
 import { Dispatch, SetStateAction } from "react";
-import { User } from "./types";
+import { User } from "../types";
 
 export const setCurrentUser = (setUser: Dispatch<SetStateAction<User>>) => {
   fetch(`${baseUrl()}/api/v1/current_user`, {

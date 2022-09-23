@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { FaStar } from "react-icons/fa";
-import { setRating as setScore } from "../api/setRating";
+import { setRating as setScore } from "../api/books/setRating";
 import { FinishedBooks } from "../contexts/FinishedBooksContext";
-import { fetchUpdatedRating } from "../api/fetchUpdatedRating";
+import { fetchUpdatedRating } from "../api/books/fetchUpdatedRating";
 import { ListItem } from "../api/types";
 
 interface StarRatingProps {

@@ -6,7 +6,7 @@ import React, {
   SetStateAction,
   ReactNode,
 } from "react";
-import { logout } from "../api/logout";
+import { logout } from "../api/auth/logout";
 import { User } from "../api/types";
 
 interface ContextType {
