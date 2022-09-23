@@ -1,11 +1,14 @@
 import Dialog from "@reach/dialog";
 import styles from "../styles/Home.module.css";
-import { login } from "../api/login";
-import { register } from "../api/register";
+import { login } from "../api/auth/login";
+import { register } from "../api/auth/register";
 import { LoginForm } from "./LoginForm";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { FormValues } from "../api/types";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { makeToast } from "../api/makeToast";
 
 interface ModalProps {
   openModal: string | boolean;
@@ -22,13 +25,19 @@ export const Modal = ({ openModal, setOpenModal }: ModalProps) => {
     const onCompleted = () => {
       router.push("/list");
     };
-    await login(values, onCompleted, setIsLoading);
+    const onFail = () => {
+      makeToast("Invalid credentials", "error");
+    };
+    await login(values, onCompleted, setIsLoading, onFail);
   };
   const handleRegister = async (values: FormValues) => {
     const onCompleted = () => {
-      router.push("/list");
+      makeToast("Registered successfully!", "success");
     };
-    await register(values, onCompleted, setIsLoading);
+    const onFail = () => {
+      makeToast("Bad credentials", "error");
+    };
+    await register(values, onCompleted, setIsLoading, onFail);
   };
   return (
     <Dialog
@@ -44,6 +53,7 @@ export const Modal = ({ openModal, setOpenModal }: ModalProps) => {
       </div>
       <h3 className="dialogH3">
         {openModal == "login" ? "Login" : "Register"}
+        <ToastContainer />
       </h3>
       {openModal === "login" && (
         <LoginForm

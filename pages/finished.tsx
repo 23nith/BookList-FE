@@ -4,7 +4,7 @@ import { useContext, useEffect } from "react";
 import { FinishedBooks } from "../contexts/FinishedBooksContext";
 import { BookList } from "../components/BookList";
 import { Spinner } from "../components/styled";
-import { fetchFinishedBooks } from "../api/fetchFinishedBooks";
+import { fetchFinishedBooks } from "../api/books/fetchFinishedBooks";
 
 const finished: NextPage = () => {
   const { finishedBooks, isLoading, resetFinishedBooksList } =

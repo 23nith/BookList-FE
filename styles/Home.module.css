@@ -27,7 +27,7 @@
 }
 
 .formContainer {
-  @apply w-full max-w-450 rounded-3 pb-3.5em shadow-custom m-20vh mx-auto;
+  @apply w-full min-w-full sm:min-w-[450px] sm:max-w-450 rounded-3 pb-3.5em shadow-custom m-20vh mx-auto;
 }
 
 .homeContainer {

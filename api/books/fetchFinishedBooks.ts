@@ -1,4 +1,4 @@
-import { authHeaders, baseUrl } from "./base";
+import { authHeaders, baseUrl } from "../base";
 
 export const fetchFinishedBooks = (
   setIsLoading: React.Dispatch<React.SetStateAction<Boolean>>,

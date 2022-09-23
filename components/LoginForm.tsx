@@ -42,7 +42,7 @@ export const LoginForm = ({
           value={formik.values.username}
         />
         {formik.touched.username && formik.errors.username ? (
-          <p>{formik.errors.username}</p>
+          <p className="text-red-600">{formik.errors.username}</p>
         ) : null}
       </div>
       <div className="loginFormDiv">
@@ -56,7 +56,7 @@ export const LoginForm = ({
           value={formik.values.password}
         />
         {formik.touched.password && formik.errors.password ? (
-          <p>{formik.errors.password}</p>
+          <p className="text-red-600">{formik.errors.password}</p>
         ) : null}
       </div>
       <div className="loginFormButtonDiv">

@@ -1,9 +1,10 @@
-import { baseUrl, authHeaders } from "./base";
+import { baseUrl, authHeaders } from "../base";
 
 export const register = (
   formData: React.FormEvent<HTMLInputElement>,
   onComplete: () => void,
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  onFail: () => void
 ) => {
   setIsLoading(true);
   fetch(`${baseUrl()}/signup`, {
@@ -21,6 +22,8 @@ export const register = (
       if (res.ok) {
         onComplete && onComplete(res);
         return res.json();
+      } else {
+        onFail();
       }
     })
     .then((data) => {

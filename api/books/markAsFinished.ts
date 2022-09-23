@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
-import { authHeaders, baseUrl } from "./base";
-import { ListItem } from "./types";
+import { authHeaders, baseUrl } from "../base";
+import { ListItem } from "../types";
 
 export const markAsFinished = (list: ListItem, onComplete: () => void) => {
   var utc = require("dayjs/plugin/utc");
