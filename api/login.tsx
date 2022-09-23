@@ -4,7 +4,8 @@ import { FormValues } from "./types";
 export const login = (
   formData: FormValues,
   onComplete: () => void,
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  onFail: () => void
 ) => {
   setIsLoading(true);
   fetch(`${baseUrl()}/login`, {
@@ -24,7 +25,7 @@ export const login = (
       onComplete && onComplete(res);
       localStorage.setItem("token", res.headers.get("Authorization"));
     } else {
-      return res;
+      onFail();
     }
   });
 };

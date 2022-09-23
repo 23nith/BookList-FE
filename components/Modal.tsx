@@ -6,6 +6,8 @@ import { LoginForm } from "./LoginForm";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { FormValues } from "../api/types";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ModalProps {
   openModal: string | boolean;
@@ -22,13 +24,43 @@ export const Modal = ({ openModal, setOpenModal }: ModalProps) => {
     const onCompleted = () => {
       router.push("/list");
     };
-    await login(values, onCompleted, setIsLoading);
+    const onFail = () => {
+      toast.error("Invalid credentials", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    };
+    await login(values, onCompleted, setIsLoading, onFail);
   };
   const handleRegister = async (values: FormValues) => {
     const onCompleted = () => {
-      router.push("/list");
+      toast.success("Registered successfully!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     };
-    await register(values, onCompleted, setIsLoading);
+    const onFail = () => {
+      toast.error("Bad credentials", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    };
+    await register(values, onCompleted, setIsLoading, onFail);
   };
   return (
     <Dialog
@@ -44,6 +76,7 @@ export const Modal = ({ openModal, setOpenModal }: ModalProps) => {
       </div>
       <h3 className="dialogH3">
         {openModal == "login" ? "Login" : "Register"}
+        <ToastContainer />
       </h3>
       {openModal === "login" && (
         <LoginForm
