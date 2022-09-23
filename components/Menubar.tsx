@@ -1,17 +1,12 @@
 import { LogoutButton } from "./styled";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
-import { logout } from "../api/logout";
-import { useRouter } from "next/router";
 
 const Menubar = () => {
-  const { user, setUser } = useContext(UserContext);
-  const router = useRouter();
+  const { user, logoutUser } = useContext(UserContext);
 
   const handleLogout = () => {
-    logout();
-    setUser(null);
-    router.push("/");
+    logoutUser();
   };
 
   return (
