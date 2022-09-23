@@ -6,8 +6,9 @@ import { LoginForm } from "./LoginForm";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { FormValues } from "../api/types";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { makeToast } from "../api/makeToast";
 
 interface ModalProps {
   openModal: string | boolean;
@@ -25,40 +26,16 @@ export const Modal = ({ openModal, setOpenModal }: ModalProps) => {
       router.push("/list");
     };
     const onFail = () => {
-      toast.error("Invalid credentials", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      makeToast("Invalid credentials", "error");
     };
     await login(values, onCompleted, setIsLoading, onFail);
   };
   const handleRegister = async (values: FormValues) => {
     const onCompleted = () => {
-      toast.success("Registered successfully!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      makeToast("Registered successfully!", "success");
     };
     const onFail = () => {
-      toast.error("Bad credentials", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      makeToast("Bad credentials", "error");
     };
     await register(values, onCompleted, setIsLoading, onFail);
   };
