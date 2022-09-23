@@ -78,7 +78,7 @@ const book = () => {
   return (
     <div className="flex flex-col">
       <div className="flex flex-col sm:flex-row gap-5">
-        <div className="grow flex justify-center">
+        <div className="grow flex justify-center sm:block ">
           <img
             src={currentBook.cover_image_url}
             width={180}

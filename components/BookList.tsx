@@ -122,7 +122,7 @@ const BookList = ({ book, state, list }: BooklistProps) => {
         <div>{book.synopsis}</div>
       </div>
       {state == "discover" && (
-        <div className="lg:relative flex justify-center flex-col   items-center sm:items-stretch w-full sm:w-0">
+        <div className="lg:relative flex justify-center flex-col items-center sm:items-stretch w-full sm:w-0">
           <div className="lg:absolute p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
             <MdAddCircle
               className="hover:text-indigo-600"
