@@ -6,7 +6,7 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
-import { fetchFinishedBooks } from "../api/fetchFinishedBooks";
+import { fetchFinishedBooks } from "../api/books/fetchFinishedBooks";
 import { ListItem } from "../api/types";
 
 interface ContextType {

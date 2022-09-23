@@ -8,17 +8,17 @@ import { IBook, ListItem } from "../api/types";
 import { ShowBookContext } from "../contexts/ShowBookContext";
 import { useRouter } from "next/router";
 import { UserContext } from "../contexts/UserContext";
-import { addToReadingList } from "../api/addToReadingList";
+import { addToReadingList } from "../api/books/addToReadingList";
 import { BooksContext } from "../contexts/BooksContext";
-import { fetchBooks } from "../api/fetchBooks";
-import { removeFromReadingList } from "../api/removeFromReadingList";
-import { fetchReadingList } from "../api/fetchReadingList";
+import { fetchBooks } from "../api/books/fetchbooks";
+import { removeFromReadingList } from "../api/books/removeFromReadingList";
+import { fetchReadingList } from "../api/books/fetchReadingList";
 import { ReadingListContext } from "../contexts/ReadingListContext";
-import { fetchFinishedBooks } from "../api/fetchFinishedBooks";
+import { fetchFinishedBooks } from "../api/books/fetchFinishedBooks";
 import { FinishedBooks } from "../contexts/FinishedBooksContext";
 import { ShowBookPageContext } from "../contexts/ShowBookPageContext";
-import { markAsInProgress } from "../api/markAsInProgress";
-import { markAsFinished } from "../api/markAsFinished";
+import { markAsInProgress } from "../api/books/markAsInProgress";
+import { markAsFinished } from "../api/books/markAsFinished";
 import { StarRating } from "./StarRating";
 
 interface BooklistProps {
@@ -95,12 +95,12 @@ const BookList = ({ book, state, list }: BooklistProps) => {
 
   return (
     <div
-      className="booklist_box cursor-pointer hover:shadow-md"
+      className="booklist_box cursor-pointer hover:shadow-md flex sm:flex-row flex-col"
       onClick={(e) => {
         handleBookClick(router.pathname == "/discover" ? book : list);
       }}
     >
-      <div className="grow p-5">
+      <div className="grow p-5 flex justify-center">
         <img
           src={book.cover_image_url}
           width={140}
@@ -108,8 +108,8 @@ const BookList = ({ book, state, list }: BooklistProps) => {
           className="min-w-140"
         />
       </div>
-      <div className="grow-3 p-5 max-h-[255px] text-ellipsis overflow-hidden">
-        <div className="flex flex-row justify-between mb-5">
+      <div className="grow-3 p-5 max-h-[255px] text-ellipsis overflow-hidden ">
+        <div className="flex sm:flex-row justify-between items-center sm:items-stretch mb-5 flex-col text-center sm:text-start">
           <div className={styles.booklist_title}>
             <h3>{book.title}</h3>
             {router.pathname == "/finished" ? <StarRating list={list} /> : ""}
@@ -122,8 +122,8 @@ const BookList = ({ book, state, list }: BooklistProps) => {
         <div>{book.synopsis}</div>
       </div>
       {state == "discover" && (
-        <div className="relative flex justify-center flex-col">
-          <div className="absolute p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
+        <div className="lg:relative flex justify-center flex-col items-center sm:items-stretch w-full sm:w-0">
+          <div className="lg:absolute p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
             <MdAddCircle
               className="hover:text-indigo-600"
               onClick={(e) => {
@@ -134,8 +134,8 @@ const BookList = ({ book, state, list }: BooklistProps) => {
         </div>
       )}
       {state != "discover" && (
-        <div className="relative flex justify-center flex-col">
-          <div className="absolute h-[250px] flex flex-col justify-around">
+        <div className="sm:relative flex justify-center flex-col ">
+          <div className="sm:absolute sm:h-[250px] my-[5px] sm:my-0 sm:m-0 flex sm:flex-col justify-around flex-row lg:h-full w-full sm:w-auto">
             <div className=" p-2 rounded-30 border-solid border-2 border-slate-200 ml-1 bg-white">
               {state == "reading" ? (
                 <BsCheckCircleFill

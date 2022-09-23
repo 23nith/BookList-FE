@@ -1,6 +1,6 @@
 import React from "react";
-import { authHeaders, baseUrl } from "./base";
-import { IBook } from "./types";
+import { authHeaders, baseUrl } from "../base";
+import { IBook } from "../types";
 
 export const fetchBooks = (onComplete: (books: IBook[]) => void) => {
   fetch(`${baseUrl()}/api/v1/books`, {

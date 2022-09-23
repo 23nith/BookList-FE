@@ -1,4 +1,4 @@
-import { authHeaders, baseUrl } from "./base";
+import { authHeaders, baseUrl } from "../base";
 
 export const markAsInProgress = (list: ListItem, onComplete: () => void) => {
   fetch(`${baseUrl()}/api/v1/list_item/${list.id}`, {

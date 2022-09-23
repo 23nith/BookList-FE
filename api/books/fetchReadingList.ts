@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { authHeaders, baseUrl } from "./base";
+import { authHeaders, baseUrl } from "../base";
 
 export const fetchReadingList = (
   setIsLoading: Dispatch<SetStateAction<boolean>>,
