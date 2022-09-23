@@ -8,17 +8,17 @@ import { IBook, ListItem } from "../api/types";
 import { ShowBookContext } from "../contexts/ShowBookContext";
 import { useRouter } from "next/router";
 import { UserContext } from "../contexts/UserContext";
-import { addToReadingList } from "../api/addToReadingList";
+import { addToReadingList } from "../api/books/addToReadingList";
 import { BooksContext } from "../contexts/BooksContext";
-import { fetchBooks } from "../api/fetchBooks";
-import { removeFromReadingList } from "../api/removeFromReadingList";
-import { fetchReadingList } from "../api/fetchReadingList";
+import { fetchBooks } from "../api/books/fetchbooks";
+import { removeFromReadingList } from "../api/books/removeFromReadingList";
+import { fetchReadingList } from "../api/books/fetchReadingList";
 import { ReadingListContext } from "../contexts/ReadingListContext";
-import { fetchFinishedBooks } from "../api/fetchFinishedBooks";
+import { fetchFinishedBooks } from "../api/books/fetchFinishedBooks";
 import { FinishedBooks } from "../contexts/FinishedBooksContext";
 import { ShowBookPageContext } from "../contexts/ShowBookPageContext";
-import { markAsInProgress } from "../api/markAsInProgress";
-import { markAsFinished } from "../api/markAsFinished";
+import { markAsInProgress } from "../api/books/markAsInProgress";
+import { markAsFinished } from "../api/books/markAsFinished";
 import { StarRating } from "./StarRating";
 
 interface BooklistProps {

@@ -6,7 +6,7 @@ import React, {
   SetStateAction,
   ReactNode,
 } from "react";
-import { fetchReadingList } from "../api/fetchReadingList";
+import { fetchReadingList } from "../api/books/fetchReadingList";
 import { ListItem } from "../api/types";
 
 interface ContextType {

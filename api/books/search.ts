@@ -1,5 +1,5 @@
-import { authHeaders, baseUrl } from "./base";
-import { IBook } from "./types";
+import { authHeaders, baseUrl } from "../base";
+import { IBook } from "../types";
 
 export const search = (
   values: { query: string },

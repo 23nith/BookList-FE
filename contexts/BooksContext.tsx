@@ -6,7 +6,7 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
-import { fetchBooks } from "../api/fetchBooks";
+import { fetchBooks } from "../api/books/fetchbooks";
 import { IBook } from "../api/types";
 
 interface ContextType {

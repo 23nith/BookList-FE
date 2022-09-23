@@ -1,4 +1,4 @@
-import { authHeaders, baseUrl } from "./base";
+import { authHeaders, baseUrl } from "../base";
 
 export const fetchUpdatedRating = (
   id: number,

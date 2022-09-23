@@ -1,4 +1,4 @@
-import { baseUrl, authHeaders } from "./base";
+import { baseUrl, authHeaders } from "../base";
 
 export const register = (
   formData: React.FormEvent<HTMLInputElement>,

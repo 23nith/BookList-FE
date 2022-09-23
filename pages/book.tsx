@@ -8,15 +8,15 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { ShowBookPageContext } from "../contexts/ShowBookPageContext";
 import { Notes } from "../components/Notes";
 import { IBook } from "../api/types";
-import { addToReadingList } from "../api/addToReadingList";
+import { addToReadingList } from "../api/books/addToReadingList";
 import { useRouter } from "next/router";
 import { UserContext } from "../contexts/UserContext";
-import { removeFromReadingList } from "../api/removeFromReadingList";
-import { markAsFinished } from "../api/markAsFinished";
-import { markAsInProgress } from "../api/markAsInProgress";
+import { removeFromReadingList } from "../api/books/removeFromReadingList";
+import { markAsFinished } from "../api/books/markAsFinished";
+import { markAsInProgress } from "../api/books/markAsInProgress";
 import moment from "moment";
 import { StarRating } from "../components/StarRating";
-import { fetchUpdatedRating } from "../api/fetchUpdatedRating";
+import { fetchUpdatedRating } from "../api/books/fetchUpdatedRating";
 
 const book = () => {
   const { user } = useContext(UserContext);
