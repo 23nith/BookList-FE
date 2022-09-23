@@ -77,8 +77,8 @@ const book = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row gap-5">
-        <div className="grow">
+      <div className="flex flex-col sm:flex-row gap-5">
+        <div className="grow flex justify-center">
           <img
             src={currentBook.cover_image_url}
             width={180}
@@ -166,6 +166,7 @@ const book = () => {
         </div>
       </div>
       {previousPage != "/discover" && <Notes list={list} />}
+      <div className="py-20"></div>
     </div>
   );
 };

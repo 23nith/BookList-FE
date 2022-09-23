@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 const Navbar: NextPage = () => {
   const router = useRouter();
   return (
-    <div className="grow h-full p-1 min-w-200 max-w-200">
+    <div className="grow h-full p-1 min-w-200 max-w-full sm:max-w-200 text-center sm:text-start ">
       <div className="pt-4">
         <ul className={styles.nav_box}>
           <li

@@ -23,7 +23,7 @@ const Notes = ({ list }: NotesProps) => {
   };
 
   return (
-    <div className="mt-10 mb-20">
+    <div className="mt-10">
       <div className="font-bold mb-3">Notes</div>
       <div>
         <form>
